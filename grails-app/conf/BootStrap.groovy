@@ -35,23 +35,23 @@ class BootStrap {
 			
 			def simple = new Tipo(nombretipo: "Simple").save(flush:true)
 			def compuesto = new Tipo(nombretipo: "Compuesto").save(flush:true)
-			//instancio roles y usuarios
+			//instancio roles
 			def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
-		    def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
-		    //usuarios
-		    def usuario1 = new User(username: 'me', password: 'password')
-		    usuario1.save(flush: true)
-
-		    UserRole.create usuario1, adminRole, true
-
-		    def usuario2 = new User(username: 'prueba1@g.com', password: 'password')
-		    usuario2.save(flush: true)
-
-		    UserRole.create usuario2, adminRole, true
-
-		    assert User.count() == 2
-		    assert Role.count() == 2
-		    assert UserRole.count() == 2
+			def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+			//instancio usuarios
+			def usuario1 = new User(username: 'me', password: 'password')
+			usuario1.save(flush: true)
+			def usuario2 = new User(username: 'prueba1@g.com', password: 'password')
+			usuario2.save(flush: true)
+			//asigno roles a los usuarios
+			UserRole.create usuario1, adminRole, true
+			UserRole.create usuario2, adminRole, true
+			//verifica que haya n usuarios
+			assert User.count() == 2
+			//verifica que haya m roles
+			assert Role.count() == 2
+			//verifica que haya n usuarios con roles
+			assert UserRole.count() == 2
 		}
 	
 		def destroy = {
