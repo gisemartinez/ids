@@ -19,7 +19,6 @@ class Usuario {
 	String toString()
 	{ "$email" }
 
-
 	String password
 	//int idRol (FK de la tabla rol)
 

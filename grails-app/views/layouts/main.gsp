@@ -170,11 +170,15 @@
 						<li class="dropdown perfil">
 						          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <span class="caret"></span></a>
 						          <ul class="dropdown-menu" role="menu">
-						            <li><a href="#">Action</a></li>
-						            <li><a href="#">Another action</a></li>
-						            <li><a href="#">Something else here</a></li>
+						            <li><a href="../../abm/secure">
+						            	<sec:ifLoggedIn>
+											<sec:username/>
+										</sec:ifLoggedIn>
+						            </a></li>
+						            <li><a href="#">Permisos</a></li>
+
 						            <li class="divider"></li>
-						            <li><a href="#">Separated link</a></li>
+						            <li><a href="#">Logout</a></li>
 						          </ul>
 						</li>
 					</ul>
