@@ -23,21 +23,36 @@
 				//
 
 				//a todos los inputs (menos a los submits) le agrego la clase form-control
+<<<<<<< HEAD
+				$('input,select').addClass("form-control")
+
+				$('input:checkbox').removeClass("form-control")
+				$('input:submit').removeClass("form-control")
+=======
 				$('input').addClass("form-control")
 				$('select').addClass("form-control")
 				$('input:checkbox').removeClass("form-control")
+>>>>>>> origin/master
 				$('.fieldcontain').removeClass("fieldcontain")
 				//a todas las tablas le agrego la clase table
-				$('table').addClass("table")
+				$('table').addClass("table table-bordered")
 				//agrego iconos a los botones
 				// $('a.home').prepend("<span class='glyphicon glyphicon-home'>&nbsp</span>")
 				
 				// $('a.usuarios').prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
 
+<<<<<<< HEAD
+				$('.save').prepend("<i align='center' class='glyphicon glyphicon-ok'></i>")
+				$('.search').append("<i align='center' class='glyphicon glyphicon-search'></i>")
+				$('.delete').append("<i align='center' class='glyphicon glyphicon-trash'></i>")
+				$('a.edit').prepend("<span align='center' class='glyphicon glyphicon-pencil'></span>")
+				$('a.cancel').prepend("<span align='center' class='glyphicon glyphicon-remove'></span>")
+=======
 				$('.search').append("<i align='center' class='glyphicon glyphicon-search'></i>")
 				$('.delete').append("<i align='center' class='glyphicon glyphicon-remove'>&nbsp</i>")
 				$('a.edit').prepend("<span align='center' class='glyphicon glyphicon-pencil'>&nbsp</span>")
 				$('a.cancel').prepend("<span align='center' class='glyphicon glyphicon-remove'>&nbsp</span>")
+>>>>>>> origin/master
 				$('a.list').prepend("<span class='glyphicon glyphicon-book'>&nbsp</span>")
 				$('a.new').prepend("<span class='glyphicon glyphicon-upload'>&nbsp</span>")
 				$('.perfil a').first().prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
@@ -105,11 +120,11 @@
 			.fieldcontain{
 				margin-bottom: 10px;
 			}
-			input.save{
+			button.save{
 				float: right;				
 				margin: 5px;
 			}
-			input.delete{
+			button.delete{
 				float: right;
 				margin: 5px;				
 			}
