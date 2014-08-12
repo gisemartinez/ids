@@ -9,10 +9,13 @@
 		<div class="jumbotron">
 			<div class="container">
 			 	<h1>Patronus!</h1>
-			 	<p>This is a simple hero unit, a simple jumbotron-style component for calling extra 
-			 	attention to featured content or information.</p>
-			 	<p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-			</div>
+			 	<p>Es un sistema orientado a la administración de bienes de las distintas áreas de la Facultad Regional Delta de la Universidad Tecnológica Nacional.</p>
+			 		<div class="buttons">
+          				<span class="button">
+            				<input class="save" type="submit" value="Ingresar" />
+         				 </span>
+        			</div>
+			 </div>
 		</div>
 	</body>
 </html>
