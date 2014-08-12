@@ -5,21 +5,18 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
 		<title><g:layoutTitle default="Grails"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
-  		<asset:stylesheet src="application.css"/>
-		<asset:javascript src="application.js"/>
+		
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	
+		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
 		<g:layoutHead/>
 		<script type="text/javascript">
-			$(document).ready(
-			function(){
+			$(document).ready(function(){
 
 				//
 				//bootstrap
@@ -27,7 +24,9 @@
 
 				//a todos los inputs (menos a los submits) le agrego la clase form-control
 				$('input').addClass("form-control")
-				$('input:submit').removeClass("form-control")
+
+				$('input:checkbox').removeClass("form-control")
+				$('.fieldcontain').removeClass("fieldcontain")
 				//a todas las tablas le agrego la clase table
 				$('table').addClass("table")
 				//agrego iconos a los botones
@@ -35,6 +34,7 @@
 				
 				// $('a.usuarios').prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
 
+				$('.search').append("<i align='center' class='glyphicon glyphicon-search'></i>")
 				$('.delete').append("<i align='center' class='glyphicon glyphicon-remove'>&nbsp</i>")
 				$('a.edit').prepend("<span align='center' class='glyphicon glyphicon-pencil'>&nbsp</span>")
 				$('a.cancel').prepend("<span align='center' class='glyphicon glyphicon-remove'>&nbsp</span>")
@@ -73,10 +73,10 @@
 				$("a.cancel").addClass("btn btn-danger")
 				$(".delete").addClass("btn btn-danger")
 
-				$(".bienes").mouseover(function(event){
+				$(".bienes").mouseover(function(){
 					$(".bienes").addClass("open");
 				});
-				$(".bienes").mouseout(function(event){
+				$(".bienes").mouseout(function(){
 					$(".bienes").removeClass("open");
 				});
 
@@ -145,8 +145,6 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a class="list" href="/abm/bien/index">Listado</a></li>
 								<li><a class="new" href="/abm/bien/create">Cargar</a></li>
-<!-- 								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li> -->
 							</ul>
 						</li>
 						<li class="dropdown usuarios">
@@ -154,32 +152,35 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a class="list" href="/abm/usuario/index">Listado</a></li>
 								<li><a class="new" href="/abm/usuario/create">Cargar</a></li>
-<!-- 								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li> -->
 							</ul>
 						</li>
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
+							<input type="text" class="form-control" placeholder="Buscar...">
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="btn btn-primary search"></button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Link</a></li>
+						<!-- <li><a href="#">Link</a></li> -->
 						<li class="dropdown perfil">
-						          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <span class="caret"></span></a>
-						          <ul class="dropdown-menu" role="menu">
-						            <li><a href="../../abm/secure">
-						            	<sec:ifLoggedIn>
-											<sec:username/>
-										</sec:ifLoggedIn>
-						            </a></li>
-						            <li><a href="#">Permisos</a></li>
-
-						            <li class="divider"></li>
-						            <li><a href="#">Logout</a></li>
-						          </ul>
+							<sec:ifNotLoggedIn>
+								<g:link controller='login' action='auth'>Login</g:link>
+							</sec:ifNotLoggedIn>
+							<sec:ifLoggedIn>
+								<a href="#"><sec:username/></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Permisos</a></li>
+									<li class="divider"></li>
+									<li>
+										<form name="submitForm" method="POST" action="${createLink(controller:'logout')}">
+											<input type="hidden" name="" value=""> 
+											<a href="javascript:document.submitForm.submit()">Cerrar sesi&oacuten</a>
+										</form> 
+										<!-- <g:link controller="logout">Cerrar sesi&oacuten</g:link> -->
+									</li>
+								</ul>
+							</sec:ifLoggedIn>
 						</li>
 					</ul>
 				</div>
