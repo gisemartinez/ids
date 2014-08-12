@@ -24,7 +24,7 @@
 
 				//a todos los inputs (menos a los submits) le agrego la clase form-control
 				$('input').addClass("form-control")
-
+				$('select').addClass("form-control")
 				$('input:checkbox').removeClass("form-control")
 				$('.fieldcontain').removeClass("fieldcontain")
 				//a todas las tablas le agrego la clase table
