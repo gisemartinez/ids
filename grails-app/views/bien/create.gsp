@@ -7,15 +7,14 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:1em; padding-bottom:15px;">
+			<div class="panel panel-primary" style="margin-top:20px;">
 				<div class="panel-heading">
 					<h3 class="panel-title"><g:message code="default.create.label" args="[entityName]"/></h3>
 				</div>
-
 				<div class="panel-body">
-					<g:if test="${flash.message}">
+					<!-- <g:if test="${flash.message}">
 					<div class="message" role="status">${flash.message}</div>
-					</g:if>
+					</g:if> -->
 					<g:hasErrors bean="${bienInstance}">
 					<ul class="errors" role="alert">
 						<g:eachError bean="${bienInstance}" var="error">
@@ -27,10 +26,10 @@
 						<fieldset class="form">
 							<g:render template="form"/>
 						</fieldset>
-						<div class="container-fluid">
-							<a href="/abm/bien/index" class="cancel">Cancelar</a>
-							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-
+						<div style="margin-top:20px">
+							<a href="/abm/bien/index" class="cancel"></a>
+							<!-- <g:submitButton name="create" class="save" value="" /> -->
+							<button type="submit" class="btn btn-primary save"></button>
 						</fieldset>
 					</g:form>				
 				</div>
