@@ -9,12 +9,8 @@
 		<div class="jumbotron">
 			<div class="container">
 			 	<h1>Patronus!</h1>
-			 	<p>Es un sistema orientado a la administración de bienes de las distintas áreas de la Facultad Regional Delta de la Universidad Tecnológica Nacional.</p>
-			 		<div class="buttons">
-          				<span class="button">
-            				<input class="save" type="submit" value="Ingresar" />
-         				 </span>
-        			</div>
+			 	<p>Es un sistema orientado a la administración de bienes de las distintas áreas de la Facultad Regional Delta de la Universidad Tecnológica Nacional.<p>
+			 	<p>Usted podrá llevar el control de sus bienes, conociendo y modificando el estado de cada uno.</p>
 			 </div>
 		</div>
 	</body>
