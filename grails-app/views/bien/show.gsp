@@ -1,6 +1,4 @@
-
 <%@ page import="abm.Bien" %>
-		
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,94 +8,73 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:1em" >
+			<div class="panel panel-primary" style="margin-top:20px" >
 				<div class="panel-heading">
 					<h3 class="panel-title"><g:message code="default.show.label" args="[entityName]"/></h3>
 				</div>
 				<div class="panel-body">
-					<g:if test="${flash.message}">
+					<!-- <g:if test="${flash.message}">
 						<div class="message" role="status">
 							${flash.message}
 						</div>
-					</g:if>
+					</g:if> -->
 					<ul class="list-group">
-					
 						<g:if test="${bienInstance?.codigoDeSerie}">
-						<li class="list-group-item">
-							<span id="codigoDeSerie-label" class="property-label"><g:message code="bien.codigoDeSerie.label" default="Id Bien" /></span>
-							
+							<li class="list-group-item">
+								<span id="codigoDeSerie-label" class="property-label"><g:message code="bien.codigoDeSerie.label" default="Id Bien" /></span>
 								<span class="property-value" aria-labelledby="codigoDeSerie-label"><g:fieldValue bean="${bienInstance}" field="codigoDeSerie"/></span>
-							
-						</li>
+							</li>
 						</g:if>
-					
 						<g:if test="${bienInstance?.descripcion}">
-						<li class="list-group-item">
-							<span id="descripcion-label" class="property-label"><g:message code="bien.descripcion.label" default="Descripcion" /></span>
-							
+							<li class="list-group-item">
+								<span id="descripcion-label" class="property-label"><g:message code="bien.descripcion.label" default="Descripcion" /></span>
 								<span class="property-value" aria-labelledby="descripcion-label"><g:fieldValue bean="${bienInstance}" field="descripcion"/></span>
-							
-						</li>
+							</li>
 						</g:if>
 						<g:if test="${bienInstance?.tipo}">
 							<li class="fieldcontain list-group-item">
 								<span id="tipo-label" class="property-label"><g:message code="bien.tipo.label" default="Tipo" /></span>
-								
-									<span class="property-value" aria-labelledby="tipo-label"><g:link controller="tipo" action="show" id="${bienInstance?.tipo?.id}">${bienInstance?.tipo?.encodeAsHTML()}</g:link></span>
-								
+								<span class="property-value" aria-labelledby="tipo-label"><g:link controller="tipo" action="show" id="${bienInstance?.tipo?.id}">${bienInstance?.tipo?.encodeAsHTML()}</g:link></span>
 							</li>
-							</g:if>
-							<g:if test="${bienInstance?.estado}">
+						</g:if>
+						<g:if test="${bienInstance?.estado}">
 							<li class="fieldcontain list-group-item">
 								<span id="estado-label" class="property-label"><g:message code="bien.estado.label" default="Estado" /></span>
-								
-									<span class="property-value" aria-labelledby="estado-label"><g:link controller="estado" action="show" id="${bienInstance?.estado?.id}">${bienInstance?.estado?.encodeAsHTML()}</g:link></span>
-								
+								<span class="property-value" aria-labelledby="estado-label"><g:link controller="estado" action="show" id="${bienInstance?.estado?.id}">${bienInstance?.estado?.encodeAsHTML()}</g:link></span>
 							</li>
-							</g:if>
-						
-							<g:if test="${bienInstance?.ubicacion}">
+						</g:if>
+						<g:if test="${bienInstance?.ubicacion}">
 							<li class="fieldcontain list-group-item">
 								<span id="ubicacion-label" class="property-label"><g:message code="bien.ubicacion.label" default="Ubicacion" /></span>
-								
-									<span class="property-value" aria-labelledby="ubicacion-label"><g:link controller="ubicacion" action="show" id="${bienInstance?.ubicacion?.id}">${bienInstance?.ubicacion?.encodeAsHTML()}</g:link></span>
-								
+								<span class="property-value" aria-labelledby="ubicacion-label"><g:link controller="ubicacion" action="show" id="${bienInstance?.ubicacion?.id}">${bienInstance?.ubicacion?.encodeAsHTML()}</g:link></span>
 							</li>
-							</g:if>
-							
-							<g:if test="${bienInstance?.area}">
+						</g:if>
+						<g:if test="${bienInstance?.area}">
 							<li class="fieldcontain list-group-item list-group-item">
 								<span id="area-label" class="property-label"><g:message code="bien.area.label" default="Area" /></span>
-								
-									<span class="property-value" aria-labelledby="area-label"><g:link controller="area" action="show" id="${bienInstance?.area?.id}">${bienInstance?.area?.encodeAsHTML()}</g:link></span>
-								
+								<span class="property-value" aria-labelledby="area-label">
+									<g:link controller="area" action="show" id="${bienInstance?.area?.id}">${bienInstance?.area?.encodeAsHTML()}</g:link>
+								</span>
 							</li>
-							</g:if>
-					
-						<g:if test="${bienInstance?.fechaAlta}">
-						<li class="list-group-item">
-							<span id="fechaAlta-label" class="property-label"><g:message code="bien.fechaAlta.label" default="Fecha Alta" /></span>
-							
-								<span class="property-value" aria-labelledby="fechaAlta-label"><g:formatDate date="${bienInstance?.fechaAlta}" /></span>
-							
-						</li>
 						</g:if>
-					
+						<g:if test="${bienInstance?.fechaAlta}">
+							<li class="list-group-item">
+								<span id="fechaAlta-label" class="property-label"><g:message code="bien.fechaAlta.label" default="Fecha Alta" /></span>
+								<span class="property-value" aria-labelledby="fechaAlta-label"><g:formatDate date="${bienInstance?.fechaAlta}" /></span>
+							</li>
+						</g:if>
 						<g:if test="${bienInstance?.fechaBaja}">
-						<li class="list-group-item">
-							<span id="fechaBaja-label" class="property-label"><g:message code="bien.fechaBaja.label" default="Fecha Baja" /></span>
-							
+							<li class="list-group-item">
+								<span id="fechaBaja-label" class="property-label"><g:message code="bien.fechaBaja.label" default="Fecha Baja" /></span>
 								<span class="property-value" aria-labelledby="fechaBaja-label"><g:formatDate date="${bienInstance?.fechaBaja}" /></span>
-							
-						</li>
+							</li>
 						</g:if>
 					</ul>
 					<g:form url="[resource:bienInstance, action:'delete']" method="DELETE">
 						<fieldset class="buttons">
-							<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-							<g:link class="edit btn btn-primary" action="edit" resource="${bienInstance}">
-								<g:message code="default.button.edit.label" default="Edit" />
-							</g:link>
+							<!-- <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/> -->
+							<button type="submit" class="btn btn-primary delete"></button>
+							<g:link class="edit btn btn-primary" action="edit" resource="${bienInstance}"></g:link>
 						</fieldset>
 					</g:form>
 				</div>
