@@ -39,9 +39,9 @@ class BootStrap {
 			def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
 			def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 			//instancio usuarios
-			def usuario1 = new User(username: 'me', password: 'password')
+			def usuario1 = new User(username: 'rprada', password: 'pass')
 			usuario1.save(flush: true)
-			def usuario2 = new User(username: 'prueba1@g.com', password: 'password')
+			def usuario2 = new User(username: 'pepito', password: 'password')
 			usuario2.save(flush: true)
 			//asigno roles a los usuarios
 			UserRole.create usuario1, adminRole, true

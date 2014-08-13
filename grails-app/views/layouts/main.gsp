@@ -145,7 +145,9 @@
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
+
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<sec:ifLoggedIn>
 					<ul class="nav navbar-nav">
 						<li class="dropdown bienes">
 							<a href="/abm/bien/index" class="dropdown-toggle" data-toggle="dropdown">Bienes <span class="caret"></span></a>
@@ -162,12 +164,16 @@
 							</ul>
 						</li>
 					</ul>
+					</sec:ifLoggedIn>
+					
+					<sec:ifLoggedIn>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar...">
 						</div>
 						<button type="submit" class="btn btn-primary search"></button>
 					</form>
+					</sec:ifLoggedIn>
 					<ul class="nav navbar-nav navbar-right">
 						<!-- <li><a href="#">Link</a></li> -->
 						<li class="dropdown perfil">
