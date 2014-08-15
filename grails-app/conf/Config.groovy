@@ -140,7 +140,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     //los permisos a las diferentes urls va aca.en este caso para probar le puse permitAll pero podria poner solo el
     //nombre del rol
     '/usuario/**':                    ['permitAll'],
-    '/bien/**':                       ['permitAll']
+    '/bien/**':                       ['permitAll'],
+    '/user/**':                       ['permitAll'], //Habiendo generado las vistas para la clase User.
 ]
 
 
