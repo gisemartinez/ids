@@ -47,7 +47,7 @@ class BootStrap {
 			UserRole.create usuario1, adminRole, true
 			UserRole.create usuario2, adminRole, true
 			//verifica que haya n usuarios
-			assert User.count() == 2
+			//assert User.count() == 2
 			//verifica que haya m roles
 			assert Role.count() == 2
 			//verifica que haya n usuarios con roles
