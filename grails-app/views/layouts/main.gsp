@@ -128,6 +128,20 @@
 				float: right;
 				margin: 5px;
 			}
+			.cerrarsesion{
+				display: block;
+				padding: 3px 20px;
+				clear: both;
+				font-weight: 400;
+				line-height: 1.42857143;
+				color: #333;
+				white-space: nowrap;
+			}
+			a.cerrarsesion:hover{
+				color: #262626;
+				text-decoration: none;
+				background-color: #f5f5f5;
+			}
 		</style>
 	</head>
 	<body>
@@ -188,7 +202,7 @@
 									<li>
 										<form name="submitForm" method="POST" action="${createLink(controller:'logout')}">
 											<input type="hidden" name="" value=""> 
-											<a href="javascript:document.submitForm.submit()">Cerrar sesi&oacuten</a>
+											<a href="javascript:document.submitForm.submit()" class="cerrarsesion">Cerrar sesi&oacuten</a>
 										</form> 
 										<!-- <g:link controller="logout">Cerrar sesi&oacuten</g:link> -->
 									</li>
