@@ -121,6 +121,10 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
+
+//Selecciono a donde redirigir luego del login. Por defecto redirige a la raiz del sitio.
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/bien/'
+
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.testapp.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.testapp.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.testapp.Role'
