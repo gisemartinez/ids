@@ -4,6 +4,14 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<script type="text/javascript">
+		$(document).ready(function()
+				{
+					$('select#estado').val(1);
+					$('select#estado option').attr('hidden',true)
+				}
+			)
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
