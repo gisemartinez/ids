@@ -10,7 +10,7 @@ class BootStrap {
     def init = { servletContext ->
 		
     		//Instanciar los estados
-			
+			/*
 			def evaluar = new Estado(nombre: "A Evaluar").save(flush:true)
 			def reparar = new Estado(nombre: "A Reparar").save(flush:true)
 			def uso = new Estado(nombre: "En uso").save(flush:true)
@@ -52,6 +52,7 @@ class BootStrap {
 			assert Role.count() == 2
 			//verifica que haya n usuarios con roles
 			assert UserRole.count() == 2
+				*/
 		}
 	
 		def destroy = {

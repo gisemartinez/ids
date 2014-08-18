@@ -12,7 +12,7 @@ class Bien {
        //Fecha del alta del bien
        Date fechaAlta=new Date()
        //Fecha de baja del bien-por default: 31/12/2999
-       Date fechaBaja=new Date()
+       Date fechaBaja=new Date('2999/12/31')
                
        static constraints = {
        		
