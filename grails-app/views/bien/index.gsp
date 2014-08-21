@@ -8,7 +8,6 @@
 		<title><g:message code="Listado de bienes" args="[entityName]" /></title>
 	</head>
 	<body>
-	Copia de Romi
 		<div class="container-fluid" style="margin-top:20px">
 			<div id="list-bien" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
