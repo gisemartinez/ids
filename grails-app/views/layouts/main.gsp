@@ -145,6 +145,9 @@
 				text-decoration: none;
 				background-color: #f5f5f5;
 			}
+			.jumbotron{
+				background-color: white;
+			}
 		</style>
 	</head>
 	<body>
