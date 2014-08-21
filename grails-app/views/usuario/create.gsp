@@ -34,7 +34,7 @@
 						</fieldset>
 					</g:form>				
 				</div>
-				
+				<g:message code="* Campo Obligatorio"/>
 			</div>	
 		</div>
 	</body>

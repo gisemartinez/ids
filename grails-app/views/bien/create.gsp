@@ -35,13 +35,12 @@
 							<g:render template="form"/>
 						</fieldset>
 						<div style="margin-top:20px">
-							<a href="/abm/bien/index" class="cancel"></a>
-							<!-- <g:submitButton name="create" class="save" value="" /> -->
-							<button type="submit" class="btn btn-primary save"></button>
+							<a href="/abm/bien/index" class="cancel">Cancelar</a>
+							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 						</fieldset>
 					</g:form>				
 				</div>
-				
+				<g:message code="* Campo Obligatorio"/>
 			</div>	
 		</div>
 	</body>
