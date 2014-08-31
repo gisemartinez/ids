@@ -1,44 +1,60 @@
 
 <%@ page import="abm.Ubicacion" %>
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'ubicacion.label', default: 'Ubicacion')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<title><g:message code="Ubicacion creada" /></title>
 	</head>
 	<body>
-		<a href="#show-ubicacion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-ubicacion" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list ubicacion">
-			
-				<g:if test="${ubicacionInstance?.nombreubica}">
-				<li class="fieldcontain">
-					<span id="nombreubica-label" class="property-label"><g:message code="ubicacion.nombreubica.label" default="Nombreubica" /></span>
-					
-						<span class="property-value" aria-labelledby="nombreubica-label"><g:fieldValue bean="${ubicacionInstance}" field="nombreubica"/></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form url="[resource:ubicacionInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${ubicacionInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+		<div class="container-fluid">
+			<div class="panel panel-primary" style="margin-top:20px" >
+				<div class="panel-heading">
+					<h3 class="panel-title"><g:message code="default.show.label" args="[entityName]"/></h3>
+				</div>
+				<div class="panel-body">
+					<!-- <g:if test="${flash.message}">
+						<div class="message" role="status">
+							${flash.message}
+						</div>
+					</g:if> -->
+					<ul class="list-group">
+						<g:if test="${ubicacionInstance?.nombreubica}">
+							<li class="list-group-item">
+								<strong>
+									<span id="nombreubica-label" class="property-label"><g:message code="ubicacion.nombreubica.label" default="Nombre de la Ubicacion" /></span>
+								</strong>
+								<span class="property-value" aria-labelledby="nombreubica-label"><g:fieldValue bean="${ubicacionInstance}" field="nombreubica"/></span>
+							</li>
+						</g:if>
+						<g:if test="${ubicacionInstance?.fechaAlta}">
+							<li class="list-group-item">
+								<strong>
+									<span id="fechaAlta-label" class="property-label"><g:message code="ubicacion.fechaAlta.label" default="Fecha Alta" /></span>
+								</strong>
+								<span class="property-value" aria-labelledby="fechaAlta-label"><g:formatDate date="${ubicacionInstance?.fechaAlta}" /></span>
+							</li>
+						</g:if>
+						<g:if test="${ubicacionInstance?.fechaBaja}">
+							<li class="list-group-item">
+								<strong>
+									<span id="fechaBaja-label" class="property-label"><g:message code="ubicacion.fechaBaja.label" default="Fecha Baja" /></span>
+								</strong>
+								<span class="property-value" aria-labelledby="fechaBaja-label"><g:formatDate date="${ubicacionInstance?.fechaBaja}" /></span>
+							</li>
+						</g:if>
+					</ul>
+					<g:form url="[resource:ubicacionInstance, action:'delete']" method="DELETE">
+						<fieldset class="buttons">
+							<!-- <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/> -->
+							<button type="submit" class="btn btn-primary delete"></button>
+							<g:link class="edit btn btn-primary" action="edit" resource="${ubicacionInstance}"></g:link>
+						</fieldset>
+					</g:form>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -95,9 +95,29 @@
 								<li><a class="new" href="/abm/usuario/create">Cargar</a></li>
 							</ul>
 						</li>
+						<li class="dropdown areas">
+							<a href="/abm/area/index" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a class="list" href="/abm/area/index">Listado</a></li>
+								<li><a class="new" href="/abm/area/create">Cargar</a></li>
+							</ul>
+						</li>
+						<li class="dropdown estados">
+							<a href="/abm/estado/index" class="dropdown-toggle" data-toggle="dropdown">Estados <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a class="list" href="/abm/estado/index">Listado</a></li>
+								<li><a class="new" href="/abm/estado/create">Cargar</a></li>
+							</ul>
+						</li>
+						<li class="dropdown ubicaciones">
+							<a href="/abm/ubicacion/index" class="dropdown-toggle" data-toggle="dropdown">Ubicaciones <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a class="list" href="/abm/ubicacion/index">Listado</a></li>
+								<li><a class="new" href="/abm/ubicacion/create">Cargar</a></li>
+							</ul>
+						</li>
 					</ul>
 					</sec:ifLoggedIn>
-					
 					<sec:ifLoggedIn>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
