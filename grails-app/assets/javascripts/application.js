@@ -92,6 +92,27 @@ $(document).ready(function(){
 		$(".usuarios").removeClass("open");
 	});
 
+	$(".areas").mouseover(function(event){
+	$(".areas").addClass("open");
+	});
+	$(".areas").mouseout(function(event){
+		$(".areas").removeClass("open");
+	});
+
+	$(".estados").mouseover(function(event){
+	$(".estados").addClass("open");
+	});
+	$(".estados").mouseout(function(event){
+		$(".estados").removeClass("open");
+	});
+
+	$(".ubicaciones").mouseover(function(event){
+	$(".ubicaciones").addClass("open");
+	});
+	$(".ubicaciones").mouseout(function(event){
+		$(".ubicaciones").removeClass("open");
+	});
+
 	$(".perfil").mouseover(function(event){
 	$(".perfil").addClass("open");
 	});
