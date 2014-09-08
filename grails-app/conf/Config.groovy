@@ -141,7 +141,13 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     //nombre del rol
     '/usuario/**':                    ['permitAll'],
     '/bien/**':                       ['permitAll'],
-    '/user/**':                       ['permitAll'], //Habiendo generado las vistas para la clase User.
+    '/user/**':                       ['permitAll'],
+    '/persona/**':                       ['permitAll'],
+    '/estado/**':                       ['permitAll'],
+    '/area/**':                       ['permitAll'],
+    '/ubicacion/**':                       ['permitAll']
+
+     //Habiendo generado las vistas para la clase User.
 ]
 
 
