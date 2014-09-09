@@ -89,7 +89,7 @@
 						<fieldset class="buttons">
 							
 							<g:actionSubmit class="delete" action="delete" value="${message(code: 'e', default: 'Eliminar')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Está seguro?')}');" />
-							<g:link class="edit btn btn-primary" action="edit" resource="${usuarioInstance}"><g:message code="default.button.edit.label" default="Editar" /></g:link>
+							<g:link class="edit btn btn-primary" action="edit" resource="${personaInstance}"><g:message code="default.button.edit.label" default="Editar" /></g:link>
 						</fieldset>
 					</g:form>
 				</div>

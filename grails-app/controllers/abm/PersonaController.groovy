@@ -50,12 +50,12 @@ class PersonaController {
         }
     }
 
-    def edit(Persona personaInstance) {
-        respond personaInstance
+    def edit(Persona personaInstance,User userInstance) {
+        respond (personaInstance,userInstance)
     }
 
     @Transactional
-    def update(Persona personaInstance) {
+    def update(Persona personaInstance, User userInstance) {
         if (personaInstance == null) {
             notFound()
             return
@@ -67,6 +67,7 @@ class PersonaController {
         }
 
         personaInstance.save flush:true
+        userInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
