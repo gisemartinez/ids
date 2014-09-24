@@ -1,5 +1,4 @@
 package abm
-import com.testapp.User
 
 class Persona {
 	
@@ -13,6 +12,8 @@ class Persona {
 
 	Date fechaBaja=new Date()
 	
+	static belongsTo= [area:Area]
+
     static constraints = {
     }
 }

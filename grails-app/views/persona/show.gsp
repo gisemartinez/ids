@@ -56,6 +56,16 @@
 							</span>
 						</li>
 						</g:if>
+						<g:if test="${personaInstance?.area}">
+							<li class="fieldcontain list-group-item list-group-item">
+								<strong>
+									<span id="area-label" class="property-label"><g:message code="persona.area.label" default="Area" /></span>
+								</strong>
+								<span class="property-value" aria-labelledby="area-label">
+									<g:link controller="area" action="show" id="${personaInstance?.area?.id}">${personaInstance?.area?.encodeAsHTML()}</g:link>
+								</span>
+							</li>
+						</g:if>
 					
 						<g:if test="${personaInstance?.fechaAlta}">
 						<li class="list-group-item">

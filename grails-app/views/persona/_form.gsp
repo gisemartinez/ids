@@ -45,3 +45,13 @@
 	<g:textField name="password" required="" value="${userInstance?.password}"/>
 
 </div>
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'area', 'error')} required">
+	<label for="area">
+		<g:message code="persona.area.label" default="Area" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="area" name="area.id" from="${abm.Area.list()}" optionKey="id" required=""
+	noSelection= "['': 'Seleccione un area']"
+	 value="${personaInstance?.area?.id}" class="many-to-one"/>
+
+</div>

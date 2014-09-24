@@ -51,7 +51,7 @@ class PersonaController {
     }
 
     def edit(Persona personaInstance,User userInstance) {
-        respond (personaInstance,userInstance)
+        respond personaInstance, model:[userInstance: new User()]
     }
 
     @Transactional
