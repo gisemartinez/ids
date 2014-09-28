@@ -27,20 +27,30 @@ class PersonaController {
     }
 
     @Transactional
-    def save(Persona personaInstance, User user) {
+    def save(Persona personaInstance, User userInstance) {
         if (personaInstance == null) {
             notFound()
             return
         }
-
         if (personaInstance.hasErrors()) {
             respond personaInstance.errors, view:'create'
             return
         }
 
+        //--------lo mismo pero con el usuario--------
+         if (userInstance == null) {
+            notFound()
+            return
+        }
+        if (userInstance.hasErrors()) {
+            respond userInstance.errors, view:'create'
+            return
+        }
+        //-------guardo ambas instancias y guardo la relacion entre ambas
         personaInstance.save flush:true
-        user.save flush:true
-        
+        userInstance.save flush:true
+        //------por mas que sean IDs diferentes, la relacion se guarda igual
+        def relation = new PersonaUser(personaInstance,userInstance).save(flush:true)
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'persona.label', default: 'Persona'), personaInstance.id])

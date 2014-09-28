@@ -1,4 +1,6 @@
 <%@ page import="abm.Persona" %>
+<%@ page import="com.testapp.User" %>
+
 <!DOCTYPE html>
 <head>
 		<meta name="layout" content="main">
