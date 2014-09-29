@@ -18,7 +18,15 @@ class BienController {
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
         def areaUser = Persona.findById(idPersona).area
         params.max = Math.min(max ?: 10, 100)
+        //modificar con esto,para que el admin pueda acceder a todos los bienes
+        /*if(RoleAdmin){
+             respond Bien.list(params), model:[bienInstanceCount: Bien.count()]
 
+            }else{
+             respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
+
+            }
+        */
         respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
     }
 
