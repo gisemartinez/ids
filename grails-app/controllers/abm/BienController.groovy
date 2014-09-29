@@ -5,16 +5,21 @@ package abm
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
 
 @Secured(['ROLE_ADMIN'])
 @Transactional(readOnly = true)
 class BienController {
-
+     def springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def areaUser = Persona.findById(idPersona).area
         params.max = Math.min(max ?: 10, 100)
-        respond Bien.list(params), model:[bienInstanceCount: Bien.count()]
+
+        respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
     }
 
     def show(Bien bienInstance) {
