@@ -1,33 +1,42 @@
 package abm
 
 
-
+import com.testapp.UserRole
+import com.testapp.User
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 
-@Secured(['ROLE_ADMIN'])
+@Secured(['ROLE_ADMIN','ROLE_OPERADOR'])
 @Transactional(readOnly = true)
 class BienController {
      def springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        def idUserActual = springSecurityService.loadCurrentUser().id
-        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def areaUser = Persona.findById(idPersona).area
+        //seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
-        //modificar con esto,para que el admin pueda acceder a todos los bienes
-        /*if(RoleAdmin){
-             respond Bien.list(params), model:[bienInstanceCount: Bien.count()]
+        //busco el id de User
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        //con el id de User busco al id de la persona
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        //con el id de la persona me fijo su rol 
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
 
-            }else{
-             respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
 
-            }
-        */
-        respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
+        //--si el rol es Admin, traigo todos los bienes.En caso contrario,
+        //traigo los bienes que correspondan al area de la persona
+
+        if ( idRole == 1 ){
+
+            respond Bien.list(params), model:[bienInstanceCount: Bien.count()]
+        }
+        else
+        {
+            def areaUser = Persona.findById(idPersona).area
+            respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
+        }
     }
 
     def show(Bien bienInstance) {
