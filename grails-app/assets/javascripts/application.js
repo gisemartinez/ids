@@ -53,10 +53,7 @@ $(document).ready(function(){
 	}
 	//Si no hay elementos para mostrar..
 	if(!$('tbody').children().length){
-		$('div#list-bien').css('visibility','hidden')	
-	}
-	if(!$('tbody').children().length){
-		$('div#list-usuario').css('visibility','hidden')	
+		$('.table-responsive').css('visibility','hidden')	
 	}
 	//Si hay un input de id=password ,cambiarlo a tipo pass(q no muestre lo que escribe)
 	$('input#password').attr('type','password')
