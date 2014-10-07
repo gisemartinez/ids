@@ -21,9 +21,6 @@
 
 		</script>
 		<style>
-			body{
-				padding-top: 50px;
-			}
 			.fieldcontain{
 				margin-bottom: 10px;
 			}
@@ -63,7 +60,7 @@
 		</style>
 	</head>
 	<body>
-		<nav class="navbar navbar-default" role="navigation" style="position:fixed;top:0;left:0;z-index:99999;width:100%">
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
