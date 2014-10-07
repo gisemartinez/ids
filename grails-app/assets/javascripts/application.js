@@ -124,4 +124,41 @@ $(document).ready(function(){
 		$(".estado").removeClass("open");
 	});
 
-})
+	$("#nombre").change(function(e){
+		var txt = $("#nombre").val();
+		validarLetras( txt );
+	})
+
+	$("#apellido").change(function(e){
+		var txt = $("#apellido").val();
+		validarLetras( txt );
+	})
+
+	$("#codigoDeSerie").change(function(e){
+		var txt = $("#codigoDeSerie").val();
+		validarNumeros( txt );
+	})
+
+});
+
+
+
+function validarLetras( txt ){
+	if( !esSoloLetras(txt) )
+		alert( "Debe ingresar solo letras" );
+}
+
+function esSoloLetras( txt ){
+		var re = /^([a-z]|[A-Z]|\s)+$/;
+		return re.test(txt);	
+}
+
+function esSoloNumero( txt ){
+		var nu = /^([0-9])+$/;
+		return nu.test(txt);	
+}
+
+function validarNumeros( txt ){
+	if( !esSoloNumero(txt) )
+		alert( "Debe ingresar solo numeros" );
+}
