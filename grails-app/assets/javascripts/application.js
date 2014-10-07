@@ -116,5 +116,12 @@ $(document).ready(function(){
 	$(".perfil").mouseout(function(event){
 		$(".perfil").removeClass("open");
 	});
+	
+	$(".estado").mouseover(function(event){
+		$(".estado").addClass("open");
+	});
+	$(".estado").mouseout(function(event){
+		$(".estado").removeClass("open");
+	});
 
 })
