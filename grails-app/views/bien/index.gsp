@@ -8,11 +8,29 @@
 		<title><g:message code="Listado de bienes" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="container-fluid" style="margin-top:20px">
+		<div class="container-fluid">
 			<div id="list-bien" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
 					<div class="message" role="status">${flash.message}</div>
 				</g:if>
+				
+				<ul class="nav nav-tabs" role="tablist" style="margin-bottom:20px;">
+					<li ><a href="/abm/bien/index"><b>Todos</b></a></li>
+					<li class="active dropdown estado">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="">
+							Filtrar por Estado <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/abm/bien/estadoAevaluar">A Evaluar</a></li>
+							<li><a href="/abm/bien/estadoAreparar">A Reparar</a></li>
+							<li><a href="/abm/bien/estadoEnUso">En Uso</a></li>
+							<li><a href="/abm/bien/estadoAdonacion">A Donación</a></li>
+							<li><a href="/abm/bien/estadoAdescarte">A Descarte</a></li>
+							<li><a href="/abm/bien/estadoBaja">De Baja</a></li>
+						</ul>
+					</li>
+				</ul>
+				
 				<div class="table-responsive">
 					<table>
 						<thead>
