@@ -3,10 +3,12 @@ package abm
 
 import com.testapp.UserRole
 import com.testapp.User
+import com.testapp.Role
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
+import grails.gorm.*
 
 @Secured(['ROLE_ADMIN','ROLE_OPERADOR'])
 @Transactional(readOnly = true)
@@ -23,22 +25,98 @@ class BienController {
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
         //con el id de la persona me fijo su rol 
         def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-
+        def rol = Role.findById(idRole).authority
 
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
-
-        if ( idRole == 1 ){
-
-            respond Bien.list(params), model:[bienInstanceCount: Bien.count()]
-        }
-        else
-        {
+        respond mostrarBienesSegunRol(rol,idPersona), model:[bienInstanceCount: Bien.count()] ,view:'index'
+    }
+    def mostrarBienesSegunRol(String rol, Long idPersona){
+        if (rol == 'ROLE_ADMIN')
+            return Bien.list(params)
+        else{
             def areaUser = Persona.findById(idPersona).area
-            respond Bien.findAllByArea(areaUser), model:[bienInstanceCount: Bien.count()]
+            return Bien.findAllByArea(areaUser)
         }
     }
 
+    def estadoAevaluar(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
+        def rol = Role.findById(idRole).authority
+        def estado = Estado.findByNombre("A Evaluar")
+        respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
+     
+    }
+    def estadoAreparar(Integer max) {
+        //<<<--Comun a todos>>>
+        params.max = Math.min(max ?: 10, 100)
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
+        def rol = Role.findById(idRole).authority
+        //<<diferente segun el estado que sea>>
+        def estado = Estado.findByNombre("A Reparar")
+        respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
+     
+    }
+    def estadoEnUso(Integer max) {
+        //<<<--Comun a todos>>>
+        params.max = Math.min(max ?: 10, 100)
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
+        def rol = Role.findById(idRole).authority
+        //<<diferente segun el estado que sea>>
+        def estado = Estado.findByNombre("En uso")
+        respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
+     
+    }
+
+    def estadoAdonacion(Integer max) {
+        //<<<--Comun a todos>>>
+        params.max = Math.min(max ?: 10, 100)
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
+        def rol = Role.findById(idRole).authority
+        //<<diferente segun el estado que sea>>
+        def estado = Estado.findByNombre("A donacion")
+        respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
+     
+    }
+
+    def estadoAdescarte(Integer max) {
+        //<<<--Comun a todos>>>
+        params.max = Math.min(max ?: 10, 100)
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
+        def rol = Role.findById(idRole).authority
+        //<<diferente segun el estado que sea>>
+        def estado = Estado.findByNombre("A descarte")
+        respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
+     
+    }
+
+    def estadoBaja(Integer max) {
+        //<<<--Comun a todos>>>
+        params.max = Math.min(max ?: 10, 100)
+        def idUserActual = springSecurityService.loadCurrentUser().id
+        def idPersona = PersonaUser.findByUserId(idUserActual).personaId
+        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
+        def rol = Role.findById(idRole).authority
+        //<<diferente segun el estado que sea>>
+        def estado = Estado.findByNombre("Baja")
+        respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
+     
+    }
+    def bienesSegunEstado(ArrayList listadoBienes, Long idEstado){
+        return listadoBienes.findAll{it.estado.id == idEstado}
+
+    }
     def show(Bien bienInstance) {
         respond bienInstance
     }
