@@ -85,13 +85,6 @@
 								<li><a class="new" href="/abm/bien/create">Cargar</a></li>
 							</ul>
 						</li>
-						<li class="dropdown usuarios">
-							<a href="/abm/usuario/index" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a class="list" href="/abm/usuario/index">Listado</a></li>
-								<li><a class="new" href="/abm/usuario/create">Cargar</a></li>
-							</ul>
-						</li>
 						<li class="dropdown areas">
 							<a href="/abm/area/index" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
