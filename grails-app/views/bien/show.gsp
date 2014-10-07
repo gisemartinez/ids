@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:20px" >
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><g:message code="default.show.label" args="[entityName]"/></h3>
 				</div>
