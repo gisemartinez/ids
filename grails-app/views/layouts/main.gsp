@@ -85,6 +85,13 @@
 								<li><a class="new" href="/abm/bien/create">Cargar</a></li>
 							</ul>
 						</li>
+						<li class="dropdown persona">
+							<a href="/abm/persona/index" class="dropdown-toggle" data-toggle="dropdown">Personas <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a class="list" href="/abm/persona/index">Listado</a></li>
+								<li><a class="new" href="/abm/persona/create">Cargar</a></li>
+							</ul>
+						</li>
 						<li class="dropdown areas">
 							<a href="/abm/area/index" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -106,6 +113,7 @@
 								<li><a class="new" href="/abm/ubicacion/create">Cargar</a></li>
 							</ul>
 						</li>
+
 					</ul>
 					</sec:ifLoggedIn>
 					<sec:ifLoggedIn>

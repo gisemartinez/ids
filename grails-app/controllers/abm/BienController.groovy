@@ -33,7 +33,7 @@ class BienController {
     }
     def mostrarBienesSegunRol(String rol, Long idPersona){
         if (rol == 'ROLE_ADMIN')
-            return Bien.list(params)
+            return Bien.findAll()
         else{
             def areaUser = Persona.findById(idPersona).area
             return Bien.findAllByArea(areaUser)
