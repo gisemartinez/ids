@@ -1,4 +1,4 @@
-<%@ page import="abm.Area" %>
+<%@ page import=nombreAplicacion+".Area" %>
 <!DOCTYPE html>
 
 <html>
@@ -30,7 +30,7 @@
 							<g:render template="form"/>
 						</fieldset>
 						<div class="container-fluid">
-							<a href="/abm/area/index" class="cancel">Cancelar</a>
+							<a href="/$nombreAplicacion/area/index" class="cancel">Cancelar</a>
 							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 						</div>
 					</g:form>

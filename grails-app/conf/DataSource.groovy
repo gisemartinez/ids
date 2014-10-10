@@ -12,25 +12,27 @@ hibernate {
     cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' //Hibernate 4
     //cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory' //Hibernate 3
 }
+//config se instancia luego
+nombreAplicacion = "abm"
 
 // environment specific settings
 environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/db_abm"
+            url = "jdbc:mysql://localhost:3306/db_$nombreAplicacion"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/db_patronus"
+            url = "jdbc:mysql://localhost:3306/db_$nombreAplicacion"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/db_patronus"
+            url = "jdbc:mysql://localhost:3306/db_$nombreAplicacion"
         }
     }
 }

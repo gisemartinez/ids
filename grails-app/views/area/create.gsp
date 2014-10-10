@@ -37,7 +37,7 @@
 							<g:render template="form"/>
 						</fieldset>
 						<div style="margin-top:20px">
-							<a href="/abm/area/index" class="cancel">Cancelar</a>
+							<a href="/$nombreAplicacion/area/index" class="cancel">Cancelar</a>
 							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 						</fieldset>
 					</g:form>				
