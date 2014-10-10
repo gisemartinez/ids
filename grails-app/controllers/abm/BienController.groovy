@@ -16,6 +16,10 @@ class BienController {
      def springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def dameRol(){
+        return springSecurityService.authentication.getAuthorities()
+    }
+
     def index(Integer max) {
         //seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
@@ -41,6 +45,7 @@ class BienController {
     }
 
     def estadoAevaluar(Integer max) {
+        println(dameRol())
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
@@ -86,6 +91,17 @@ class BienController {
         def estado = Estado.findByNombre("A donacion")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
      
+    }
+    def enviarMail(){
+        def contenidoMail= "Venimos de Azul, vamos a Mar del Plata"
+        def mail1 = "gise.cpna@gmail.com"
+        def mail2 = "ayestaranguillermo@gmail.com"
+        sendMail {
+           to mail1, mail2
+           from "patronus.ids@gmail.com"
+           subject "Hello MAIL"
+           text contenidoMail
+        }
     }
 
     def estadoAdescarte(Integer max) {
@@ -147,7 +163,7 @@ class BienController {
             '*' { respond bienInstance, [status: CREATED] }
         }
     }
-
+    
     def edit(Bien bienInstance) {
         respond bienInstance
     }

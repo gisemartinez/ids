@@ -3,7 +3,7 @@ dataSource {
     driverClassName = "com.mysql.jdbc.Driver"
     dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
     username = "root"
-    password = "root"
+    password = "1perrito"
 }
 
 hibernate {
@@ -18,19 +18,19 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/ids"
+            url = "jdbc:mysql://localhost:3306/db_abm"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/ids"
+            url = "jdbc:mysql://localhost:3306/db_patronus"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/ids"
+            url = "jdbc:mysql://localhost:3306/db_patronus"
         }
     }
 }

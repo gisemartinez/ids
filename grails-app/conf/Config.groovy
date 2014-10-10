@@ -151,3 +151,15 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 ]
 
 
+grails {
+   mail {
+     host = "smtp.gmail.com"
+     port = 25
+     username = "patronus.ids@gmail.com"
+     password = "IdsPatro"
+     props = ["mail.smtp.auth":"true",
+              "mail.smtp.socketFactory.port":"465",
+              "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+              "mail.smtp.socketFactory.fallback":"false"]
+   }
+}
