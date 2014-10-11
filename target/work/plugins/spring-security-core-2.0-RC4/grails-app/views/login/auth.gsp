@@ -26,7 +26,7 @@
 		<g:if test='${flash.message}'>
 			<div style="padding: 0px 15px; margin-top: 25px; margin-bottom: 25px;">
 				<div class="alerta">
-					El usuario o la contraseña son incorrectos.
+					El usuario o la contrase&ntildea son incorrectos.
 				</div>
 			</div>
 		</g:if>
@@ -40,12 +40,12 @@
 				</div>
 				<div class="form-group">
 					<!-- <label for='password'><g:message code="springSecurity.login.password.label"/>:</label> -->
-					<input type="password" class="form-control" name='j_password' id='password' placeholder="Contraseña">
+					<input type="password" class="form-control" name='j_password' id='password' placeholder="Contrase&ntildea">
 				</div>
-				<button type="submit" class="btn btn-primary">Iniciar sesión</button>
+				<button type="submit" class="btn btn-primary">Iniciar sesi&oacuten</button>
 				<div class="checkbox">
 					<label>
-						<input type='checkbox' <g:if test='${hasCookie}'>checked='checked'</g:if>/>No cerrar sesión
+						<input type='checkbox' <g:if test='${hasCookie}'>checked='checked'</g:if>/>No cerrar sesi&oacuten
 					</label>
 				</div>				
 			</form>

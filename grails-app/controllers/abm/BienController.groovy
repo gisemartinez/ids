@@ -89,7 +89,7 @@ class BienController {
      
     }
     def enviarMail(String contenidoMail, String destinatario){
-        //def contenidoMail= "Se cambió el estado de un bien"
+        //def contenidoMail= "Se cambi&oacute el estado de un bien"
         //def mail1 = "gise.cpna@gmail.com"
        // def mail2 = "ayestaranguillermo@gmail.com"
         sendMail {

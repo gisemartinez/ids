@@ -24,7 +24,7 @@
 							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAevaluar">A Evaluar</a></li>
 							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAreparar">A Reparar</a></li>
 							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoEnUso">En Uso</a></li>
-							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdonacion">A Donación</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdonacion">A Donaci&oacuten</a></li>
 							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdescarte">A Descarte</a></li>
 							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoBaja">De Baja</a></li>
 						</ul>
@@ -35,7 +35,7 @@
 					<table>
 						<thead>
 							<tr>
-								<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'Código de serie')}" />
+								<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'C&oacutedigo de serie')}" />
 								<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripcion')}" />
 								<th><g:message code="bien.estado.label" default="Estado" /></th>
 								<th><g:message code="bien.tipo.label" default="Tipo" /></th>

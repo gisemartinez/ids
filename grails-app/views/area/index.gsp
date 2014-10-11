@@ -5,7 +5,7 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'area.label', default: 'Area')}" />
-		<title><g:message code="Listado de áreas" args="[entityName]" /></title>
+		<title><g:message code="Listado de &aacutereas" args="[entityName]" /></title>
 	</head>
 	<body>
 		<div class="container-fluid" style="margin-top:20px">

@@ -44,7 +44,7 @@ $(document).ready(function(){
 	$('.perfil a').first().prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
 
 	//
-	//Evitar comportamiento extraño de grails
+	//Evitar comportamiento extra&ntildeo de grails
 	//
 
 	//Si no hay suficientes elementos para paginar..

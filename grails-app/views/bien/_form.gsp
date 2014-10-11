@@ -4,7 +4,7 @@
 <sec:ifAllGranted roles="ROLE_ADMIN">
 	<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'codigoDeSerie', 'error')} required">
 		<label for="codigoDeSerie">
-			<g:message code="bien.codigoDeSerie.label" default="Código de Serie" />
+			<g:message code="bien.codigoDeSerie.label" default="C&oacutedigo de Serie" />
 			<span class="required-indicator">*</span>
 		</label>
 		<g:textField name="codigoDeSerie" required="" value="${bienInstance?.codigoDeSerie}"/>
