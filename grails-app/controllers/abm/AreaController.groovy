@@ -49,6 +49,7 @@ class AreaController {
     }
 
     def edit(Area areaInstance) {
+        println(session.nombreAplicacion)
         respond areaInstance
     }
 

@@ -29,7 +29,7 @@
 							<g:render template="form"/>
 						</fieldset>
 						<div class="container-fluid">
-							<a href="/abm/bien/index" class="cancel">Cancelar</a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/bien/index" class="cancel">Cancelar</a>
 							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 						</div>
 					</g:form>

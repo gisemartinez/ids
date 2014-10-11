@@ -1,4 +1,4 @@
-<%@ page import=nombreAplicacion+".Area" %>
+<%@ page import="abm.Area" %>
 
 
 

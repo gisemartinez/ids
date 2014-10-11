@@ -1,5 +1,5 @@
 
-<%@ page import=nombreAplicacion+".Area" %>
+<%@ page import="abm.Area" %>
 <!DOCTYPE html>
 <html>
 	<head>

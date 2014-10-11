@@ -15,18 +15,18 @@
 				</g:if>
 				
 				<ul class="nav nav-tabs" role="tablist" style="margin-bottom:20px;">
-					<li ><a href="/abm/bien/index"><b>Todos</b></a></li>
+					<li ><a href="/${grailsApplication.config.nombreAplicacion}/bien/index"><b>Todos</b></a></li>
 					<li class="active dropdown estado">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="">
 							Filtrar por Estado <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/abm/bien/estadoAevaluar">A Evaluar</a></li>
-							<li><a href="/abm/bien/estadoAreparar">A Reparar</a></li>
-							<li><a href="/abm/bien/estadoEnUso">En Uso</a></li>
-							<li><a href="/abm/bien/estadoAdonacion">A Donación</a></li>
-							<li><a href="/abm/bien/estadoAdescarte">A Descarte</a></li>
-							<li><a href="/abm/bien/estadoBaja">De Baja</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAevaluar">A Evaluar</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAreparar">A Reparar</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoEnUso">En Uso</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdonacion">A Donación</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdescarte">A Descarte</a></li>
+							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoBaja">De Baja</a></li>
 						</ul>
 					</li>
 				</ul>

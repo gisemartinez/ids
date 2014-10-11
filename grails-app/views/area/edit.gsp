@@ -1,4 +1,4 @@
-<%@ page import=nombreAplicacion+".Area" %>
+<%@ page import="abm.Area" %>
 <!DOCTYPE html>
 
 <html>
@@ -29,8 +29,8 @@
 						<fieldset class="form">
 							<g:render template="form"/>
 						</fieldset>
-						<div class="container-fluid">
-							<a href="/$nombreAplicacion/area/index" class="cancel">Cancelar</a>
+							<div class="container-fluid">
+							<a href="/${grailsApplication.config.nombreAplicacion}/area/index" class="cancel">Cancelar</a>
 							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 						</div>
 					</g:form>

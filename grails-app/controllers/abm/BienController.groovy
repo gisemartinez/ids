@@ -17,7 +17,8 @@ class BienController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def dameRol(){
-        return springSecurityService.authentication.getAuthorities()
+        //quueda usarlo despues para limpiar el codigo
+        return springSecurityService.authentication.getPrincipal().getAuthorities()[0]
     }
 
     def index(Integer max) {
@@ -45,12 +46,10 @@ class BienController {
     }
 
     def estadoAevaluar(Integer max) {
-        println(dameRol())
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        def rol = dameRol()
         def estado = Estado.findByNombre("A Evaluar")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
      
@@ -60,8 +59,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        def rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("A Reparar")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -72,8 +70,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        def rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("En uso")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -83,23 +80,22 @@ class BienController {
     def estadoAdonacion(Integer max) {
         //<<<--Comun a todos>>>
         params.max = Math.min(max ?: 10, 100)
-        def idUserActual = springSecurityService.loadCurrentUser().id
+         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        def rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("A donacion")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
      
     }
-    def enviarMail(){
-        def contenidoMail= "Venimos de Azul, vamos a Mar del Plata"
-        def mail1 = "gise.cpna@gmail.com"
-        def mail2 = "ayestaranguillermo@gmail.com"
+    def enviarMail(String contenidoMail, String destinatario){
+        //def contenidoMail= "Se cambió el estado de un bien"
+        //def mail1 = "gise.cpna@gmail.com"
+       // def mail2 = "ayestaranguillermo@gmail.com"
         sendMail {
-           to mail1, mail2
+           to destinatario
            from "patronus.ids@gmail.com"
-           subject "Hello MAIL"
+           subject "Patronus"
            text contenidoMail
         }
     }
@@ -109,8 +105,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        def rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("A descarte")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -122,8 +117,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        def rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("Baja")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -181,6 +175,8 @@ class BienController {
         }
 
         bienInstance.save flush:true
+        enviarMail("Se ha modificado el bien "+bienInstance.descripcion,"gise.cpna@gmail.com")
+
 
         request.withFormat {
             form multipartForm {

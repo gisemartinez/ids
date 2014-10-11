@@ -59,14 +59,15 @@ $(document).ready(function(){
 	$('input#password').attr('type','password')
 
 	//Agrego algunos botones al menu dependiendo en que pagina estoy.
-	if(location.pathname=="/patronus/bien/index"){
-		$('div#menu').append("<a class='btn btn-default' href='/patronus/bien/create'>Upload</a>")
+
+	if(location.pathname=="/${grailsApplication.config.nombreAplicacion}/bien/index"){
+		$('div#menu').append("<a class='btn btn-default' href='/$nombreAplicacion/bien/create'>Upload</a>")
 	}
-	if(location.pathname=="/patronus/bien/create"){
-		$('div#menu').append("<a class='btn btn-default' href='/patronus/bien/index'>Bienes</a>")
+	if(location.pathname=="/${grailsApplication.config.nombreAplicacion}/bien/create"){
+		$('div#menu').append("<a class='btn btn-default' href='/$nombreAplicacion/bien/index'>Bienes</a>")
 	}
-	if(location.pathname.indexOf("/patronus/bien/show")!=-1){
-		$('div#menu').append("<a class='btn btn-default' href='/patronus/bien/index'>Bienes</a>")
+	if(location.pathname.indexOf("/${grailsApplication.config.nombreAplicacion}/bien/show")!=-1){
+		$('div#menu').append("<a class='btn btn-default' href='/$nombreAplicacion${grailsApplication.config.nombreAplicacion}/bien/index'>Bienes</a>")
 	}
 	
 
@@ -82,11 +83,11 @@ $(document).ready(function(){
 	});
 
 
-	$(".usuarios").mouseover(function(event){
-	$(".usuarios").addClass("open");
+	$(".persona").mouseover(function(event){
+	$(".persona").addClass("open");
 	});
-	$(".usuarios").mouseout(function(event){
-		$(".usuarios").removeClass("open");
+	$(".persona").mouseout(function(event){
+		$(".persona").removeClass("open");
 	});
 
 	$(".areas").mouseover(function(event){

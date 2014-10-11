@@ -70,7 +70,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/abm">Patronus</a>
+					<a class="navbar-brand" href="/${grailsApplication.config.nombreAplicacion}">Patronus</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -79,38 +79,38 @@
 					<sec:ifLoggedIn>
 					<ul class="nav navbar-nav">
 						<li class="dropdown bienes">
-							<a href="/abm/bien/index" class="dropdown-toggle" data-toggle="dropdown">Bienes <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/bien/index" class="dropdown-toggle" data-toggle="dropdown">Bienes <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a class="list" href="/abm/bien/index">Listado</a></li>
-								<li><a class="new" href="/abm/bien/create">Cargar</a></li>
+								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/bien/index">Listado</a></li>
+								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/bien/create">Cargar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown persona">
-							<a href="/abm/persona/index" class="dropdown-toggle" data-toggle="dropdown">Personas <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" class="dropdown-toggle" data-toggle="dropdown">Personas <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a class="list" href="/abm/persona/index">Listado</a></li>
-								<li><a class="new" href="/abm/persona/create">Cargar</a></li>
+								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/persona/index">Listado</a></li>
+								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/persona/create">Cargar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown areas">
-							<a href="/abm/area/index" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/area/index" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a class="list" href="/abm/area/index">Listado</a></li>
-								<li><a class="new" href="/abm/area/create">Cargar</a></li>
+								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/area/index">Listado</a></li>
+								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/area/create">Cargar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown estados">
-							<a href="/abm/estado/index" class="dropdown-toggle" data-toggle="dropdown">Estados <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/estado/index" class="dropdown-toggle" data-toggle="dropdown">Estados <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a class="list" href="/abm/estado/index">Listado</a></li>
-								<li><a class="new" href="/abm/estado/create">Cargar</a></li>
+								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/estado/index">Listado</a></li>
+								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/estado/create">Cargar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown ubicaciones">
-							<a href="/abm/ubicacion/index" class="dropdown-toggle" data-toggle="dropdown">Ubicaciones <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/ubicacion/index" class="dropdown-toggle" data-toggle="dropdown">Ubicaciones <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a class="list" href="/abm/ubicacion/index">Listado</a></li>
-								<li><a class="new" href="/abm/ubicacion/create">Cargar</a></li>
+								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/ubicacion/index">Listado</a></li>
+								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/ubicacion/create">Cargar</a></li>
 							</ul>
 						</li>
 
@@ -133,7 +133,7 @@
 							<sec:ifLoggedIn>
 								<a href="#"><sec:username/></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Permisos</a></li>
+									<li><a href="${grailsApplication.config.my.user.username}/">Permisos</a></li>
 									<li class="divider"></li>
 									<li>
 										<form name="submitForm" method="POST" action="${createLink(controller:'logout')}">
