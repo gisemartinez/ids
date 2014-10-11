@@ -13,7 +13,7 @@ hibernate {
     //cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory' //Hibernate 3
 }
 //config se instancia luego
-nombreAplicacion = "abm"
+nombreAplicacion = "patronus"
 
 // environment specific settings
 environments {
