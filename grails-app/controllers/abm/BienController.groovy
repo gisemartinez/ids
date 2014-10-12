@@ -94,6 +94,7 @@ class BienController {
        // def mail2 = "ayestaranguillermo@gmail.com"
         sendMail {
            to destinatario
+           cc "gise.cpna@gmail","ayestaranguillermo@gmail.com","romina.prada@gmail.com","nair.olivera.utn@gmail.com"
            from "patronus.ids@gmail.com"
            subject "Patronus"
            text contenidoMail
@@ -175,7 +176,7 @@ class BienController {
         }
 
         bienInstance.save flush:true
-        enviarMail("Se ha modificado el bien "+bienInstance.descripcion,"gise.cpna@gmail.com")
+        enviarMail("Se ha modificado el bien "+bienInstance.descripcion,"pmdisanti@gmail.com")
 
 
         request.withFormat {
