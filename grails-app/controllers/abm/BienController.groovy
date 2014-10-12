@@ -176,8 +176,10 @@ class BienController {
         }
 
         bienInstance.save flush:true
-        enviarMail("Se ha modificado el bien "+bienInstance.descripcion,"pmdisanti@gmail.com")
-
+ 
+        def cuerpoMail= "Se ha modificado el bien :"+bienInstance.descripcion+". \nSu estado cambi&oacute a &quote"+bienInstance.estado.nombre+"&quote"
+            println(cuerpoMail)
+       // enviarMail(cuerpoMail,"pmdisanti@gmail.com")
 
         request.withFormat {
             form multipartForm {
