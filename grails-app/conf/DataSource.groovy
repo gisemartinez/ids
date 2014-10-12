@@ -14,7 +14,7 @@ hibernate {
 }
 //config se instancia luego
 nombreBase = "patronus"
-
+nombreAplicacion = "Patronus"
 // environment specific settings
 environments {
     development {
