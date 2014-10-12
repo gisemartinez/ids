@@ -30,7 +30,7 @@ class BienController {
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
         //con el id de la persona me fijo su rol 
         def idRole = UserRole.findByUser(User.findById(idUserActual)).role.id
-        def rol = Role.findById(idRole).authority
+        String rol = Role.findById(idRole).authority
 
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
@@ -49,7 +49,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def rol = dameRol()
+        String rol = dameRol()
         def estado = Estado.findByNombre("A Evaluar")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
      
@@ -59,7 +59,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def rol = dameRol()
+        String rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("A Reparar")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -70,7 +70,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def rol = dameRol()
+        String rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("En uso")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -82,7 +82,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
          def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def rol = dameRol()
+        String rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("A donacion")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -105,7 +105,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def rol = dameRol()
+        String rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("A descarte")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
@@ -117,7 +117,7 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         def idUserActual = springSecurityService.loadCurrentUser().id
         def idPersona = PersonaUser.findByUserId(idUserActual).personaId
-        def rol = dameRol()
+        String rol = dameRol()
         //<<diferente segun el estado que sea>>
         def estado = Estado.findByNombre("Baja")
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
