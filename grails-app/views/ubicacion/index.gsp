@@ -16,7 +16,7 @@
 					<table>
 						<thead>
 							<tr>
-								<g:sortableColumn property="Nombre de la Ubicacion" title="${message(code: 'ubicacion.nombreubica.label', default: 'Nombre de Ubicación')}" />
+								<g:sortableColumn property="Nombre de la Ubicacion" title="${message(code: 'ubicacion.nombreubica.label', default: 'Nombre de Ubicaci&oacuten')}" />
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'ubicacion.fechaAlta.label', default: 'Fecha Alta')}" />
 								<g:sortableColumn property="fechaBaja" title="${message(code: 'ubicacion.fechaBaja.label', default: 'Fecha Baja')}" />
 							</tr>
