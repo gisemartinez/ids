@@ -47,8 +47,6 @@
 							
 								<td><g:formatDate date="${personaInstance.fechaBaja}" /></td>
 							
-								<td>${fieldValue(bean: personaInstance, field: "nombre")}</td>
-							
 							</tr>
 						</g:each>
 						</tbody>
