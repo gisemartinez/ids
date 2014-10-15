@@ -85,6 +85,7 @@
 								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/bien/create">Cargar</a></li>
 							</ul>
 						</li>
+						<sec:ifAllGranted roles="ROLE_ADMIN">
 						<li class="dropdown persona">
 							<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" class="dropdown-toggle" data-toggle="dropdown">Personas <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -106,6 +107,7 @@
 								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/estado/create">Cargar</a></li>
 							</ul>
 						</li>
+						
 						<li class="dropdown ubicaciones">
 							<a href="/${grailsApplication.config.nombreAplicacion}/ubicacion/index" class="dropdown-toggle" data-toggle="dropdown">Ubicaciones <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -113,6 +115,7 @@
 								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/ubicacion/create">Cargar</a></li>
 							</ul>
 						</li>
+						</sec:ifAllGranted>
 
 					</ul>
 					</sec:ifLoggedIn>
