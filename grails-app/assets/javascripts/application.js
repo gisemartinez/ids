@@ -44,7 +44,7 @@ $(document).ready(function(){
 	$('.perfil a').first().prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
 
 	//
-	//Evitar comportamiento extra&ntildeo de grails
+	//Evitar comportamiento extra&#241o de grails
 	//
 
 	//Si no hay suficientes elementos para paginar..
@@ -61,13 +61,13 @@ $(document).ready(function(){
 	//Agrego algunos botones al menu dependiendo en que pagina estoy.
 
 	if(location.pathname=="/${grailsApplication.config.nombreAplicacion}/bien/index"){
-		$('div#menu').append("<a class='btn btn-default' href='/$nombreAplicacion/bien/create'>Upload</a>")
+		$('div#menu').append("<a class='btn btn-default' href='/${grailsApplication.config.nombreAplicacion}/bien/create'>Upload</a>")
 	}
 	if(location.pathname=="/${grailsApplication.config.nombreAplicacion}/bien/create"){
-		$('div#menu').append("<a class='btn btn-default' href='/$nombreAplicacion/bien/index'>Bienes</a>")
+		$('div#menu').append("<a class='btn btn-default' href='/${grailsApplication.config.nombreAplicacion}/bien/index'>Bienes</a>")
 	}
 	if(location.pathname.indexOf("/${grailsApplication.config.nombreAplicacion}/bien/show")!=-1){
-		$('div#menu').append("<a class='btn btn-default' href='/$nombreAplicacion${grailsApplication.config.nombreAplicacion}/bien/index'>Bienes</a>")
+		$('div#menu').append("<a class='btn btn-default' href='/${grailsApplication.config.nombreAplicacion}/${grailsApplication.config.nombreAplicacion}/bien/index'>Bienes</a>")
 	}
 	
 
