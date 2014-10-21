@@ -119,19 +119,19 @@
 
 					</ul>
 					</sec:ifLoggedIn>
-					<sec:ifLoggedIn>
+					<!--<sec:ifLoggedIn>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar...">
 						</div>
 						<button type="submit" class="btn btn-primary search"></button>
 					</form>
-					</sec:ifLoggedIn>
+					</sec:ifLoggedIn>-->
 					<ul class="nav navbar-nav navbar-right">
 						<!-- <li><a href="#">Link</a></li> -->
 						<li class="dropdown perfil">
 							<sec:ifNotLoggedIn>
-								<g:link controller='login' action='auth'>Login</g:link>
+								<g:link controller='login' action='auth'>Iniciar sesi&oacuten</g:link>
 							</sec:ifNotLoggedIn>
 							<sec:ifLoggedIn>
 								<a href="#"><sec:username/></a>
