@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:1em; padding-bottom:15px;" >
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><g:message code="default.edit.label" args="[entityName]"/></h3>
 				</div>
