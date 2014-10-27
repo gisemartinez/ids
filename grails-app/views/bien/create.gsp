@@ -33,10 +33,8 @@
 					<g:form url="[resource:bienInstance, action:'save']" >
 						<fieldset class="form">
 							<g:render template="form"/>
-						</fieldset>
-						<div style="margin-top:20px">
-							<a href="/${grailsApplication.config.nombreAplicacion}/bien/index" class="cancel">Cancelar</a>
-							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+							<g:link class="btn btn-primary cancel" action="index" resource="${bienInstance}"></g:link>
+							<button type="submit" class="btn btn-primary save"></button>
 						</fieldset>
 					</g:form>				
 				</div>
