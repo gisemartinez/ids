@@ -16,7 +16,7 @@
 
 <body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:20px;">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><g:message code="default.create.label" args="[entityName]"/></h3>
 				</div>
@@ -34,10 +34,8 @@
 					<g:form url="[resource:ubicacionInstance, action:'save']" >
 						<fieldset class="form">
 							<g:render template="form"/>
-						</fieldset>
-						<div style="margin-top:20px">
-							<a href="/${grailsApplication.config.nombreAplicacion}/ubicacion/index" class="cancel">Cancelar</a>
-							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+							<g:link class="btn btn-primary cancel" action="index" resource="${ubicacionInstance}"></g:link>
+							<button type="submit" class="btn btn-primary save"></button>
 						</fieldset>
 					</g:form>				
 				</div>
