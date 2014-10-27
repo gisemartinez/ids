@@ -8,7 +8,27 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<g:textField name="codigoDeSerie" required="" value="${bienInstance?.codigoDeSerie}"/>
-
+	</div>
+	<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'codigoPatrimonio', 'error')} required">
+		<label for="codigoPatrimonio">
+			<g:message code="bien.codigoPatrimonio.label" default="C&oacutedigo de Patrimonio" />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:textField name="codigoPatrimonio" required="" value="${bienInstance?.codigoPatrimonio}"/>
+	</div>
+	<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'responsableBien', 'error')} required">
+		<label for="responsableBien">
+			<g:message code="bien.responsableBien.label" default="Responsable" />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:textField name="responsableBien" required="" value="${bienInstance?.responsableBien}"/>
+	</div>
+	<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'nombreBien', 'error')} required">
+		<label for="nombreBien">
+			<g:message code="bien.nombreBien.label" default="Denominaci&oacuten" />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:textField name="nombreBien" required="" value="${bienInstance?.responsableBien}"/>
 	</div>
 	<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'descripcion', 'error')} required">
 		<label for="descripcion">
@@ -16,7 +36,6 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<g:textField name="descripcion" required="" value="${bienInstance?.descripcion}"/>
-
 	</div>
 </sec:ifAllGranted>
 <div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'estado', 'error')} required">
@@ -53,11 +72,11 @@
 
 	<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'area', 'error')} required">
 		<label for="area">
-			<g:message code="bien.area.label" default="Area" />
+			<g:message code="bien.area.label" default="Departamento" />
 			<span class="required-indicator">*</span>
 		</label>
 		<g:select id="area" name="area.id" from="${abm.Area.list()}" optionKey="id" required=""
-		noSelection= "['': 'Seleccione un area']"
+		noSelection= "['': 'Seleccione un departamento']"
 		 value="${bienInstance?.area?.id}" class="many-to-one"/>
 
 	</div>
