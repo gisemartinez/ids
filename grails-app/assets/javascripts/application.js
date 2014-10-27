@@ -19,10 +19,9 @@ $(document).ready(function(){
 	//a todos los inputs (menos a los submits) le agrego la clase form-control
 
 	$('input,select,textarea').addClass("form-control")
-	$('.form-control').attr("style","margin-bottom:10px")
-
 	$('input:checkbox').removeClass("form-control")
 	$('input:submit').removeClass("form-control")
+	$('.form-control').attr("style","margin-bottom:10px")
 
 	$('.fieldcontain').removeClass("fieldcontain")
 	//a todas las tablas le agrego la clase table
