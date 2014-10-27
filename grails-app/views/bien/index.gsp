@@ -40,7 +40,7 @@
 								<th><g:message code="bien.estado.label" default="Estado" /></th>
 								<th><g:message code="bien.tipo.label" default="Tipo" /></th>
 								<th><g:message code="bien.ubicacion.label" default="Ubicacion" /></th>
-								<th><g:message code="bien.area.label" default="Area" /></th>
+								<th><g:message code="bien.area.label" default="Departamento" /></th>
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'bien.fechaAlta.label', default: 'Fecha Alta')}" />
 								<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />
 							</tr>
