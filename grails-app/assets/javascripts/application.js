@@ -18,7 +18,8 @@ $(document).ready(function(){
 
 	//a todos los inputs (menos a los submits) le agrego la clase form-control
 
-	$('input,select').addClass("form-control")
+	$('input,select,textarea').addClass("form-control")
+	$('.form-control').attr("style","margin-bottom:10px")
 
 	$('input:checkbox').removeClass("form-control")
 	$('input:submit').removeClass("form-control")
@@ -26,6 +27,10 @@ $(document).ready(function(){
 	$('.fieldcontain').removeClass("fieldcontain")
 	//a todas las tablas le agrego la clase table
 	$('table').addClass("table table-bordered")
+	$('th,td').attr("style", "text-align:center")
+
+	
+	
 	//agrego iconos a los botones
 	// $('a.home').prepend("<span class='glyphicon glyphicon-home'>&nbsp</span>")
 	
