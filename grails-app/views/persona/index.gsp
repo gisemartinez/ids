@@ -8,7 +8,7 @@
 		<title><g:message code="Listado de Personas" /></title>
 	</head>
 	<body>
-		<div class="container-fluid" style="margin-top:20px">
+		<div class="container-fluid">
 			<div id="list-usuario" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
