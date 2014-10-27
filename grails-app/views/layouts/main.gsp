@@ -87,14 +87,14 @@
 						</li>
 						<sec:ifAllGranted roles="ROLE_ADMIN">
 						<li class="dropdown persona">
-							<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" class="dropdown-toggle" data-toggle="dropdown">Personas <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" class="dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/persona/index">Listado</a></li>
 								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/persona/create">Cargar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown areas">
-							<a href="/${grailsApplication.config.nombreAplicacion}/area/index" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
+							<a href="/${grailsApplication.config.nombreAplicacion}/area/index" class="dropdown-toggle" data-toggle="dropdown">Departamentos <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a class="list" href="/${grailsApplication.config.nombreAplicacion}/area/index">Listado</a></li>
 								<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/area/create">Cargar</a></li>
@@ -116,7 +116,6 @@
 							</ul>
 						</li>
 						</sec:ifAllGranted>
-
 					</ul>
 					</sec:ifLoggedIn>
 					<!--<sec:ifLoggedIn>
