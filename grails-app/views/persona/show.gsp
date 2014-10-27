@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:1em" >
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><g:message code="default.show.label" args="[entityName]"/></h3>
 				</div>
@@ -97,9 +97,8 @@
 					</ul>
 					<g:form url="[resource:personaInstance, action:'delete']" method="DELETE">
 						<fieldset class="buttons">
-							
-							<g:actionSubmit class="delete" action="delete" value="${message(code: 'e', default: 'Eliminar')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Est&aacute seguro?')}');" />
-							<g:link class="edit btn btn-primary" action="edit" resource="${personaInstance}"><g:message code="default.button.edit.label" default="Editar" /></g:link>
+							<button type="submit" class="btn btn-primary delete"></button>
+							<g:link class="edit btn btn-primary" action="edit" resource="${personaInstance}"></g:link>
 						</fieldset>
 					</g:form>
 				</div>
