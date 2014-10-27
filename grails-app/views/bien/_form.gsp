@@ -35,7 +35,7 @@
 			<g:message code="bien.descripcion.label" default="Descripcion" />
 			<span class="required-indicator">*</span>
 		</label>
-		<g:textField name="descripcion" required="" value="${bienInstance?.descripcion}"/>
+		<g:textArea name="descripcion" required="" value="${bienInstance?.descripcion}"/>
 	</div>
 </sec:ifAllGranted>
 <div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'estado', 'error')} required">
