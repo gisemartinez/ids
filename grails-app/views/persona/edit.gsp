@@ -29,11 +29,9 @@
 						<g:hiddenField name="version" value="${personaInstance?.version}" />
 						<fieldset class="form">
 							<g:render template="form"/>
+							<g:link class="btn btn-primary cancel" action="index" resource="${personaInstance}"></g:link>
+							<button type="submit" class="btn btn-primary save"></button>
 						</fieldset>
-						<div class="container-fluid">
-							<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" class="cancel">Cancelar</a>
-							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-						</div>
 						<!-- container-fluid del form -->
 					</g:form>
 				</div>
