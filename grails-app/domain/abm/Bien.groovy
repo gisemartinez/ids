@@ -3,6 +3,13 @@ package abm
 import java.util.Date;
 
 class Bien {
+
+       String codigoPatrimonio
+
+       String nombreBien
+
+       String responsableBien
+
 	String codigoDeSerie
 
        String descripcion
