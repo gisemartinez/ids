@@ -54,8 +54,8 @@
 									<td>${fieldValue(bean: bienInstance, field: "tipo")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "ubicacion")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "area")}</td>
-									<td><g:formatDate date="${bienInstance.fechaAlta}" /></td>
-									<td><g:formatDate date="${bienInstance.fechaBaja}" /></td>
+									<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaAlta}" /></td>
+									<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaBaja}" /></td>
 								</tr>
 							</g:each>
 						</tbody>
