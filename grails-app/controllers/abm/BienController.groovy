@@ -127,6 +127,47 @@ class BienController {
     def bienesSegunEstado(ArrayList listadoBienes, Long idEstado){
         return listadoBienes.findAll{it.estado.id == idEstado}
 
+def contadorBienes(){
+        def cantidad = Bien.count()
+        respond "",model:[cantidad:cantidad] ,view:'index'
+    }
+
+    def contadorBienesAEvaluar(){
+        def estadoAux = Estado.findByNombre("A Evaluar")
+        def cantEstado = Bien.countByEstado(estadoAux)
+        respond "",model:[cantEstado:cantEstado] ,view:'index'
+    }
+
+    def contadorBienesEnUso(){
+        def estadoAux = Estado.findByNombre("En uso")
+        def cantEstado5 = Bien.countByEstado(estadoAux)
+        respond "",model:[cantEstado5:cantEstado5] ,view:'index'
+    }
+
+    def contadorBienesAReparar(){
+        def estadoAux = Estado.findByNombre("A reparar")
+        def cantEstado1 = Bien.countByEstado(estadoAux)
+        respond "",model:[cantEstado1:cantEstado1] ,view:'index'
+    }
+    
+    def contadorBienesADonacion(){
+        def estadoAux = Estado.findByNombre("A donacion")
+        def cantEstado2 = Bien.countByEstado(estadoAux)
+        respond "",model:[cantEstado2:cantEstado2] ,view:'index'
+    }
+
+    def contadorBienesADescarte(){
+        def estadoAux = Estado.findByNombre("A descarte")
+        def cantEstado3 = Bien.countByEstado(estadoAux)
+        respond "",model:[cantEstado3:cantEstado3] ,view:'index'
+    }
+
+    def contadorBienesBaja(){
+        def estadoAux = Estado.findByNombre("Baja")
+        def cantEstado4 = Bien.countByEstado(estadoAux)
+        respond "",model:[cantEstado4:cantEstado4] ,view:'index'
+    }
+
     }
     def show(Bien bienInstance) {
         respond bienInstance
