@@ -64,6 +64,13 @@
 				<div class="pagination">
 					<g:paginate total="${bienInstanceCount ?: 0}" />
 				</div>
+				<div>Cantidad de bienes dados de alta:${cantidad}</div>
+				<p><a href="/abm/bien/estadoAevaluar">Ud tiene ${cantEstado} bienes a evaluar</a></p>
+				<p><a href="/abm/bien/estadoAreparar">Ud tiene ${cantEstado1} bienes a reparar</a></p>
+				<p><a href="/abm/bien/estadoEnUso">Ud tiene ${cantEstado5} bienes en uso</a></p>
+				<p><a href="/abm/bien/estadoAdonacion">Ud tiene ${cantEstado2} bienes para donar</a></p>
+				<p><a href="/abm/bien/estadoAdescarte">Ud tiene ${cantEstado3} bienes para descartar</a></p>
+				<p><a href="/abm/bien/estadoBajo">Ud tiene ${cantEstado4} bienes para dar de baja</a></p>
 			</div>
 		</div>
 	</body>
