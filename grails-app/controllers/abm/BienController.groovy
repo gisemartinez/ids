@@ -17,9 +17,42 @@ class BienController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def dameRol(){
-        //quueda usarlo despues para limpiar el codigo
         return springSecurityService.authentication.getPrincipal().getAuthorities()[0]
     }
+    //queda probarlo despues para limpiar el codigo
+    //buscar la persona de esta forma me asegura que busque la persona que está actualmente logueada
+    /*
+    def idUser(){
+        return springSecurityService.loadCurrentUser().id
+    }
+    def idPersona(){
+        return  PersonaUser.findByUserId( idUser() ).personaId
+    }
+    def idRol(){
+        return  UserRole.findByUser( idUser() ).role.id
+    }
+    def permiso(){
+        return Role.findById( idRol() ).authority
+    }
+  
+
+    def mostrarBienesSegunPermiso(String permiso, Long idPersona){
+        //--si el rol es Admin, traigo todos los bienes.En caso contrario,
+        //traigo los bienes que correspondan al area de la persona
+        if (permiso == 'ROLE_ADMIN')
+            return Bien.findAll()
+        else{
+            def areaUser = Persona.findById(idPersona).area
+            return Bien.findAllByArea(areaUser)
+        }
+    }
+      
+    def index(Integer max) {
+        //seteo el maximo a mostrar
+        params.max = Math.min(max ?: 10, 100)
+        respond mostrarBienesSegunPermiso( idRol() ,idPersona()), model:[bienInstanceCount: Bien.count()] ,view:'index'
+    }
+    */
 
     def index(Integer max) {
         //seteo el maximo a mostrar
