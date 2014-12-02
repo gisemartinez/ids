@@ -157,10 +157,8 @@ class BienController {
         respond bienesSegunEstado(mostrarBienesSegunRol(rol,idPersona),estado.id), model:[bienInstanceCount: Bien.count()] ,view:'index'
      
     }
-    def bienesSegunEstado(ArrayList listadoBienes, Long idEstado){
-        return listadoBienes.findAll{it.estado.id == idEstado}
-
-def contadorBienes(){
+ 
+    def contadorBienes(){
         def cantidad = Bien.count()
         respond "",model:[cantidad:cantidad] ,view:'index'
     }
@@ -199,8 +197,6 @@ def contadorBienes(){
         def estadoAux = Estado.findByNombre("Baja")
         def cantEstado4 = Bien.countByEstado(estadoAux)
         respond "",model:[cantEstado4:cantEstado4] ,view:'index'
-    }
-
     }
     def show(Bien bienInstance) {
         respond bienInstance
