@@ -65,12 +65,12 @@
 					<g:paginate total="${bienInstanceCount ?: 0}" />
 				</div>
 				<div>Cantidad de bienes dados de alta:${cantidad}</div>
-				<p><a href="/abm/bien/estadoAevaluar">Ud tiene ${cantEstado} bienes a evaluar</a></p>
-				<p><a href="/abm/bien/estadoAreparar">Ud tiene ${cantEstado1} bienes a reparar</a></p>
-				<p><a href="/abm/bien/estadoEnUso">Ud tiene ${cantEstado5} bienes en uso</a></p>
-				<p><a href="/abm/bien/estadoAdonacion">Ud tiene ${cantEstado2} bienes para donar</a></p>
-				<p><a href="/abm/bien/estadoAdescarte">Ud tiene ${cantEstado3} bienes para descartar</a></p>
-				<p><a href="/abm/bien/estadoBajo">Ud tiene ${cantEstado4} bienes para dar de baja</a></p>
+				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAevaluar">Ud tiene ${cantAE} bienes a evaluar</a></p>
+				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAreparar">Ud tiene ${cantAR} bienes a reparar</a></p>
+				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoEnUso">Ud tiene ${cantEU} bienes en uso</a></p>
+				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdonacion">Ud tiene ${cantAD} bienes para donar</a></p>
+				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAdescarte">Ud tiene ${cantADs} bienes para descartar</a></p>
+				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoBajo">Ud tiene ${cantB} bienes para dar de baja</a></p>
 			</div>
 		</div>
 	</body>

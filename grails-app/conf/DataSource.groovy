@@ -13,11 +13,13 @@ hibernate {
     //cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory' //Hibernate 3
 }
 //config se instancia luego
-nombreBase = "patronus"
-nombreAplicacion = "Patronus"
+/*nombreBase = "patronus"
+nombreAplicacion = "Patronus"*/
 // environment specific settings
 environments {
     development {
+        nombreBase = "patronus"
+        nombreAplicacion = "abm"
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/db_$nombreBase"
@@ -30,6 +32,8 @@ environments {
         }
     }
     production {
+        nombreBase = "patronus"
+        nombreAplicacion = "Patronus"
         dataSource {
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/db_$nombreBase"
