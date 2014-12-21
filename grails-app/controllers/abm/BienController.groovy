@@ -140,9 +140,31 @@ class BienController {
         ]
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
        
-        render(view:"grafico" ,model:[array0:array0 , array1:array1, opt:opt])
+        render(view:'grafico' ,model:[array0:array0 , array1:array1, opt:opt])
         //respond "", model:[array0:array0 , array1:array1, opt:opt]
         
+    }
+    def noticias(){
+        //Es provisorio, debería traerme los de ésta semana
+        def cantAE = bienesAEvaluar().size()
+        def cantEU = bienesEnUso().size()
+        def cantAR = bienesAReparar().size()
+        def cantAD = bienesADonacion().size()
+        def cantADsc = bienesADescarte().size()
+        def cantB = bienesBaja().size()
+    render(
+            view:'noticias',  
+            model:
+            [
+                cantAE:cantAE,
+                cantEU:cantEU,
+                cantAR:cantAR,
+                cantAD:cantAD,
+                cantADsc:cantADsc,
+                cantB:cantB
+            ]
+        )
+
     }
 
     def show(Bien bienInstance) {
