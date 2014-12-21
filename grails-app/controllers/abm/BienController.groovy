@@ -80,6 +80,10 @@ class BienController {
     def index(Integer max) {
         //seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
+        //render{
+
+//            div(id:"divino","A veces gano, a veces no")
+  //      }
         respond mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
     }
     def estadoAevaluar(Integer max) {
@@ -123,20 +127,21 @@ class BienController {
         def array0 =
         [
             ['string','Estado Actual de Bienes'],
-            ['number','Cantidad por Estado'],
-            ['number','Cantidad total de Bienes']
+            ['number','Cantidad por Estado']
         ]
         def array1 = 
         [
-            ["bienesAEvaluar()",bienesAEvaluar().size(),contadorBienes()],
-            ["bienesEnUso()",bienesEnUso().size(),contadorBienes()],
-            ["bienesAReparar()",bienesAReparar().size(),contadorBienes()],
-            ["bienesADonacion()",bienesADonacion().size(),contadorBienes()],
-            ["bienesADescarte()",bienesADescarte().size(),contadorBienes()],
-            ["bienesBaja()",bienesBaja().size(),contadorBienes()]
+            ["A Evaluar",bienesAEvaluar().size()],
+            ["En Uso",bienesEnUso().size()],
+            ["A Reparar",bienesAReparar().size()],
+            ["A Donacion",bienesADonacion().size()],
+            ["A Descarte",bienesADescarte().size()],
+            ["Baja",bienesBaja().size()]
         ]
-
-        respond "", model:[array0:array0 , array1:array1]
+        def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
+       
+        render(view:"grafico" ,model:[array0:array0 , array1:array1, opt:opt])
+        //respond "", model:[array0:array0 , array1:array1, opt:opt]
         
     }
 

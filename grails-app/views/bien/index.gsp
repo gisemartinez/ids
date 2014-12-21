@@ -64,6 +64,9 @@
 				<div class="pagination">
 					<g:paginate total="${bienInstanceCount ?: 0}" />
 				</div>
+				<div id="grafico">
+					<g:include controller="bien" action="grafico" />
+				</div>
 				<div>Cantidad de bienes dados de alta:${cantidad}</div>
 				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAevaluar">Ud tiene ${cantAE} bienes a evaluar</a></p>
 				<p><a href="/${grailsApplication.config.nombreAplicacion}/bien/estadoAreparar">Ud tiene ${cantAR} bienes a reparar</a></p>
