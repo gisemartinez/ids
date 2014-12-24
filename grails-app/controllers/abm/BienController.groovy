@@ -80,10 +80,6 @@ class BienController {
     def index(Integer max) {
         //seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
-        //render{
-
-//            div(id:"divino","A veces gano, a veces no")
-  //      }
         respond mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
     }
     def estadoAevaluar(Integer max) {

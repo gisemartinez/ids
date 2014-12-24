@@ -47,7 +47,7 @@ class LoginController {
 			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
 		}
 		else {
-			redirect action: 'auth', params: params
+			redirect(action:'auth', params: params)
 		}
 	}
 
@@ -128,7 +128,8 @@ class LoginController {
 		}
 		else {
 			flash.message = msg
-			redirect action: 'auth', params: params
+			//redirect action: 'auth', params: params
+			redirect(uri:'')
 		}
 	}
 

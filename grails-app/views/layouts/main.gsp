@@ -64,12 +64,12 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-					</button>
+					</button>-->
 					<a class="navbar-brand" href="/${grailsApplication.config.nombreAplicacion}">Patronus</a>
 				</div>
 <div></div>
@@ -126,13 +126,9 @@
 						<button type="submit" class="btn btn-primary search"></button>
 					</form>
 					</sec:ifLoggedIn>-->
+					<sec:ifLoggedIn>
 					<ul class="nav navbar-nav navbar-right">
-						<!-- <li><a href="#">Link</a></li> -->
-						<li class="dropdown perfil">
-							<sec:ifNotLoggedIn>
-								<g:link controller='login' action='auth'>Iniciar sesi&oacuten</g:link>
-							</sec:ifNotLoggedIn>
-							<sec:ifLoggedIn>
+						<li class="dropdown perfil">							
 								<a href="#"><sec:username/></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="${grailsApplication.config.my.user.username}/">Permisos</a></li>
@@ -145,9 +141,9 @@
 										<!-- <g:link controller="logout">Cerrar sesi&oacuten</g:link> -->
 									</li>
 								</ul>
-							</sec:ifLoggedIn>
 						</li>
 					</ul>
+					</sec:ifLoggedIn>
 				</div>
 			</div>
 		</nav>

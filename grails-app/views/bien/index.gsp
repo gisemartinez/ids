@@ -64,7 +64,7 @@
 				<div class="pagination">
 					<g:paginate total="${bienInstanceCount ?: 0}" />
 				</div>
-				<div id="grafico">
+				<div id="grafico" class="embed-responsive-item">
 					<g:include controller="bien" action="grafico" />
 				</div>
 				<div class="pannel">

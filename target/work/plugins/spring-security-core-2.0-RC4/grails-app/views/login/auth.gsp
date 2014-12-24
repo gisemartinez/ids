@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta name='layout' content='main'/>
+		<meta name='layout' content='login'/>
 		<title><g:message code="springSecurity.login.title"/></title>
 		<style>
 			.alerta{
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 		</g:if>
-		<div style="text-align:center; margin-top:20px; margin-bottom: 20px"><h4>Ingresa tus datos para acceder:</h4></div>
+		<div style="text-align:center; margin-top:20px; margin-bottom: 20px"><h4>Ingrese sus datos para acceder:</h4></div>
 		<div class="container" style="max-width:256px;">
 
 			<form role="form" action='${postUrl}' method='POST' id='loginForm' autocomplete='off'>
