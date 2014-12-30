@@ -18,7 +18,7 @@
 		<div class="container-fluid">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title"><g:message code="default.create.label" args="[entityName]"/></h3>
+					<h3 class="panel-title"><g:message code="Crear Ubicaci&oacuten"/></h3>
 				</div>
 				<div class="panel-body">
 					<!-- <g:if test="${flash.message}">

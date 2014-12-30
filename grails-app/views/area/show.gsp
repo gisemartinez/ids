@@ -36,14 +36,14 @@
 								<span class="property-value" aria-labelledby="fechaAlta-label"><g:formatDate date="${areaInstance?.fechaAlta}" /></span>
 							</li>
 						</g:if>
-						<g:if test="${areaInstance?.fechaBaja}">
+						<!--<g:if test="${areaInstance?.fechaBaja}">
 							<li class="list-group-item">
 								<strong>
 									<span id="fechaBaja-label" class="property-label"><g:message code="area.fechaBaja.label" default="Fecha Baja" /></span>
 								</strong>
 								<span class="property-value" aria-labelledby="fechaBaja-label"><g:formatDate date="${areaInstance?.fechaBaja}" /></span>
 							</li>
-						</g:if>
+						</g:if>-->
 					</ul>
 					<g:form url="[resource:areaInstance, action:'delete']" method="DELETE">
 						<fieldset class="buttons">

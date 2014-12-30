@@ -27,12 +27,28 @@
 								<span class="property-value" aria-labelledby="codigoDeSerie-label"><g:fieldValue bean="${bienInstance}" field="codigoDeSerie"/></span>
 							</li>
 						</g:if>
+						<g:if test="${bienInstance?.nombreBien}">
+							<li class="list-group-item">
+								<strong>
+									<span id="nombreBien-label" class="property-label"><g:message code="bien.nombreBien.label" default="Denominaci&oacuten" /></span>
+								</strong>
+								<span class="property-value" aria-labelledby="codigoDeSerie-label"><g:fieldValue bean="${bienInstance}" field="nombreBien"/></span>
+							</li>
+						</g:if>
 						<g:if test="${bienInstance?.descripcion}">
 							<li class="list-group-item">
 								<strong>
-									<span id="descripcion-label" class="property-label"><g:message code="bien.descripcion.label" default="Descripcion" /></span>
+									<span id="descripcion-label" class="property-label"><g:message code="bien.descripcion.label" default="Descripci&oacuten" /></span>
 								</strong>
 								<span class="property-value" aria-labelledby="descripcion-label"><g:fieldValue bean="${bienInstance}" field="descripcion"/></span>
+							</li>
+						</g:if>
+						<g:if test="${bienInstance?.responsableBien}">
+							<li class="list-group-item">
+								<strong>
+									<span id="responsableBien-label" class="property-label"><g:message code="bien.responsableBien.label" default="Responsable" /></span>
+								</strong>
+								<span class="property-value" aria-labelledby="responsableBien-label"><g:fieldValue bean="${bienInstance}" field="responsableBien"/></span>
 							</li>
 						</g:if>
 						<g:if test="${bienInstance?.tipo}">
@@ -54,7 +70,7 @@
 						<g:if test="${bienInstance?.ubicacion}">
 							<li class="fieldcontain list-group-item">
 								<strong>
-									<span id="ubicacion-label" class="property-label"><g:message code="bien.ubicacion.label" default="Ubicacion" /></span>
+									<span id="ubicacion-label" class="property-label"><g:message code="bien.ubicacion.label" default="Ubicaci&oacuten" /></span>
 								</strong>
 								<span class="property-value" aria-labelledby="ubicacion-label"><g:link controller="ubicacion" action="show" id="${bienInstance?.ubicacion?.id}">${bienInstance?.ubicacion?.encodeAsHTML()}</g:link></span>
 							</li>
@@ -69,7 +85,7 @@
 								</span>
 							</li>
 						</g:if>
-						<g:if test="${bienInstance?.fechaAlta}">
+					<!-- 	<g:if test="${bienInstance?.fechaAlta}">
 							<li class="list-group-item">
 								<strong>
 									<span id="fechaAlta-label" class="property-label"><g:message code="bien.fechaAlta.label" default="Fecha Alta" /></span>
@@ -84,7 +100,7 @@
 								</strong>
 								<span class="property-value" aria-labelledby="fechaBaja-label"><g:formatDate date="${bienInstance?.fechaBaja}" /></span>
 							</li>
-						</g:if>
+						</g:if>-->
 					</ul>
 					<g:form url="[resource:bienInstance, action:'delete']" method="DELETE">
 						<fieldset class="buttons">
