@@ -3,7 +3,6 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>Patronus</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<style type="text/css">
 			.col-md-3{
 				padding: 0 10% 10% 0;

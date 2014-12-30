@@ -19,7 +19,7 @@
 							<tr>
 								<g:sortableColumn property="Nombre de Area" title="${message(code: 'area.nombrearea.label', default: 'Nombre de Area')}" />
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'area.fechaAlta.label', default: 'Fecha Alta')}" />
-								<g:sortableColumn property="fechaBaja" title="${message(code: 'area.fechaBaja.label', default: 'Fecha Baja')}" />
+								<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'area.fechaBaja.label', default: 'Fecha Baja')}" />-->
 							</tr>
 						</thead>
 						<tbody>
@@ -27,7 +27,7 @@
 								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 									<td><g:link action="show" id="${areaInstance.id}">${fieldValue(bean: areaInstance, field: "nombrearea")}</g:link></td>
 									<td><g:formatDate date="${areaInstance.fechaAlta}" /></td>
-									<td><g:formatDate date="${areaInstance.fechaBaja}" /></td>
+									<!--<td><g:formatDate date="${areaInstance.fechaBaja}" /></td>-->
 								</tr>
 							</g:each>
 						</tbody>

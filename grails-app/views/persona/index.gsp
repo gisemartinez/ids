@@ -27,7 +27,7 @@
 							
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'persona.fechaAlta.label', default: 'Fecha Alta')}" />
 							
-								<g:sortableColumn property="fechaBaja" title="${message(code: 'persona.fechaBaja.label', default: 'Fecha Baja')}" />
+							<!--	<g:sortableColumn property="fechaBaja" title="${message(code: 'persona.fechaBaja.label', default: 'Fecha Baja')}" />-->
 							
 								
 							</tr>
@@ -45,7 +45,7 @@
 							
 								<td><g:formatDate date="${personaInstance.fechaAlta}" /></td>
 							
-								<td><g:formatDate date="${personaInstance.fechaBaja}" /></td>
+								<!--<td><g:formatDate date="${personaInstance.fechaBaja}" /></td>-->
 							
 							</tr>
 						</g:each>

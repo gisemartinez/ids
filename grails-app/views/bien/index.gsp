@@ -36,26 +36,32 @@
 						<thead>
 							<tr>
 								<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'C&oacutedigo de serie')}" />
-								<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripcion')}" />
+								<g:sortableColumn property="nombreBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Denominaci&oacuten')}" />
+								<g:sortableColumn property="responsableBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Responsable')}" />
+								
+
+								<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripci&oacuten')}" />
 								<th><g:message code="bien.estado.label" default="Estado" /></th>
 								<th><g:message code="bien.tipo.label" default="Tipo" /></th>
 								<th><g:message code="bien.ubicacion.label" default="Ubicacion" /></th>
 								<th><g:message code="bien.area.label" default="Departamento" /></th>
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'bien.fechaAlta.label', default: 'Fecha Alta')}" />
-								<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />
+								<!--	<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />-->
 							</tr>
 						</thead>
 						<tbody>
 							<g:each in="${bienInstanceList}" status="i" var="bienInstance">
 								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 									<td><g:link action="show" id="${bienInstance.id}">${fieldValue(bean: bienInstance, field: "codigoDeSerie")}</g:link></td>
+									<td>${fieldValue(bean: bienInstance, field: "nombreBien")}</td>
+									<td>${fieldValue(bean: bienInstance, field: "responsableBien")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "descripcion")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "estado")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "tipo")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "ubicacion")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "area")}</td>
 									<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaAlta}" /></td>
-									<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaBaja}" /></td>
+								<!--		<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaBaja}" /></td>-->
 								</tr>
 							</g:each>
 						</tbody>
