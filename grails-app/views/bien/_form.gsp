@@ -30,7 +30,8 @@
 						<g:message code="bien.responsableBien.label" default="Responsable" />
 						<span class="required-indicator">*</span>
 					</label>
-					<g:textField name="responsableBien" required="" value="${bienInstance?.responsableBien}"/>
+					<g:select id="responsable" name="Persona.nombre" from="${['Sergio Viera','Pedro Asis','Luis Perna']}" optionKey="" required="" 
+				noSelection= "['': 'Seleccione un responsable']"/>
 				</div>
 			</div>
 			<div class="col-lg-6">
