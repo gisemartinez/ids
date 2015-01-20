@@ -10,4 +10,13 @@
 *= require mobile
 *= require_self
 *= require bootstrap
+*= require_tree material-design-iconic-font/css/
+
 */
+
+*{font-family: 'Roboto', sans-serif;}
+th{font-weight: normal}
+th,th>a{color: white;}
+th{background-color: #428bca;}
+
+/**= require_tree materialize/css/*/

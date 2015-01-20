@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
-		<script type="text/javascript">
-		$(document).ready(function()
-				{
-					$('select#estado').val(1);
-					$('select#estado option').attr('hidden',true)
-				}
-			)
-		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title"><g:message code="default.create.label" args="[entityName]"/></h3>
-				</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Crear Bien</div>
 				<div class="panel-body">
 					<!-- <g:if test="${flash.message}">
 					<div class="message" role="status">${flash.message}</div>
@@ -30,15 +19,17 @@
 						</g:eachError>
 					</ul>
 					</g:hasErrors>
-					<g:form url="[resource:bienInstance, action:'save']" >
+					<g:form url="[resource:bienInstance, action:'save']" id="form1">
 						<fieldset class="form">
 							<g:render template="form"/>
-							<g:link class="btn btn-primary cancel" action="index" resource="${bienInstance}"></g:link>
-							<button type="submit" class="btn btn-primary save"></button>
 						</fieldset>
 					</g:form>				
 				</div>
-				<g:message code="* Campo Obligatorio"/>
+				<div class="panel-footer" >
+					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+						<i class="md md-check"></i>
+					</button>
+				</div>
 			</div>	
 		</div>
 	</body>

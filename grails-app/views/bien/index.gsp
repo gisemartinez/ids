@@ -1,4 +1,3 @@
-
 <%@ page import="abm.Bien" %>
 <!DOCTYPE html>
 <html>
@@ -6,18 +5,34 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}" />
 		<title><g:message code="Listado de bienes" args="[entityName]" /></title>
+		<style>
+			.barra_acciones{
+				position: fixed;
+				top: 51px;
+				left: 0px;
+				border-radius: 0px;
+				min-height: 10px;
+				width: 100%;
+				z-index: 900;
+			}
+		</style>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div id="list-bien" class="content scaffold-list" role="main">
-				<g:if test="${flash.message}">
-					<div class="message" role="status">${flash.message}</div>
-				</g:if>
-				
-				<ul class="nav nav-tabs" role="tablist" style="margin-bottom:20px;">
-					<li class="active dropdown estado">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="">
-							Filtrar por Estado <span class="caret"></span>
+		<div style="margin-bottom:30px"></div>
+		<nav class="navbar navbar-default barra_acciones" role="navigation">
+			<div class="container-fluid" style="padding-left:5px;padding-right:25px">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a>Listado</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="accion">
+							<i class="md md-add"></i>
+						</a>
+					</li>
+					<li class="dropdown filtro">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="accion">
+							<i class="md md-filter-list"></i>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/${grailsApplication.config.nombreAplicacion}/bien/index">Todos</a></li>
@@ -30,7 +45,18 @@
 						</ul>
 					</li>
 				</ul>
-				
+			</div>
+		</nav>
+		<div class="collapse" id="collapseExample">
+			<div class="">
+		    	<g:include controller="bien" action="create" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div id="list-bien" class="content scaffold-list" role="main">
+				<!-- <g:if test="${flash.message}">
+					<div class="message" role="status">${flash.message}</div>
+				</g:if> -->
 				<div class="table-responsive">
 					<table>
 						<thead>
@@ -38,15 +64,13 @@
 								<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'C&oacutedigo de serie')}" />
 								<g:sortableColumn property="nombreBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Denominaci&oacuten')}" />
 								<g:sortableColumn property="responsableBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Responsable')}" />
-								
-
 								<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripci&oacuten')}" />
 								<th><g:message code="bien.estado.label" default="Estado" /></th>
 								<th><g:message code="bien.tipo.label" default="Tipo" /></th>
 								<th><g:message code="bien.ubicacion.label" default="Ubicacion" /></th>
 								<th><g:message code="bien.area.label" default="Departamento" /></th>
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'bien.fechaAlta.label', default: 'Fecha Alta')}" />
-								<!--	<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />-->
+								<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />-->
 							</tr>
 						</thead>
 						<tbody>
@@ -60,8 +84,8 @@
 									<td>${fieldValue(bean: bienInstance, field: "tipo")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "ubicacion")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "area")}</td>
-									<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaAlta}" /></td>
-								<!--		<td><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${bienInstance.fechaBaja}" /></td>-->
+									<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaAlta}" /></td>
+									<!--<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaBaja}" /></td>-->
 								</tr>
 							</g:each>
 						</tbody>
@@ -69,12 +93,6 @@
 				</div>
 				<div class="pagination">
 					<g:paginate total="${bienInstanceCount ?: 0}" />
-				</div>
-				<div id="grafico" class="embed-responsive-item">
-					<g:include controller="bien" action="grafico" />
-				</div>
-				<div class="pannel">
-					<g:include controller="bien" action="noticias"/>
 				</div>
 			</div>
 		</div>

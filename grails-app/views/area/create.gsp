@@ -2,48 +2,39 @@
 
 <html>
 	<head>
-		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'area.label', default: 'Area')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
-		<script type="text/javascript">
-		$(document).ready(function()
-				{
-					$('select#estado').val(1);
-					$('select#estado option').attr('hidden',true)
-				}
-			)
-		</script>
-	</head>
 
-<body>
+	</head>
+	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary" style="margin-top:20px;">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><g:message code="default.create.label" args="[entityName]"/></h3>
+					<g:message code="default.create.label" args="[entityName]"/>
 				</div>
 				<div class="panel-body">
 					<!-- <g:if test="${flash.message}">
 					<div class="message" role="status">${flash.message}</div>
 					</g:if> -->
 					<g:hasErrors bean="${areaInstance}">
-					<ul class="errors" role="alert">
-						<g:eachError bean="$areaInstance}" var="error">
-						<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-						</g:eachError>
-					</ul>
+						<ul class="errors" role="alert">
+							<g:eachError bean="$areaInstance}" var="error">
+							<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+							</g:eachError>
+						</ul>
 					</g:hasErrors>
 					<g:form url="[resource:areaInstance, action:'save']" >
 						<fieldset class="form">
 							<g:render template="form"/>
 						</fieldset>
-						<div style="margin-top:20px">
-							<a href="/${grailsApplication.config.nombreAplicacion}/area/index" class="cancel">Cancelar</a>
-							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-						</fieldset>
-					</g:form>				
+					</g:form>
 				</div>
-				<g:message code="* Campo Obligatorio"/>
-			</div>	
+				<div class="panel-footer" >
+					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+						<i class="md md-check"></i>
+					</button>
+				</div>	
+			</div>
 		</div>
 	</body>
 </html>

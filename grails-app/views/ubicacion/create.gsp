@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'ubicacion.label', default: 'Ubicacion')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 		<script type="text/javascript">
@@ -13,12 +12,11 @@
 			)
 		</script>
 	</head>
-
-<body>
+	<body>
 		<div class="container-fluid">
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><g:message code="Crear Ubicaci&oacuten"/></h3>
+					<g:message code="Crear Ubicaci&oacuten"/>
 				</div>
 				<div class="panel-body">
 					<!-- <g:if test="${flash.message}">
@@ -31,15 +29,17 @@
 						</g:eachError>
 					</ul>
 					</g:hasErrors>
-					<g:form url="[resource:ubicacionInstance, action:'save']" >
+					<g:form url="[resource:ubicacionInstance, action:'save']" id="form1">
 						<fieldset class="form">
 							<g:render template="form"/>
-							<g:link class="btn btn-primary cancel" action="index" resource="${ubicacionInstance}"></g:link>
-							<button type="submit" class="btn btn-primary save"></button>
 						</fieldset>
 					</g:form>				
 				</div>
-				<g:message code="* Campo Obligatorio"/>
+				<div class="panel-footer" >
+					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+						<i class="md md-check"></i>
+					</button>
+				</div>
 			</div>	
 		</div>
 	</body>

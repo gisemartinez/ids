@@ -3,21 +3,64 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="Persona" />
+		<g:set var="entityName" value="${message(code: 'persona.label', default: 'Persona')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<style>
+			.barra_acciones{
+				position: fixed;
+				top: 51px;
+				left: 0px;
+				border-radius: 0px;
+				min-height: 10px;
+				width: 100%;
+				z-index: 900;
+			}
+			.panel-footer a:hover .md{
+				color:black;
+				text-decoration:none;
+			}
+			.panel-footer button:hover .md{
+				color:black;
+				text-decoration:none;
+			}
+		</style>
 	</head>
 	<body>
+		<div style="margin-bottom:30px"></div>
+		<nav class="navbar navbar-default barra_acciones" role="navigation">
+			<div class="container-fluid" style="padding-left:5px;padding-right:25px">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						<a class="back" href="/${grailsApplication.config.nombreAplicacion}/persona/index">
+							<i class="md md-arrow-back"></i>
+						</a>
+					</li>
+					<li><a>Detalle</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="accion">
+							<i class="md md-add"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="collapse" id="collapseExample">
+			<div class="">
+				<g:include controller="persona" action="create" />
+			</div>
+		</div>
 		<div class="container-fluid">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title"><g:message code="default.show.label" args="[entityName]"/></h3>
-				</div>
+			<div class="panel panel-default">
+				<!-- <div class="panel-heading">
+					<g:message code="default.show.label" args="[entityName]"/>
+				</div> -->
 				<div class="panel-body">
 						<g:if test="${flash.message}">
 						<div class="message" role="status">${flash.message}</div>
 						</g:if>
 					<ul class="list-group">
-
 						<g:if test="${personaInstance?.nombre}">
 						<li class="list-group-item">
 							<strong>
@@ -28,7 +71,6 @@
 							<span class="property-value" aria-labelledby="nombre-label">
 								<g:fieldValue bean="${personaInstance}" field="nombre"/>
 							</span>
-							
 						</li>
 						</g:if>	
 						<g:if test="${personaInstance?.apellido}">
@@ -43,7 +85,6 @@
 							</span>	
 						</li>
 						</g:if>
-					
 						<g:if test="${personaInstance?.dni}">
 						<li class="list-group-item">
 							<strong>
@@ -66,7 +107,6 @@
 								</span>
 							</li>
 						</g:if>
-					
 						<g:if test="${personaInstance?.fechaAlta}">
 						<li class="list-group-item">
 							<strong>
@@ -75,12 +115,10 @@
 								</span>
 							</strong>
 							<span class="property-value" aria-labelledby="fechaAlta-label">
-								<g:formatDate date="${personaInstance?.fechaAlta}" />
+								<g:formatDate format="dd-MM-yyyy" date="${personaInstance?.fechaAlta}" />
 							</span>
-							
 						</li>
 						</g:if>
-					
 						<g:if test="${personaInstance?.fechaBaja}">
 						<li class="list-group-item">
 							<strong>
@@ -89,20 +127,21 @@
 								</span>
 							</strong>
 							<span class="property-value" aria-labelledby="fechaBaja-label">
-								<g:formatDate date="${personaInstance?.fechaBaja}" />
+								<g:formatDate format="dd-MM-yyyy" date="${personaInstance?.fechaBaja}" />
 							</span>
-							
 						</li>
 						</g:if>
 					</ul>
-					<g:form url="[resource:personaInstance, action:'delete']" method="DELETE">
-						<fieldset class="buttons">
-							<button type="submit" class="btn btn-primary delete"></button>
-							<g:link class="edit btn btn-primary" action="edit" resource="${personaInstance}"></g:link>
-						</fieldset>
+					<g:form url="[resource:personaInstance, action:'delete']" method="DELETE" id="form1">
 					</g:form>
 				</div>
 				<!-- panel-body -->
+				<div class="panel-footer" >
+					<g:link action="edit" resource="${personaInstance}" style="padding: 0px 12px; color:#777777"><i class="md md-edit"></i></g:link>
+					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+						<i class="md md-delete"></i>
+					</button>
+				</div>
 			</div>
 			<!-- panel-primary -->
 		</div>

@@ -15,36 +15,33 @@ $(document).ready(function(){
 	//bootstrap
 	//
 
+	$('th.sortable a').attr('title','Cambiar orden')
+	$('.list-group').attr('style','margin-bottom:0')
+
+
 	//a todos los inputs (menos a los submits) le agrego la clase form-control
 
 	$('input,select,textarea').addClass("form-control")
 	$('input:checkbox').removeClass("form-control")
 	$('input:submit').removeClass("form-control")
 	$('.form-control').attr("style","margin-bottom:10px")
-
 	$('.fieldcontain').removeClass("fieldcontain")
+
 	//a todas las tablas le agrego la clase table
-	$('table').addClass("table table-bordered")
+	$('table').addClass("table table-hover")
+	$('table').wrap('<div class="panel panel-default table-responsive">')
 	$('th,td').attr("style", "text-align:center")
-
-	
-	
-	//agrego iconos a los botones
-	// $('a.home').prepend("<span class='glyphicon glyphicon-home'>&nbsp</span>")
-	
-	// $('a.usuarios').prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
+	$('th a').attr("style", "color:white;text-decoration:none")
 
 
-	$('.save').prepend("<i align='center' class='glyphicon glyphicon-ok'></i>")
-	$('.search').append("<i align='center' class='glyphicon glyphicon-search'></i>")
-	$('.delete').append("<i align='center' class='glyphicon glyphicon-trash'></i>")
-	$('a.edit').prepend("<span align='center' class='glyphicon glyphicon-pencil'></span>")
-	$('a.cancel').prepend("<span align='center' class='glyphicon glyphicon-remove'></span>")
+	$('.barra_principal ul').attr("style", "background-color:#009688")
+	$('.barra_principal a').attr("style", "color:white;background-color:#009688;padding:15px 10px;")
 
+	$('.barra_acciones a').attr("style","padding:5px 5px;")
 
-	$('a.list').prepend("<span class='glyphicon glyphicon-book'>&nbsp</span>")
-	$('a.new').prepend("<span class='glyphicon glyphicon-upload'>&nbsp</span>")
-	$('.perfil a').first().prepend("<span class='glyphicon glyphicon-user'>&nbsp</span>")
+	$('.navbar-right ul li').attr("style","text-align: right;")
+
+	//$('.barra_acciones .navbar-right ul').attr("style","text-align: right;max-width:50px")
 
 	//
 	//Evitar comportamiento extra&#241o de grails
@@ -74,59 +71,37 @@ $(document).ready(function(){
 	}
 	
 
-	$(".save").addClass("btn btn-success")
-	$("a.cancel").addClass("btn btn-danger")
-	$(".delete").addClass("btn btn-danger")
-
-	$(".bienes").mouseover(function(){
-		$(".bienes").addClass("open");
-	});
-	$(".bienes").mouseout(function(){
-		$(".bienes").removeClass("open");
-	});
 
 
-	$(".persona").mouseover(function(event){
-	$(".persona").addClass("open");
-	});
-	$(".persona").mouseout(function(event){
-		$(".persona").removeClass("open");
-	});
-
-	$(".areas").mouseover(function(event){
-	$(".areas").addClass("open");
-	});
-	$(".areas").mouseout(function(event){
-		$(".areas").removeClass("open");
-	});
-
-	$(".estados").mouseover(function(event){
-	$(".estados").addClass("open");
-	});
-	$(".estados").mouseout(function(event){
-		$(".estados").removeClass("open");
-	});
-
-	$(".ubicaciones").mouseover(function(event){
-	$(".ubicaciones").addClass("open");
-	});
-	$(".ubicaciones").mouseout(function(event){
-		$(".ubicaciones").removeClass("open");
-	});
-
-	$(".perfil").mouseover(function(event){
-	$(".perfil").addClass("open");
-	});
-	$(".perfil").mouseout(function(event){
-		$(".perfil").removeClass("open");
-	});
+	drop_up($(".estado"))
+	drop_up($(".perfil"))
+	drop_up($(".ubicaciones"))
+	drop_up($(".estados"))
+	drop_up($(".areas"))
+	//drop_up($(".bienes"))
+	drop_up($(".persona"))
+	drop_up($(".filtro"))
 	
-	$(".estado").mouseover(function(event){
-		$(".estado").addClass("open");
-	});
-	$(".estado").mouseout(function(event){
-		$(".estado").removeClass("open");
-	});
+	drop_down($(".estado"))
+	drop_down($(".perfil"))
+	drop_down($(".ubicaciones"))
+	drop_down($(".estados"))
+	drop_down($(".areas"))
+	//drop_down($(".bienes"))
+	drop_down($(".persona"))
+	drop_down($(".filtro"))
+
+	function drop_up(elem){
+		elem.mouseout(function(){
+			elem.removeClass("open")
+		})
+	}
+	
+	function drop_down(elem){
+		elem.mouseover(function(){
+			elem.addClass("open")
+		})
+	}
 
 	$("#nombre").change(function(e){
 		var txt = $("#nombre").val();
