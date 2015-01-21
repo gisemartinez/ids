@@ -1,0 +1,3 @@
+[submodule "grails-app/assets/stylesheets/material-design-iconic-font"]
+	path = grails-app/assets/stylesheets/material-design-iconic-font
+	url = https://github.com/zavoloklom/material-design-iconic-font.git
