@@ -59,10 +59,6 @@
 						<fieldset class="form">
 							<g:render template="form"/>
 						</fieldset>
-							<div class="container-fluid">
-							<a href="/${grailsApplication.config.nombreAplicacion}/area/index" class="cancel">Cancelar</a>
-							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-						</div>
 					</g:form>
 				</div>
 				<div class="panel-footer" >
