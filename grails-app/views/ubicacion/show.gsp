@@ -88,12 +88,12 @@
 							</li>
 						</g:if>
 					</ul>
-					<g:form url="[resource:ubicacionInstance, action:'delete']" method="DELETE" id="form1">
+					<g:form url="[resource:ubicacionInstance, action:'delete']" method="DELETE" id="form_show_ubicacion">
 					</g:form>
 				</div>
 				<div class="panel-footer" >
 					<g:link action="edit" resource="${ubicacionInstance}" style="padding: 0px 12px; color:#777777"><i class="md md-edit"></i></g:link>
-					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+					<button class="btn btn-link" type="submit" form="form_show_ubicacion" style="padding: 0px 12px; color:#777777">
 						<i class="md md-delete"></i>
 					</button>
 				</div>
