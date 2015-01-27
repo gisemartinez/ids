@@ -29,14 +29,14 @@
 						</g:eachError>
 					</ul>
 					</g:hasErrors>
-					<g:form url="[resource:ubicacionInstance, action:'save']" id="form1">
+					<g:form url="[resource:ubicacionInstance, action:'save']" id="form_create_ubicacion">
 						<fieldset class="form">
 							<g:render template="form"/>
 						</fieldset>
 					</g:form>				
 				</div>
 				<div class="panel-footer" >
-					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+					<button class="btn btn-link" type="submit" form="form_create_ubicacion" style="padding: 0px 12px; color:#777777">
 						<i class="md md-check"></i>
 					</button>
 				</div>
