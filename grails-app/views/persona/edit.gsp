@@ -55,7 +55,7 @@
 							</g:eachError>
 						</ul>
 					</g:hasErrors>
-					<g:form url="[resource:personaInstance, action:'update']" method="PUT" id="form1">
+					<g:form url="[resource:personaInstance, action:'update']" method="PUT" id="form_edit_persona">
 						<g:hiddenField name="version" value="${personaInstance?.version}" />
 						<fieldset class="form">
 							<g:render template="form"/>
@@ -65,7 +65,7 @@
 				</div>
 				<!-- panel-body -->
 				<div class="panel-footer" >
-					<button class="btn btn-link" type="submit" form="form1" style="padding: 0px 12px; color:#777777">
+					<button class="btn btn-link" type="submit" form="form_edit_persona" style="padding: 0px 12px; color:#777777">
 						<i class="md md-check"></i>
 					</button>
 					<g:link action="index" resource="${personaInstance}" style="padding: 0px 12px; color:#777777"><i class="md md-close"></i></g:link>
