@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6772259d-73f2-49fe-8085-89cf555a94f9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     estado.`id` AS estado_id,
+     estado.`version` AS estado_version,
+     estado.`fecha_alta` AS estado_fecha_alta,
+     estado.`fecha_baja` AS estado_fecha_baja,
+     estado.`nombre` AS estado_nombre,
+     ubicacion.`id` AS ubicacion_id,
+     ubicacion.`version` AS ubicacion_version,
+     ubicacion.`fecha_alta` AS ubicacion_fecha_alta,
+     ubicacion.`fecha_baja` AS ubicacion_fecha_baja,
+     ubicacion.`nombreubica` AS ubicacion_nombreubica,
+     area.`id` AS area_id,
+     area.`version` AS area_version,
+     area.`fecha_alta` AS area_fecha_alta,
+     area.`fecha_baja` AS area_fecha_baja,
+     area.`nombrearea` AS area_nombrearea,
+     tipo.`id` AS tipo_id,
+     tipo.`version` AS tipo_version,
+     tipo.`nombretipo` AS tipo_nombretipo,
+     bien.`nombre_bien` AS bien_nombre_bien
+FROM
+     `estado` estado INNER JOIN `bien` bien ON estado.`id` = bien.`estado_id`
+     INNER JOIN `ubicacion` ubicacion ON bien.`ubicacion_id` = ubicacion.`id`
+     INNER JOIN `area` area ON bien.`area_id` = area.`id`
+     INNER JOIN `tipo` tipo ON bien.`tipo_id` = tipo.`id`
+WHERE
+     bien.area_id = 1]]>
+	</queryString>
+	<field name="bien_nombre_bien" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="cf9ea6c5-c7ee-4a2f-be3c-a972df055303"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="315" height="62" uuid="91927390-54f6-4494-8eaa-bfb524ce9aa0"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Patronus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="266" height="22" uuid="96eb5adc-0b52-4a47-a46a-24578dbec589"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="1cf92050-78ce-4526-806e-b30d803fa1d0"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="a5657724-164f-47ab-9c89-a68475723f79"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="555" height="15" forecolor="#736343" uuid="f1c225d5-aba3-40c5-b085-a3b0483b963f"/>
+				<text><![CDATA[Nombre del bien]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="8116c4cf-4bc2-4a31-9fc4-a8123aa8e2a5"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="555" height="15" uuid="4e01e532-cae4-45c5-a0f4-19070a5b5ea2"/>
+					<textFieldExpression><![CDATA[$F{bien_nombre_bien}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="aac30c5c-673d-4af8-a056-cb77a9dd5513"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="a89c68e3-1601-49a7-863d-f0ef20202d75"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="dd937d6a-5ab3-448b-9142-9c3e09f82f18"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="615b1a90-4579-47dc-8b5f-f6d1de65b867"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="56" y="4" width="197" height="20" forecolor="#736343" uuid="77f26c61-00f6-4eaa-bd55-ad4bdce63436"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

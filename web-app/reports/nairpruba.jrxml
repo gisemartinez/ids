@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nairpruba" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4884577-f90d-46d7-acb3-fcf026020800">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="035da819-a2c1-4ad1-affd-d33612710b2f">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     bien.`id` AS bien_id,
+     bien.`version` AS bien_version,
+     bien.`area_id` AS bien_area_id,
+     bien.`codigo_de_serie` AS bien_codigo_de_serie,
+     bien.`descripcion` AS bien_descripcion,
+     bien.`estado_id` AS bien_estado_id,
+     bien.`fecha_alta` AS bien_fecha_alta,
+     bien.`fecha_baja` AS bien_fecha_baja,
+     bien.`tipo_id` AS bien_tipo_id,
+     bien.`ubicacion_id` AS bien_ubicacion_id,
+     bien.`codigo_patrimonio` AS bien_codigo_patrimonio,
+     bien.`nombre_bien` AS bien_nombre_bien,
+     bien.`responsable_bien` AS bien_responsable_bien
+FROM
+     `bien` bien]]>
+		</queryString>
+		<field name="bien_id" class="java.lang.Long"/>
+		<field name="bien_version" class="java.lang.Long"/>
+		<field name="bien_area_id" class="java.lang.Long"/>
+		<field name="bien_codigo_de_serie" class="java.lang.String"/>
+		<field name="bien_descripcion" class="java.lang.String"/>
+		<field name="bien_estado_id" class="java.lang.Long"/>
+		<field name="bien_fecha_alta" class="java.sql.Timestamp"/>
+		<field name="bien_fecha_baja" class="java.sql.Timestamp"/>
+		<field name="bien_tipo_id" class="java.lang.Long"/>
+		<field name="bien_ubicacion_id" class="java.lang.Long"/>
+		<field name="bien_codigo_patrimonio" class="java.lang.String"/>
+		<field name="bien_nombre_bien" class="java.lang.String"/>
+		<field name="bien_responsable_bien" class="java.lang.String"/>
+		<group name="bien_fecha_alta">
+			<groupExpression><![CDATA[$F{bien_fecha_alta}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     bien.`area_id` AS bien_area_id,
+     area.`nombrearea` AS area_nombrearea,
+     bien.`nombre_bien` AS bien_nombre_bien
+FROM
+     `area` area INNER JOIN `bien` bien ON area.`id` = bien.`area_id`]]>
+	</queryString>
+	<field name="area_nombrearea" class="java.lang.String"/>
+	<field name="bien_nombre_bien" class="java.lang.String"/>
+	<group name="area_nombrearea">
+		<groupExpression><![CDATA[$F{area_nombrearea}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#000000" uuid="87dc1c7d-f3b3-4c5d-83d0-cc107a790e35"/>
+					<textField isStretchWithOverflow="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="0" width="479" height="24" forecolor="#FFFFFF" uuid="41793564-77fe-4898-b0c3-d63c971869e3"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{area_nombrearea}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="bien_nombre_bien">
+		<groupExpression><![CDATA[$F{bien_nombre_bien}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<componentElement>
+					<reportElement x="0" y="0" width="553" height="30" uuid="a8fdb889-1893-4afa-b699-db477c6efb65"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="New Dataset 1" uuid="95c87f5f-6a71-4f76-92ce-be899457b117">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+						</datasetRun>
+						<jr:column width="90" uuid="7212f599-f476-4c68-80a5-82c3c3d675a9">
+							<jr:tableHeader height="30"/>
+							<jr:tableFooter height="30"/>
+							<jr:columnHeader height="30">
+								<textField pattern="dd/MM/yyyy">
+									<reportElement x="0" y="0" width="90" height="30" uuid="042f62dd-d9eb-4c8b-80ab-f54a9bc6870b"/>
+									<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+								</textField>
+							</jr:columnHeader>
+							<jr:columnFooter height="30"/>
+							<jr:detailCell height="20"/>
+						</jr:column>
+						<jr:column width="90" uuid="91e982e8-7e47-48ff-98d4-29e835ddbc4b">
+							<jr:tableHeader height="30"/>
+							<jr:tableFooter height="30"/>
+							<jr:columnHeader height="30"/>
+							<jr:columnFooter height="30"/>
+							<jr:detailCell height="20"/>
+						</jr:column>
+						<jr:column width="90" uuid="b3bdd6e6-09df-49ff-b98e-267e3f3adcd6">
+							<jr:tableHeader height="30"/>
+							<jr:tableFooter height="30"/>
+							<jr:columnHeader height="30"/>
+							<jr:columnFooter height="30"/>
+							<jr:detailCell height="20"/>
+						</jr:column>
+						<jr:column width="90" uuid="b4ec0440-188a-405a-b735-45aab274392d">
+							<jr:tableHeader height="30"/>
+							<jr:tableFooter height="30"/>
+							<jr:columnHeader height="30"/>
+							<jr:columnFooter height="30"/>
+							<jr:detailCell height="20"/>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="37683993-def7-4935-ad7b-b55df7dac5cf"/>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="4537645d-317f-466d-b277-b9c11025dc93"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="8cbc9284-5deb-4259-8ac6-97c72ae7d67d"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry Title]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="2c9609ff-9e12-46cc-b1c2-7734bed2e8f7"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry SubTitle]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="33f732e5-3972-4cce-b342-46c1a6911129"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="fc476d42-f326-44ef-ba40-bc10d0b7ec47"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="7a925111-6895-4f59-a7be-9dbec0d17992"/>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="aefc54ef-653b-42eb-b543-a91697438574"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="1c0f9b65-1108-46bf-a62b-2cc1014814a3"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="1422e378-cdb7-4dc1-a401-770520ea6cc7"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="c611d0fa-fb43-425c-81ad-e30a587dd112"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="80859995-6c9e-4e99-aded-164b8aa17e5a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
