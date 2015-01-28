@@ -27,7 +27,7 @@
 					<label for="responsableBien">
 						<g:message code="bien.responsableBien.label" default="Responsable" />
 					</label>
-					<g:select id="persona" name="persona.id" from="${abm.Persona.list()}" optionKey="id" optionValue="nombre" required="" 
+					<g:select id="persona" name="persona.id" from="${abm.Persona.filtrarPorRol(1)}" optionKey="id" optionValue="nombre" required="" 
 				noSelection= "['': 'Seleccione un responsable']" value="${bienInstance?.responsableBien?.id}" class="many-to-one"/>
 				</div>
 			</div>
