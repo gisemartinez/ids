@@ -63,7 +63,8 @@
 							<tr>
 								<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'C&oacutedigo de serie')}" />
 								<g:sortableColumn property="nombreBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Denominaci&oacuten')}" />
-								<g:sortableColumn property="responsableBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Responsable')}" />
+								<th><g:message code="bien.responsableBien.label" default="Responsable" /></th>
+								<!-- <g:sortableColumn property="responsableBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Responsable')}" /> -->
 								<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripci&oacuten')}" />
 								<th><g:message code="bien.estado.label" default="Estado" /></th>
 								<th><g:message code="bien.tipo.label" default="Tipo" /></th>

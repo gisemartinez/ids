@@ -92,7 +92,7 @@
 								<strong>
 									<span id="responsableBien-label" class="property-label"><g:message code="bien.responsableBien.label" default="Responsable" /></span>
 								</strong>
-								<span class="property-value" aria-labelledby="responsableBien-label"><g:fieldValue bean="${bienInstance}" field="responsableBien"/></span>
+								<span class="property-value" aria-labelledby="responsableBien-label"><g:link controller="Persona" action="show" id="${bienInstance?.responsableBien?.id}">${bienInstance?.responsableBien?.encodeAsHTML()}</g:link></span>
 							</li>
 						</g:if>
 						<g:if test="${bienInstance?.tipo}">

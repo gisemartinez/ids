@@ -9,7 +9,7 @@
 					<label for="nombreBien">
 						<g:message code="bien.nombreBien.label" default="Denominaci&oacuten" />
 					</label>
-					<g:textField name="nombreBien" required="" value="${bienInstance?.responsableBien}"/>
+					<g:textField name="nombreBien" required="" value="${bienInstance?.nombreBien}"/>
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -27,8 +27,8 @@
 					<label for="responsableBien">
 						<g:message code="bien.responsableBien.label" default="Responsable" />
 					</label>
-					<g:select id="responsable" name="Persona.nombre" from="${['Sergio Viera','Pedro Asis','Luis Perna']}" optionKey="" required="" 
-				noSelection= "['': 'Seleccione un responsable']"/>
+					<g:select id="persona" name="persona.id" from="${abm.Persona.list()}" optionKey="id" optionValue="nombre" required="" 
+				noSelection= "['': 'Seleccione un responsable']" value="${bienInstance?.responsableBien?.id}" class="many-to-one"/>
 				</div>
 			</div>
 			<div class="col-lg-6">

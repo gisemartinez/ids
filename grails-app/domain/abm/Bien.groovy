@@ -8,13 +8,11 @@ class Bien {
 
        String nombreBien
 
-       String responsableBien
-
 	String codigoDeSerie
 
        String descripcion
        //relacion de tablas
-       static belongsTo= [estado:Estado,area:Area,ubicacion: Ubicacion,tipo:Tipo]
+       static belongsTo= [estado:Estado,area:Area,ubicacion: Ubicacion,tipo:Tipo,responsableBien:Persona]
       
        //Fecha del alta del bien
        Date fechaAlta=new Date()
