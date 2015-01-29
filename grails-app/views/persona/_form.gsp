@@ -1,5 +1,6 @@
 <%@ page import="abm.Persona" %>
 <%@ page import="com.testapp.User" %>
+<%@ page import="com.testapp.Role" %>
 
 <div class="container">
 	<div class="row">
@@ -29,7 +30,7 @@
 				<label for="dni">
 					<g:message code="persona.dni.label" default="DNI" />
 				</label>
-				<g:field name="dni" type="number" value="${personaInstance.dni}" required=""/>
+				<g:field name="dni" type="number" value="${personaInstance?.dni}" required=""/>
 
 			</div>
 		</div>
@@ -47,7 +48,19 @@
 
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
+            <div class="fieldcontain ${hasErrors(bean: roleInstance, field: 'roleId', 'error')} required">
+                <label for="rol">
+                    <g:message code="roleInstance.roleId" default="Rol" />
+                </label>
+                <g:select id="role" name="role.id" from="${com.testapp.Role.list()}" optionKey="id" optionValue="authority" required="" 
+                noSelection= "['': 'Seleccione un rol']"
+                value="${roleInstance?.roleId?.id}"/>
+                
+            </div>
+        </div>
+
+		<div class="col-md-4">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'username', 'error')} required">
 				<label for="username">
 					<g:message code="user.username.label" default="Usuario" />
@@ -56,7 +69,7 @@
 
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} required">
 				<label for="password">
 					<g:message code="user.password.label" default="Contraseña" />

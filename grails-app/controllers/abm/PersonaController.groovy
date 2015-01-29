@@ -2,7 +2,8 @@ package abm
 
 
 import com.testapp.User
-
+import com.testapp.Role
+import com.testapp.UserRole
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
@@ -29,7 +30,7 @@ class PersonaController {
     }
 
     @Transactional
-    def save(Persona personaInstance, User userInstance) {
+    def save(Persona personaInstance, User userInstance, Role roleInstance) {
         if (personaInstance == null) {
             notFound()
             return
@@ -51,8 +52,11 @@ class PersonaController {
         //-------guardo ambas instancias y guardo la relacion entre ambas
         personaInstance.save flush:true
         userInstance.save flush:true
+        println(roleInstance)
         //------por mas que sean IDs diferentes, la relacion se guarda igual
-        def relation = new PersonaUser(personaInstance,userInstance).save(flush:true)
+        def relationUserRol = new UserRole(userInstance,roleInstance).save(flush:true)
+        def relationPersonaUser = new PersonaUser(personaInstance,userInstance).save(flush:true)
+        
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'persona.label', default: 'Persona'), personaInstance.id])

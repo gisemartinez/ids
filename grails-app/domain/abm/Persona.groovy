@@ -25,4 +25,7 @@ class Persona {
 
     static constraints = {
     }
+    String toString(){
+		nombre
+	}
 }
