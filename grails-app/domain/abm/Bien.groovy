@@ -22,4 +22,7 @@ class Bien {
        static constraints = {
        		
        }
+       static mapping = {
+              responsableBien lazy: false
+       }
 }
