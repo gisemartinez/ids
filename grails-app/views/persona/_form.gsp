@@ -50,12 +50,12 @@
 	<div class="row">
 		<div class="col-md-4">
             <div class="fieldcontain ${hasErrors(bean: roleInstance, field: 'roleId', 'error')} required">
-                <label for="rol">
-                    <g:message code="roleInstance.roleId" default="Rol" />
+                <label for="roleId">
+                    <g:message code="role.roleId.label" default="Rol" />
                 </label>
-                <g:select id="role" name="role.id" from="${com.testapp.Role.list()}" optionKey="id" optionValue="authority" required="" 
+                <g:select id="role" name="roleId" from="${com.testapp.Role.list()}" optionKey="id" optionValue="authority" required="" 
                 noSelection= "['': 'Seleccione un rol']"
-                value="${roleInstance?.roleId?.id}"/>
+                value="${roleInstance?.roleId}"/>
                 
             </div>
         </div>

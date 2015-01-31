@@ -30,7 +30,8 @@ class PersonaController {
     }
 
     @Transactional
-    def save(Persona personaInstance, User userInstance, Role roleInstance) {
+    def save(Persona personaInstance, User userInstance, Role roleUnsaved) {
+        def roleInstance = Role.find(roleUnsaved)
         if (personaInstance == null) {
             notFound()
             return
@@ -39,22 +40,32 @@ class PersonaController {
             respond personaInstance.errors, view:'create'
             return
         }
-
         //--------lo mismo pero con el usuario--------
          if (userInstance == null) {
             notFound()
             return
         }
         if (userInstance.hasErrors()) {
+            println "El usuario creado ya existe o tiene algún problema"
+            respond userInstance.errors, view:'create'
+            return
+        }
+        if (roleInstance == null) {
+            notFound()
+            println "Es un rol nulo!"
+            return
+        }
+        if (roleInstance.hasErrors()) {
+            println "El rol tiene algún problema"
             respond userInstance.errors, view:'create'
             return
         }
         //-------guardo ambas instancias y guardo la relacion entre ambas
         personaInstance.save flush:true
         userInstance.save flush:true
-        println(roleInstance)
         //------por mas que sean IDs diferentes, la relacion se guarda igual
-        def relationUserRol = new UserRole(userInstance,roleInstance).save(flush:true)
+        UserRole.create userInstance, roleInstance, true
+        //def relationUserRol = new UserRole(userInstance,roleInstance).save(flush:true)
         def relationPersonaUser = new PersonaUser(personaInstance,userInstance).save(flush:true)
         
         request.withFormat {
