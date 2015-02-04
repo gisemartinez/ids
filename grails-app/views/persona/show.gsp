@@ -63,9 +63,6 @@
 					<g:message code="default.show.label" args="[entityName]"/>
 				</div> -->
 				<div class="panel-body">
-						<!-- <g:if test="${flash.message}">
-							<div class="message" role="status">${flash.message}</div>
-						</g:if> -->
 					<ul class="list-group">
 						<g:if test="${personaInstance?.nombre}">
 							<li class="list-group-item">
