@@ -52,6 +52,12 @@
 			</div>
 		</div>
 		<div class="container-fluid">
+			<g:if test='${flash.message}'>
+				<div class="alert alert-dismissible alert-success" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<i class="md md-error"></i> ${flash.message}
+				</div>
+			</g:if>
 			<div class="panel panel-default">
 				<!-- <div class="panel-heading">
 					<g:message code="default.show.label" args="[entityName]"/>
@@ -62,40 +68,40 @@
 						</g:if> -->
 					<ul class="list-group">
 						<g:if test="${personaInstance?.nombre}">
-						<li class="list-group-item">
-							<strong>
-								<span id="nombre-label" class="property-label">
-									<g:message code="persona.nombre.label" default="Nombre" />
+							<li class="list-group-item">
+								<strong>
+									<span id="nombre-label" class="property-label">
+										<g:message code="persona.nombre.label" default="Nombre" />
+									</span>
+								</strong>
+								<span class="property-value" aria-labelledby="nombre-label">
+									<g:fieldValue bean="${personaInstance}" field="nombre"/>
 								</span>
-							</strong>
-							<span class="property-value" aria-labelledby="nombre-label">
-								<g:fieldValue bean="${personaInstance}" field="nombre"/>
-							</span>
-						</li>
+							</li>
 						</g:if>	
 						<g:if test="${personaInstance?.apellido}">
-						<li class="list-group-item">
-							<strong>
-								<span id="apellido-label" class="property-label">
-									<g:message code="persona.apellido.label" default="Apellido" />
-								</span>
-							</strong>
-							<span class="property-value" aria-labelledby="apellido-label">
-								<g:fieldValue bean="${personaInstance}" field="apellido"/>
-							</span>	
-						</li>
+							<li class="list-group-item">
+								<strong>
+									<span id="apellido-label" class="property-label">
+										<g:message code="persona.apellido.label" default="Apellido" />
+									</span>
+								</strong>
+								<span class="property-value" aria-labelledby="apellido-label">
+									<g:fieldValue bean="${personaInstance}" field="apellido"/>
+								</span>	
+							</li>
 						</g:if>
 						<g:if test="${personaInstance?.dni}">
-						<li class="list-group-item">
-							<strong>
-								<span id="dni-label" class="property-label">
-									<g:message code="persona.dni.label" default="DNI" />
+							<li class="list-group-item">
+								<strong>
+									<span id="dni-label" class="property-label">
+										<g:message code="persona.dni.label" default="DNI" />
+									</span>
+								</strong>
+								<span class="property-value" aria-labelledby="dni-label">
+									<g:fieldValue bean="${personaInstance}" field="dni"/>
 								</span>
-							</strong>
-							<span class="property-value" aria-labelledby="dni-label">
-								<g:fieldValue bean="${personaInstance}" field="dni"/>
-							</span>
-						</li>
+							</li>
 						</g:if>
 						<g:if test="${personaInstance?.area}">
 							<li class="fieldcontain list-group-item list-group-item">
@@ -108,28 +114,28 @@
 							</li>
 						</g:if>
 						<g:if test="${personaInstance?.fechaAlta}">
-						<li class="list-group-item">
-							<strong>
-								<span id="fechaAlta-label" class="property-label">
-									<g:message code="persona.fechaAlta.label" default="Fecha Alta" />
+							<li class="list-group-item">
+								<strong>
+									<span id="fechaAlta-label" class="property-label">
+										<g:message code="persona.fechaAlta.label" default="Fecha Alta" />
+									</span>
+								</strong>
+								<span class="property-value" aria-labelledby="fechaAlta-label">
+									<g:formatDate format="dd-MM-yyyy" date="${personaInstance?.fechaAlta}" />
 								</span>
-							</strong>
-							<span class="property-value" aria-labelledby="fechaAlta-label">
-								<g:formatDate format="dd-MM-yyyy" date="${personaInstance?.fechaAlta}" />
-							</span>
-						</li>
+							</li>
 						</g:if>
 						<g:if test="${personaInstance?.fechaBaja}">
-						<li class="list-group-item">
-							<strong>
-								<span id="fechaBaja-label" class="property-label">
-									<g:message code="persona.fechaBaja.label" default="Fecha Baja" />
+							<li class="list-group-item">
+								<strong>
+									<span id="fechaBaja-label" class="property-label">
+										<g:message code="persona.fechaBaja.label" default="Fecha Baja" />
+									</span>
+								</strong>
+								<span class="property-value" aria-labelledby="fechaBaja-label">
+									<g:formatDate format="dd-MM-yyyy" date="${personaInstance?.fechaBaja}" />
 								</span>
-							</strong>
-							<span class="property-value" aria-labelledby="fechaBaja-label">
-								<g:formatDate format="dd-MM-yyyy" date="${personaInstance?.fechaBaja}" />
-							</span>
-						</li>
+							</li>
 						</g:if>
 					</ul>
 					<g:form url="[resource:personaInstance, action:'delete']" method="DELETE" id="form_show_persona">
@@ -142,9 +148,7 @@
 						<i class="md md-delete"></i>
 					</button>
 				</div>
-			</div>
-			<!-- panel-primary -->
-		</div>
-		<!-- container-fluid -->
+			</div><!-- panel-primary -->
+		</div><!-- container-fluid -->
 	</body>
 </html>
