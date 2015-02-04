@@ -117,7 +117,7 @@ class PersonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
+                flash.message = message(code: 'persona.deleted.message', args: [personaInstance.nombre, personaInstance.apellido])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
