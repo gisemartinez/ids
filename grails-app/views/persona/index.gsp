@@ -41,7 +41,12 @@
 		<div class="container-fluid">
 			<div id="list-usuario" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+					<div class="alert alert-dismissible alert-danger" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</i></span>
+						</button>
+						${flash.message}
+					</div>
 				</g:if>
 				<div class="table-responsive">
 					<table>
