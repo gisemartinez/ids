@@ -237,7 +237,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.codigoDeSerie])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
