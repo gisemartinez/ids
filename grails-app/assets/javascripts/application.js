@@ -35,12 +35,12 @@ $(document).ready(function(){
 	//Si no hay elementos para mostrar..
 	if(!$('tbody').children().length){
 		$('.table-responsive').before('<div class="alert alert-warning" role="alert"><i class="md md-info"></i> No hay datos cargados. <a class="alert-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="accion">Desea agregar uno?</a></div>')
-		$('.table-responsive').css('visibility','hidden')
+		$('.table-responsive').css('display','none')
 	}
 
 	//Si no hay suficientes elementos para paginar..
 	if($('ul.pagination li.disabled')){
-		$('div.pagination').css('visibility','hidden')	
+		$('div.pagination').css('display','none')	
 	}
 
 	$('.barra_principal ul').attr("style", "background-color:#009688")
