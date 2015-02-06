@@ -26,22 +26,6 @@
 			.fieldcontain{
 				margin-bottom: 10px;
 			}
-			button.save{
-				float: right;				
-				margin: 5px;
-			}
-			button.delete{
-				float: right;
-				margin: 5px;				
-			}
-			a.edit{
-				float: right;
-				margin: 5px;
-			}
-			a.cancel{
-				float: right;
-				margin: 5px;
-			}
 			.cerrarsesion{
 				display: block;
 				padding: 3px 20px;
@@ -64,16 +48,11 @@
 				background-color:#009688;
 			}
 
-			.ic_bienes:hover{
-				color: #FFEB3B;
-			}
-
 			body { padding-top: 70px; }
 			
 			.barra_principal .md{color:white}
 
 			.barra_principal a:hover .md{color:#FFEB3B}
-
 
 		</style>
 	</head>
