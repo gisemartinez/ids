@@ -9,8 +9,7 @@
 				<label for="nombre">
 					<g:message code="persona.nombre.label" default="Nombre" />
 				</label>
-				<g:textField name="nombre" required="" value="${personaInstance?.nombre}"/>
-
+				<g:textField name="nombre" pattern="[A-Z]{1}?[a-z]{2,19}" title="Formato: letras de la A a la z. Longitud entre 3 y 20." required="" value="${personaInstance?.nombre}"/>
 			</div>
 		</div>
 		<div class="col-md-6">
@@ -18,11 +17,9 @@
 				<label for="apellido">
 					<g:message code="persona.apellido.label" default="Apellido" />
 				</label>
-				<g:textField name="apellido" required="" value="${personaInstance?.apellido}"/>
-
+				<g:textField name="apellido" pattern="[A-Z]{1}?[a-z]{2,19}" title="Formato: letras de la A a la z. Longitud entre 3 y 20." required="" value="${personaInstance?.apellido}"/>
 			</div>
 		</div>
-
 	</div>
 	<div class="row">
 		<div class="col-md-6">
@@ -30,8 +27,7 @@
 				<label for="dni">
 					<g:message code="persona.dni.label" default="DNI" />
 				</label>
-				<g:field name="dni" type="number" value="${personaInstance?.dni}" required=""/>
-
+				<g:field name="dni" pattern = "[0-9]{8}"  title = "Formato: número de 8 digitos." value="${personaInstance?.dni}" required=""/>
 			</div>
 		</div>
 		<div class="col-md-6">
@@ -42,10 +38,8 @@
 				<g:select id="area" name="area.id" from="${abm.Area.list()}" optionKey="id" required=""
 				noSelection= "['': 'Seleccione un area']"
 				 value="${personaInstance?.area?.id}" class="many-to-one"/>
-
 			</div>
 		</div>
-
 	</div>
 	<div class="row">
 		<div class="col-md-4">
@@ -56,17 +50,14 @@
                 <g:select id="role" name="roleId" from="${com.testapp.Role.list()}" optionKey="id" optionValue="authority" required="" 
                 noSelection= "['': 'Seleccione un rol']"
                 value="${roleInstance?.roleId}"/>
-                
             </div>
         </div>
-
 		<div class="col-md-4">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'username', 'error')} required">
 				<label for="username">
 					<g:message code="user.username.label" default="Usuario" />
 				</label>
-				<g:textField name="username" required="" value="${userInstance?.username}"/>
-
+				<g:field name="username" type="email" required="" value="${userInstance?.username}"/>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -75,7 +66,6 @@
 					<g:message code="user.password.label" default="Contraseña" />
 				</label>
 				<g:textField name="password" required="" value="${userInstance?.password}"/>
-
 			</div>
 		</div>
 	</div>

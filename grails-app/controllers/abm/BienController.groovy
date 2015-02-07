@@ -134,9 +134,18 @@ class BienController {
             ["A Descarte",bienesADescarte().size()],
             ["Baja",bienesBaja().size()]
         ]
+        
+        def a = bienesAEvaluar().size()
+        def b = bienesEnUso().size()
+        def c = bienesAReparar().size()
+        def d = bienesADonacion().size()
+        def e = bienesADescarte().size()
+        def f = bienesBaja().size()        
+        
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
        
-        render(view:'grafico' ,model:[array0:array0 , array1:array1, opt:opt])
+        //render(view:'grafico' ,model:[array0:array0 , array1:array1, opt:opt])
+        render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f])
         //respond "", model:[array0:array0 , array1:array1, opt:opt]
         
     }
@@ -237,7 +246,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.codigoDeSerie])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

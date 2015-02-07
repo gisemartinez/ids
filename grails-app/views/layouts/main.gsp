@@ -26,22 +26,6 @@
 			.fieldcontain{
 				margin-bottom: 10px;
 			}
-			button.save{
-				float: right;				
-				margin: 5px;
-			}
-			button.delete{
-				float: right;
-				margin: 5px;				
-			}
-			a.edit{
-				float: right;
-				margin: 5px;
-			}
-			a.cancel{
-				float: right;
-				margin: 5px;
-			}
 			.cerrarsesion{
 				display: block;
 				padding: 3px 20px;
@@ -64,16 +48,11 @@
 				background-color:#009688;
 			}
 
-			.ic_bienes:hover{
-				color: #FFEB3B;
-			}
-
 			body { padding-top: 70px; }
 			
 			.barra_principal .md{color:white}
 
 			.barra_principal a:hover .md{color:#FFEB3B}
-
 
 		</style>
 	</head>
@@ -98,14 +77,17 @@
 								<a href="/${grailsApplication.config.nombreAplicacion}/bien/index" title="Bienes">
 									<i class="md md-work"></i>
 								</a>
-								
+							</li>
+							<li class="dropdown estadisticas">
+								<a href="/${grailsApplication.config.nombreAplicacion}/bien/grafico" title="Estadísticas">
+									<i class="md md-assessment"></i>
+								</a>
 							</li>
 							<sec:ifAllGranted roles="ROLE_ADMIN">
 								<li class="dropdown persona">
 									<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" title="Usuarios">
 										<i class="md md-group"></i>
 									</a>
-									
 								</li>
 								<li class="dropdown areas">
 									<a href="/${grailsApplication.config.nombreAplicacion}/area/index" title="Areas">
@@ -119,7 +101,6 @@
 										<li><a class="new" href="/${grailsApplication.config.nombreAplicacion}/estado/create">Cargar</a></li>
 									</ul>
 								</li> -->
-								
 								<li class="dropdown ubicaciones">
 									<a href="/${grailsApplication.config.nombreAplicacion}/ubicacion/index" title="Ubicaciones">
 										<i class="md md-place"></i>

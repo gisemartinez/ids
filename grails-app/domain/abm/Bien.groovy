@@ -24,5 +24,9 @@ class Bien {
        }
        static mapping = {
               responsableBien lazy: false
+              tipo lazy: false
+              ubicacion lazy: false
+              area lazy: false
+              estado lazy: false
        }
 }

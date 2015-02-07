@@ -2,37 +2,11 @@
 	<head>
 		<meta name='layout' content='login'/>
 		<title><g:message code="springSecurity.login.title"/></title>
-		<style>
-			.alerta{
-				border-radius: 4px;
-				margin-left: auto;
-				margin-right: auto;
-				padding: 6px 25px;
-				max-width: 400px;
-				background-color: #c33;
-				color: white;
-				text-align: center;
-			}
-
-			.alineacionvertical{
-				position: relative; 
-				top: 50%; 
-				transform: translateY(-50%);
-			}
-
-		</style>
 	</head>
 	<body>
-		<g:if test='${flash.message}'>
-			<div style="padding: 0px 15px; margin-top: 25px; margin-bottom: 25px;">
-				<div class="alerta">
-					El usuario o la contrase&#241a son incorrectos.
-				</div>
-			</div>
-		</g:if>
-		<div style="text-align:center; margin-top:20px; margin-bottom: 20px"><h4>Ingrese sus datos para acceder:</h4></div>
-		<div class="container" style="max-width:256px;">
-
+		<div style="margin-top:70px;"></div>
+		<div style="text-align:center; margin-bottom: 20px"><h4>Ingrese sus datos para acceder:</h4></div>
+		<div class="container-fluid" style="max-width:300px;">
 			<form role="form" action='${postUrl}' method='POST' id='loginForm' autocomplete='off'>
 				<div class="form-group">
 					<!-- <label for='username'><g:message code="springSecurity.login.username.label"/>:</label> -->
@@ -49,6 +23,12 @@
 					</label>
 				</div>				
 			</form>
-		</div>		
+		</div>
+		<g:if test='${flash.message}'>
+			<div class="alert alert-danger alert-dismissible" role="alert" style="max-width:350px;margin:0 auto">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<i class="md md-error"></i> <!-- <strong>Error!</strong>  -->El usuario o la contrase&#241a son incorrectos.
+			</div>
+		</g:if>
 	</body>
 </html>

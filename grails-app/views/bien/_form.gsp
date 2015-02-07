@@ -36,7 +36,7 @@
 					<label for="codigoDeSerie">
 						<g:message code="bien.codigoDeSerie.label" default="C&oacutedigo de Serie" />
 					</label>
-					<g:textField name="codigoDeSerie" required="" value="${bienInstance?.codigoDeSerie}"/>
+					<g:field type="number" name="codigoDeSerie" required="" value="${bienInstance?.codigoDeSerie}"/>
 				</div>
 			</div>
 		</div>
