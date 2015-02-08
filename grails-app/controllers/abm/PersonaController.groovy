@@ -79,8 +79,8 @@ class PersonaController {
         }
     }
 
-    def edit(Persona personaInstance,User userInstance) {
-        respond personaInstance, model:[userInstance: new User()]
+    def edit(Persona personaInstance,User userInstance,Role roleInstance) {
+        respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
     }
 
     @Transactional
