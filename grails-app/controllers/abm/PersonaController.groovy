@@ -24,14 +24,16 @@ class PersonaController {
     }
 
     def create() {
+        println "create"
+        println (params)
 
         //respond new Persona(params.nombre,params.apellido,params.dni,params.username,params.password)
-        respond new Persona(params)
+        respond new Persona(params), model:[userInstance:new User(params)]
     }
 
     @Transactional
-    def save(Persona personaInstance, User userInstance, Role roleUnsaved) {
-        def roleInstance = Role.find(roleUnsaved)
+    def save(Persona personaInstance, User userInstance) {
+        def roleInstance = Role.findById(params.role.id)
         if (personaInstance == null) {
             notFound()
             return
