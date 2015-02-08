@@ -1,7 +1,7 @@
 <%@ page import="abm.Bien" %>
 
 
-<sec:ifAllGranted roles="ROLE_ADMIN">
+<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
@@ -52,7 +52,7 @@
 
 		</div>	
 	</div>
-</sec:ifAllGranted>
+</sec:ifAnyGranted>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6">
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<div class="col-lg-6">
-		<sec:ifAllGranted roles="ROLE_ADMIN">
+		<sec:ifAnyGranted roles="ROLE_ADMIN">
 			<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'tipo', 'error')} required">
 				<label for="tipo">
 					<g:message code="bien.tipo.label" default="Tipo" />
@@ -77,12 +77,12 @@
 				 value="${bienInstance?.tipo?.id}" class="many-to-one"/>
 
 			</div>
-		</sec:ifAllGranted>
+		</sec:ifAnyGranted>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-6">
-			<sec:ifAllGranted roles="ROLE_ADMIN">
+			<sec:ifAnyGranted roles="ROLE_ADMIN">
 				<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'ubicacion', 'error')} required">
 					<label for="ubicacion">
 						<g:message code="bien.ubicacion.label" default="Ubicacion" />
@@ -92,10 +92,10 @@
 					 value="${bienInstance?.ubicacion?.id}" class="many-to-one"/>
 
 				</div>
-			</sec:ifAllGranted>
+			</sec:ifAnyGranted>
 		</div>
 		<div class="col-lg-6">
-			<sec:ifAllGranted roles="ROLE_ADMIN">
+			<sec:ifAnyGranted roles="ROLE_ADMIN">
 				<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'area', 'error')} required">
 					<label for="area">
 						<g:message code="bien.area.label" default="Departamento" />
@@ -105,7 +105,7 @@
 					 value="${bienInstance?.area?.id}" class="many-to-one"/>
 
 				</div>
-			</sec:ifAllGranted>
+			</sec:ifAnyGranted>
 		</div>
 	</div>
 </div>

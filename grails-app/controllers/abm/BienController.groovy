@@ -10,7 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.gorm.*
 
-@Secured(['ROLE_ADMIN','ROLE_OPERADOR'])
+@Secured(['ROLE_ADMIN','ROLE_OPERADOR','ROLE_SUPERVISOR'])
 @Transactional(readOnly = true)
 class BienController {
      def springSecurityService
