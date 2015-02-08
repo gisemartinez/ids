@@ -93,9 +93,9 @@
 				</div>
 				<div class="panel-footer" >
 					<g:link action="edit" resource="${ubicacionInstance}" style="padding: 0px 12px; color:#777777"><i class="md md-edit"></i></g:link>
-					<button class="btn btn-link" type="submit" form="form_show_ubicacion" style="padding: 0px 12px; color:#777777">
+					<!--<button class="btn btn-link" type="submit" form="form_show_ubicacion" style="padding: 0px 12px; color:#777777">
 						<i class="md md-delete"></i>
-					</button>
+					</button>-->
 				</div>
 			</div>
 		</div>
