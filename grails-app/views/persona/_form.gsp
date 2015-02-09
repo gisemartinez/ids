@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
             <div class="fieldcontain ${hasErrors(bean: roleInstance, field: 'authority', 'error')} required">
                 <label for="roleId">
                     <g:message code="role.roleId.label" default="Rol" />
@@ -52,7 +52,7 @@
                 value="${roleInstance?.roleId}"/>
             </div>
         </div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'username', 'error')} required">
 				<label for="username">
 					<g:message code="user.username.label" default="Usuario" />
@@ -60,10 +60,12 @@
 				<g:field name="username" type="email" required="" value="${userInstance?.username}"/>
 			</div>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} required">
 				<label for="password">
-					<g:message code="user.password.label" default="Contraseña" />
+					<g:message code="user.password.label" default="Contrase&ntildea" />
 				</label>
 				<g:textField name="password" required="" value="${userInstance?.password}"/>
 			</div>
@@ -71,7 +73,7 @@
 		<div class="col-md-4">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'confirmPassword', 'error')} required">
 				<label for="confirmPassword">
-					<g:message code="user.confirmPassword.label" default="Verificar Contraseña" />
+					<g:message code="user.confirmPassword.label" default="Verificar Contrase&ntildea" />
 				</label>
 				<g:textField name="confirmPassword" required="" value="${userInstance?.confirmPassword}"/>
 			</div>
