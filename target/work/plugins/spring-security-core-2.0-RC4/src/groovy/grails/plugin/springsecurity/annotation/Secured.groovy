@@ -39,7 +39,7 @@ import java.lang.annotation.Target
 	String ANY_METHOD = 'ANY'
 
 	/**
-	 * Defines the security configuration attributes (e.g. ROLE_USER, ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED, etc.)
+	 * Defines the security configuration attributes (e.g. ROLE_USER, SUPERVISOR, IS_AUTHENTICATED_REMEMBERED, etc.)
 	 * @return the names of the roles, expressions, and tokens
 	 */
 	String[] value() default []
