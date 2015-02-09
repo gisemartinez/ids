@@ -18,11 +18,10 @@ $(document).ready(function(){
 	//a todos los inputs (menos a los submits) le agrego la clase form-control
 
 	$('input,select,textarea').addClass("form-control")
-	$('input:checkbox').removeClass("form-control")
-	$('input:submit').removeClass("form-control")
+	$('input:checkbox,input:submit').removeClass("form-control")
 	$('.fieldcontain').removeClass("fieldcontain")
 	$('div.required').css('margin-bottom','10px')
-	$('.list-group').attr('style','margin-bottom:0')
+	$('.list-group').css('margin-bottom','0')
 
 	//Tablas
 	$('table').addClass("table table-hover")
