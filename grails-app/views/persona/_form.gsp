@@ -49,7 +49,7 @@
                 </label>
                 <g:select id="role" name="role.id" from="${com.testapp.Role.list()}" optionKey="id" optionValue="authority" required="" 
                 noSelection= "['': 'Seleccione un rol']"
-                value="${roleInstance?.roleId}"/>
+                value="${roleInstance?.id}"/>
             </div>
         </div>
 		<div class="col-md-6">
