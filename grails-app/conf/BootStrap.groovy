@@ -36,7 +36,7 @@ class BootStrap {
 			def simple = new Tipo(nombretipo: "Simple").save(flush:true)
 			def compuesto = new Tipo(nombretipo: "Compuesto").save(flush:true)
 			//instancio roles
-			def adminRole = new Role(authority: 'SUPERVISOR').save(flush: true)
+			def adminRole = new Role(authority: 'ROLE_SUPERVISOR').save(flush: true)
 			def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 			//instancio usuarios
 			def usuario1 = new User(username: 'rprada', password: 'pass')

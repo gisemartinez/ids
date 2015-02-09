@@ -4,8 +4,8 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class SecureController {
 
-   @Secured(['SUPERVISOR'])
+   @Secured(['ROLE_SUPERVISOR'])
    def index() {
-      render 'Ud es un Administrador'
+      render 'Ud es un Supervisor'
    }
 }
