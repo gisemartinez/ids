@@ -10,7 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.gorm.*
 
-@Secured(['ROLE_ADMIN','ROLE_OPERADOR','ROLE_SUPERVISOR'])
+@Secured(['SUPERVISOR','OPERADOR'])
 @Transactional(readOnly = true)
 class BienController {
      def springSecurityService
@@ -32,7 +32,7 @@ class BienController {
     def mostrarBienesSegunPermiso(){
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
-        if (permiso() == 'ROLE_ADMIN')
+        if (permiso() == 'SUPERVISOR')
             return Bien.findAll()
         else{
             def areaUser = Persona.findById(idPersona()).area
@@ -134,18 +134,9 @@ class BienController {
             ["A Descarte",bienesADescarte().size()],
             ["Baja",bienesBaja().size()]
         ]
-        
-        def a = bienesAEvaluar().size()
-        def b = bienesEnUso().size()
-        def c = bienesAReparar().size()
-        def d = bienesADonacion().size()
-        def e = bienesADescarte().size()
-        def f = bienesBaja().size()        
-        
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
        
-        //render(view:'grafico' ,model:[array0:array0 , array1:array1, opt:opt])
-        render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f])
+        render(view:'grafico' ,model:[array0:array0 , array1:array1, opt:opt])
         //respond "", model:[array0:array0 , array1:array1, opt:opt]
         
     }
@@ -246,7 +237,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.codigoDeSerie])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

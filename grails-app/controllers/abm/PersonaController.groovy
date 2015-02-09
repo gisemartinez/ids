@@ -8,7 +8,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN'])
+@Secured(['SUPERVISOR'])
 @Transactional(readOnly = true)
 class PersonaController {
 
@@ -24,16 +24,14 @@ class PersonaController {
     }
 
     def create() {
-        println "create"
-        println (params)
 
         //respond new Persona(params.nombre,params.apellido,params.dni,params.username,params.password)
-        respond new Persona(params), model:[userInstance:new User(params)]
+        respond new Persona(params)
     }
 
     @Transactional
-    def save(Persona personaInstance, User userInstance) {
-        def roleInstance = Role.findById(params.role.id)
+    def save(Persona personaInstance, User userInstance, Role roleUnsaved) {
+        def roleInstance = Role.find(roleUnsaved)
         if (personaInstance == null) {
             notFound()
             return
@@ -79,8 +77,8 @@ class PersonaController {
         }
     }
 
-    def edit(Persona personaInstance,User userInstance,Role roleInstance) {
-        respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
+    def edit(Persona personaInstance,User userInstance) {
+        respond personaInstance, model:[userInstance: new User()]
     }
 
     @Transactional
@@ -114,23 +112,12 @@ class PersonaController {
             notFound()
             return
         }
-        
-        println(personaInstance.id)
 
-        def user_id = PersonaUser.findByPersonaId(personaInstance.id).userId
-
-        println(user_id)
-
-        def user = User.findById(user_id)
-
-        PersonaUser.findByPersonaId(personaInstance.id).delete flush:true
-        UserRole.findByUser(user).delete flush:true
         personaInstance.delete flush:true
-        user.delete flush:true
-        
+
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'persona.deleted.message', args: [personaInstance.nombre, personaInstance.apellido])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
