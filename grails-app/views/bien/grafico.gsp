@@ -18,7 +18,6 @@
 				]);
 				var options = {
 					title: 'Cantidad de Bienes por Estado',
-					width: 900,
 					legend: { position: 'none' },
 					chart: { subtitle: '' },
 					axes: {
@@ -48,6 +47,6 @@
 				</div>
 			</div>
 		</nav>	
-		<div id="top_x_div" style="width: 900px; height: 500px; margin: 0 auto"></div>
+		<div id="top_x_div" style="height: 500px; margin: 0 auto"></div>
 	</body>
 </html>
