@@ -13,13 +13,9 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<asset:stylesheet src="application.css"/>
-
 		<asset:javascript src="application.js"/>
 		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-		<link rel="stylesheet" href="../../../assets/material-design-iconic-font/css/material-design-iconic-font.min.css">
-
 		<g:layoutHead/>
 		<style>
 			.fieldcontain{
