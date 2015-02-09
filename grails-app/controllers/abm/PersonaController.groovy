@@ -60,6 +60,13 @@ class PersonaController {
             respond userInstance.errors, view:'create'
             return
         }
+        
+        if (userInstance.password != userInstance.confirmPassword){
+            println "Error.Ingrese nuevamente la contraseña."
+            respond userInstance.errors, view:'create'
+            return
+        }
+        
         //-------guardo ambas instancias y guardo la relacion entre ambas
         personaInstance.save flush:true
         userInstance.save flush:true
