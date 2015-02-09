@@ -49,14 +49,19 @@
 		</nav>
 		<div class="collapse" id="collapseExample">
 			<div class="">
-		    	<g:include controller="bien" action="create" />
+		    		<g:include controller="bien" action="create" />
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div id="list-bien" class="content scaffold-list" role="main">
-				<!-- <g:if test="${flash.message}">
-					<div class="message" role="status">${flash.message}</div>
-				</g:if> -->
+				<g:if test="${flash.message}">
+					<div class="alert alert-dismissible alert-danger" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</i></span>
+						</button>
+						${flash.message}
+					</div>
+				</g:if>
 				<div class="table-responsive">
 					<table>
 						<thead>

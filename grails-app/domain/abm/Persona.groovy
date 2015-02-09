@@ -1,5 +1,7 @@
 package abm
 
+import java.util.Date;
+
 class Persona {
 	
 	String nombre
@@ -10,7 +12,7 @@ class Persona {
 
 	Date fechaAlta=new Date()
 
-	Date fechaBaja=new Date()
+	Date fechaBaja=new Date('2999/12/31')
 	//metodo de clase que se llama igual que Persona.list
 	//Si se le da el id del rol que se necesita, filtra por esa categoría
 	static ArrayList filtrarPorRol(idRol){

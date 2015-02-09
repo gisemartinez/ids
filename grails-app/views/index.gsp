@@ -13,7 +13,6 @@
 					<p>Es un sistema orientado a la administraci&oacuten de bienes de los distintos departamentos de la Facultad Regional Delta de la Universidad Tecnol&oacutegica Nacional.<p>
 					<p>Usted podr&aacute llevar el control de sus bienes, conociendo y modificando el estado de cada uno.</p>
 				</div>
-				
 			</div>
 			<div class="col-md-4">
 				<g:include controller="login" action="auth" />

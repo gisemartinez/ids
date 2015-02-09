@@ -52,6 +52,14 @@
 			</div>
 		</div>
 		<div class="container-fluid">
+			<g:if test="${flash.message}">
+				<div class="alert alert-dismissible alert-success" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</i></span>
+					</button>
+					${flash.message}
+				</div>
+			</g:if>
 			<div class="panel panel-default">
 				<!-- <div class="panel-heading">
 					<g:message code="default.show.label" args="[entityName]"/>

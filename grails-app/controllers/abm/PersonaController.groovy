@@ -112,12 +112,23 @@ class PersonaController {
             notFound()
             return
         }
+        
+        println(personaInstance.id)
 
+        def user_id = PersonaUser.findByPersonaId(personaInstance.id).userId
+
+        println(user_id)
+
+        def user = User.findById(user_id)
+
+        PersonaUser.findByPersonaId(personaInstance.id).delete flush:true
+        UserRole.findByUser(user).delete flush:true
         personaInstance.delete flush:true
-
+        user.delete flush:true
+        
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
+                flash.message = message(code: 'persona.deleted.message', args: [personaInstance.nombre, personaInstance.apellido])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
