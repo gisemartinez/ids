@@ -11,7 +11,7 @@
 				<div class="jumbotron hidden-sm hidden-xs">
 					<h1><b>PATR</b>onus</h1>
 					<p>Es un sistema orientado a la administraci&oacuten de bienes de los distintos departamentos de la Facultad Regional Delta de la Universidad Tecnol&oacutegica Nacional.<p>
-					<p>Usted podr&aacute llevar el control de sus bienes, conociendo y modificando el estado de cada uno.</p>
+					<p>Con PATRonus se podr&aacute llevar el control de los bienes, conociendo y modificando el estado de cada uno.</p>
 				</div>
 			</div>
 			<div class="col-md-4">
