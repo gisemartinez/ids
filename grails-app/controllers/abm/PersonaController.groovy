@@ -30,7 +30,7 @@ class PersonaController {
     }
 
     @Transactional
-    def save(Persona personaInstance, User userInstance, Role roleUnsaved) {
+    def save(Persona personaInstance, User userInstance) {
         def roleInstance = Role.findById(params.role.id)
         if (personaInstance == null) {
             notFound()
@@ -78,6 +78,7 @@ class PersonaController {
     }
 
     def edit(Persona personaInstance,User userInstance) {
+        def roleInstance = Persona.getRol(personaInstance)
         respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
     }
 
@@ -112,11 +113,8 @@ class PersonaController {
             notFound()
             return
         }
-        def user_id = PersonaUser.findByPersonaId(personaInstance.id).userId
-
-        println(user_id)
- 
-        def user = User.findById(user_id)
+        //Declaré un método en la clase persona que devuelve el user
+        def user = Persona.getUser(personaInstance)
 
         PersonaUser.findByPersonaId(personaInstance.id).delete flush:true
         UserRole.findByUser(user).delete flush:true
