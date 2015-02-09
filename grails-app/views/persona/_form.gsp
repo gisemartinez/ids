@@ -68,6 +68,14 @@
 				<g:textField name="password" required="" value="${userInstance?.password}"/>
 			</div>
 		</div>
+		<div class="col-md-4">
+			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'confirmPassword', 'error')} required">
+				<label for="confirmPassword">
+					<g:message code="user.confirmPassword.label" default="Verificar Contraseña" />
+				</label>
+				<g:textField name="confirmPassword" required="" value="${userInstance?.confirmPassword}"/>
+			</div>
+		</div>
 	</div>
 </div>
 
