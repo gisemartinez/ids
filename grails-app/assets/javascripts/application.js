@@ -21,9 +21,8 @@ $(document).ready(function(){
 	$('input:checkbox').removeClass("form-control")
 	$('input:submit').removeClass("form-control")
 	$('.fieldcontain').removeClass("fieldcontain")
-
+	$('div.required').css('margin-bottom','10px')
 	$('.list-group').attr('style','margin-bottom:0')
-	$('.form-control').attr("style","margin-bottom:10px")
 
 	//Tablas
 	$('table').addClass("table table-hover")
@@ -42,34 +41,27 @@ $(document).ready(function(){
 	if($('ul.pagination li.disabled')){
 		$('div.pagination').css('display','none')	
 	}
-
+	
+	//Barra Principal
 	$('.barra_principal ul').attr("style", "background-color:#009688")
 	$('.barra_principal a').attr("style", "color:white;background-color:#009688;padding:15px 10px;")
-	$('.barra_acciones a').attr("style","padding:5px 5px;")
+	$('.barra_principal .navbar-right ul a').css('padding','3px 20px;')
+	$('.barra_principal .md').addClass('md-2x')
+	$('#bs-example-navbar-collapse-1').attr("style", "background-color:#009688")
+	
+	//Barra Secundaria
+	$('#bs-example-navbar-collapse-2').attr("style", "background-color:#f8f8f8")
+	
+	//Ambas
 	$('.navbar-right ul li').attr("style","text-align: right;")
-
-	$('.barra_principal .navbar-right ul a').attr("style","padding:3px 20px;color:white;background-color:#009688;")
-	$('.barra_acciones .navbar-right ul a').attr("style","padding:3px 20px;")
-
+	
 	//Si hay un input de id=password ,cambiarlo a tipo pass(q no muestre lo que escribe)
 	$('input#password').attr('type','password')
-
-	drop_up($(".estado"))
-	drop_up($(".perfil"))
-	drop_up($(".ubicaciones"))
-	drop_up($(".estados"))
-	drop_up($(".areas"))
-	//drop_up($(".bienes"))
-	drop_up($(".persona"))
-	drop_up($(".filtro"))
 	
-	drop_down($(".estado"))
+	//Menús Desplagables
+	drop_up($(".perfil"))
+	drop_up($(".filtro"))
 	drop_down($(".perfil"))
-	drop_down($(".ubicaciones"))
-	drop_down($(".estados"))
-	drop_down($(".areas"))
-	//drop_down($(".bienes"))
-	drop_down($(".persona"))
 	drop_down($(".filtro"))
 
 	function drop_up(elem){
