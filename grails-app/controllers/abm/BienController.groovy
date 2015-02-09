@@ -10,7 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.gorm.*
 
-@Secured(['SUPERVISOR','OPERADOR'])
+@Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO','ROLE_OPERARIO'])
 @Transactional(readOnly = true)
 class BienController {
      def springSecurityService
@@ -32,7 +32,7 @@ class BienController {
     def mostrarBienesSegunPermiso(){
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
-        if (permiso() == 'SUPERVISOR')
+        if (permiso() == 'ROLE_SUPERVISOR')
             return Bien.findAll()
         else{
             def areaUser = Persona.findById(idPersona()).area

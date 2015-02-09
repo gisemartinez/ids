@@ -100,7 +100,7 @@
 								</a>
 								
 							</li>
-							<sec:ifAllGranted roles="SUPERVISOR">
+							<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 								<li class="dropdown persona">
 									<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" title="Usuarios">
 										<i class="md md-group"></i>

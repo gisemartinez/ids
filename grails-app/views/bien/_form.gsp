@@ -1,7 +1,7 @@
 <%@ page import="abm.Bien" %>
 
 
-<sec:ifAllGranted roles="SUPERVISOR">
+<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<div class="col-lg-6">
-		<sec:ifAllGranted roles="SUPERVISOR">
+		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 			<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'tipo', 'error')} required">
 				<label for="tipo">
 					<g:message code="bien.tipo.label" default="Tipo" />
@@ -82,7 +82,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6">
-			<sec:ifAllGranted roles="SUPERVISOR">
+			<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 				<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'ubicacion', 'error')} required">
 					<label for="ubicacion">
 						<g:message code="bien.ubicacion.label" default="Ubicacion" />
@@ -95,7 +95,7 @@
 			</sec:ifAllGranted>
 		</div>
 		<div class="col-lg-6">
-			<sec:ifAllGranted roles="SUPERVISOR">
+			<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 				<div class="fieldcontain ${hasErrors(bean: bienInstance, field: 'area', 'error')} required">
 					<label for="area">
 						<g:message code="bien.area.label" default="Departamento" />
