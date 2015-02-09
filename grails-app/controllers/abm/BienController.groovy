@@ -119,6 +119,7 @@ class BienController {
         }
     }
     
+    @Secured(['ROLE_ADMIN','ROLE_SUPERVISOR'])
     def grafico(){
         def array0 =
         [
