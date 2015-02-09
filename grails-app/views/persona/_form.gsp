@@ -62,7 +62,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} required">
 				<label for="password">
 					<g:message code="user.password.label" default="Contrase&ntildea" />
@@ -70,7 +70,7 @@
 				<g:textField name="password" required="" value="${userInstance?.password}"/>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'confirmPassword', 'error')} required">
 				<label for="confirmPassword">
 					<g:message code="user.confirmPassword.label" default="Verificar Contrase&ntildea" />

@@ -136,25 +136,16 @@ class BienController {
     
     @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO'])
     def grafico(){
-        def array0 =
-        [
-            ['string','Estado Actual de Bienes'],
-            ['number','Cantidad por Estado']
-        ]
-        def array1 = 
-        [
-            ["A Evaluar",bienesAEvaluar().size()],
-            ["En Uso",bienesEnUso().size()],
-            ["A Reparar",bienesAReparar().size()],
-            ["A Donacion",bienesADonacion().size()],
-            ["A Descarte",bienesADescarte().size()],
-            ["Baja",bienesBaja().size()]
-        ]
+            def a = bienesAEvaluar().size()
+            def b = bienesEnUso().size()
+            def c = bienesAReparar().size()
+            def d = bienesADonacion().size()
+            def e = bienesADescarte().size()
+            def f = bienesBaja().size()  
+        
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
        
-        render(view:'grafico' ,model:[array0:array0 , array1:array1, opt:opt])
-        //respond "", model:[array0:array0 , array1:array1, opt:opt]
-        
+        render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f])
     }
     def noticias(){
         //Es provisorio, debería traerme los de ésta semana
@@ -234,7 +225,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.codigoDeSerie])
                 redirect bienInstance
             }
             '*'{ respond bienInstance, [status: OK] }

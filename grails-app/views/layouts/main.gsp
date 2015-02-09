@@ -80,7 +80,7 @@
 							</li>
 							<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 								<li>
-									<a href="/${grailsApplication.config.nombreAplicacion}/bien/grafico" id="ic_estadisticas" title="Estadísticas">
+									<a href="/${grailsApplication.config.nombreAplicacion}/bien/grafico" id="ic_estadisticas" title="Estad&iacutesticas">
 										<i class="md md-assessment"></i>
 									</a>
 								</li>
