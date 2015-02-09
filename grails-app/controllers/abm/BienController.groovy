@@ -10,6 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.gorm.*
 
+
 @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO','ROLE_OPERARIO'])
 @Transactional(readOnly = true)
 class BienController {
@@ -82,6 +83,20 @@ class BienController {
         params.max = Math.min(max ?: 10, 100)
         respond mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
     }
+    
+    def busqueda(Integer max) {
+        def query = params.query
+        def bienList
+        if (permiso() == 'ROLE_SUPERVISOR')
+            bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
+        else{
+            def areaUser = Persona.findById(idPersona()).area
+            bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0 and area_id = ?",[query,areaUser])
+        }
+        params.max = Math.min(max ?: 10, 100)
+        respond bienList, model:[ bienInstanceCount: Bien.count()],view:'index';
+    }    
+    
     def estadoAevaluar(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
@@ -119,7 +134,7 @@ class BienController {
         }
     }
     
-    @Secured(['ROLE_ADMIN','ROLE_SUPERVISOR'])
+    @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO'])
     def grafico(){
         def array0 =
         [
