@@ -26,12 +26,12 @@ class PersonaController {
     def create() {
 
         //respond new Persona(params.nombre,params.apellido,params.dni,params.username,params.password)
-        respond new Persona(params)
+        respond new Persona(params), model:[userInstance:new User(params)]
     }
 
     @Transactional
     def save(Persona personaInstance, User userInstance, Role roleUnsaved) {
-        def roleInstance = Role.find(roleUnsaved)
+        def roleInstance = Role.findById(params.role.id)
         if (personaInstance == null) {
             notFound()
             return
@@ -78,7 +78,7 @@ class PersonaController {
     }
 
     def edit(Persona personaInstance,User userInstance) {
-        respond personaInstance, model:[userInstance: new User()]
+        respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
     }
 
     @Transactional
@@ -112,8 +112,17 @@ class PersonaController {
             notFound()
             return
         }
+        def user_id = PersonaUser.findByPersonaId(personaInstance.id).userId
+
+        println(user_id)
+ 
+        def user = User.findById(user_id)
+
+        PersonaUser.findByPersonaId(personaInstance.id).delete flush:true
+        UserRole.findByUser(user).delete flush:true
 
         personaInstance.delete flush:true
+        user.delete flush:true
 
         request.withFormat {
             form multipartForm {
