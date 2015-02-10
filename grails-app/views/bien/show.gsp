@@ -38,7 +38,7 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="accion">
+							<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien">
 								<i class="md md-add"></i>
 							</a>
 						</li>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</nav>
-		<div class="collapse" id="collapseExample">
+		<div class="collapse" id="crearBien">
 			<div class="">
 				<g:include controller="bien" action="create" />
 			</div>
