@@ -30,6 +30,14 @@ $(document).ready(function(){
 	$('th a').attr("style", "color:white;text-decoration:none")
 	$('th.sortable a').attr('title','Cambiar orden')
 	
+	//Coloreo los labels estado dependiendo su valor.
+	$("span.Reparar").attr('style','color:white;background-color:#f44336')
+	$("span.Uso").attr('style','color:white;background-color:#4CAF50')
+	$("span.Baja").attr('style','color:white;background-color:#212121')
+	$("span.Descarte").attr('style','color:white;background-color:#795548')
+	$("span.Donacion").attr('style','color:white;background-color:#FFC107')
+	$("span.Evaluar").attr('style','color:white;background-color:#2196F3')
+	
 	//Si no hay elementos para mostrar..
 	if(!$('tbody').children().length){
 		$('.table-responsive').before('<div class="alert alert-warning" role="alert"><i class="md md-info"></i> No hay datos cargados. <a class="alert-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="accion">Desea agregar uno?</a></div>')

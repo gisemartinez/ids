@@ -79,6 +79,7 @@
 								<th><g:message code="bien.area.label" default="Departamento" /></th>
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'bien.fechaAlta.label', default: 'Fecha Alta')}" />
 								<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />-->
+								<th><i class="md md-settings"></i></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -88,12 +89,13 @@
 									<td>${fieldValue(bean: bienInstance, field: "nombreBien")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "responsableBien")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "descripcion")}</td>
-									<td>${fieldValue(bean: bienInstance, field: "estado")}</td>
+									<td><span class="label label-default ${bienInstance.estado}">&nbsp${fieldValue(bean: bienInstance, field: "estado")}&nbsp</span></td>
 									<td>${fieldValue(bean: bienInstance, field: "tipo")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "ubicacion")}</td>
 									<td>${fieldValue(bean: bienInstance, field: "area")}</td>
 									<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaAlta}" /></td>
 									<!--<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaBaja}" /></td>-->
+									<td><g:link action="edit" resource="${bienInstance}"><i class="md md-edit"></i></g:link></td>
 								</tr>
 							</g:each>
 						</tbody>
