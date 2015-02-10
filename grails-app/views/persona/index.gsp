@@ -66,7 +66,7 @@
 							<g:each in="${personaInstanceList}" status="i" var="personaInstance">
 								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 									<td>${fieldValue(bean: personaInstance, field: "nombre")}</td>
-									<td><g:link action="show" id="${personaInstance.id}">${fieldValue(bean: personaInstance, field: "apellido")}</g:link></td>
+									<td>${fieldValue(bean: personaInstance, field: "apellido")}</td>
 									<td>${fieldValue(bean: personaInstance, field: "dni")}</td>
 									<td>${fieldValue(bean: personaInstance, field: "area")}</td>
 									<td><g:formatDate format="dd-MM-yyyy" date="${personaInstance.fechaAlta}" /></td>
