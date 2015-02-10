@@ -51,15 +51,22 @@
 							<tr>
 								<g:sortableColumn property="Nombre de Area" title="${message(code: 'area.nombrearea.label', default: 'Nombre de Area')}" />
 								<g:sortableColumn property="fechaAlta" title="${message(code: 'area.fechaAlta.label', default: 'Fecha Alta')}" />
-								<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'area.fechaBaja.label', default: 'Fecha Baja')}" />-->
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							<g:each in="${areaInstanceList}" status="i" var="areaInstance">
 								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-									<td><g:link action="show" id="${areaInstance.id}">${fieldValue(bean: areaInstance, field: "nombrearea")}</g:link></td>
+									<td>${fieldValue(bean: areaInstance, field: "nombrearea")}</td>
 									<td><g:formatDate format="dd-MM-yyyy" date="${areaInstance.fechaAlta}" /></td>
-									<!--<td><g:formatDate date="${areaInstance.fechaBaja}" /></td>-->
+									<td>
+										<g:link action="show" id="${areaInstance.id}"><i class="md  md-assignment"></i></g:link>
+										<g:link action="edit" resource="${areaInstance}"><i class="md md-edit"></i></g:link>
+										<button class="btn btn-link" type="submit" form="${areaInstance.id}" style="padding: 0px 0px; border-style: none; color:#f44336">
+											<i class="md md-delete"></i>
+										</button>
+										<g:form url="[resource:areaInstance, action:'delete']" method="DELETE" id='${areaInstance.id}'></g:form>
+									</td>
 								</tr>
 							</g:each>
 						</tbody>
