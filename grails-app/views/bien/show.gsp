@@ -47,9 +47,7 @@
 			</div>
 		</nav>
 		<div class="collapse" id="crearBien">
-			<div class="">
-				<g:include controller="bien" action="create" />
-			</div>
+			g:include controller="bien" action="create" />
 		</div>
 		<div class="container-fluid">
 			<g:if test="${flash.message}">
