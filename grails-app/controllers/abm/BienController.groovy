@@ -194,7 +194,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'bien.label', default: 'Bien'), bienInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'bien.label', default: 'Bien'), bienInstance.nombreBien])
                 redirect bienInstance
             }
             '*' { respond bienInstance, [status: CREATED] }
@@ -225,7 +225,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.codigoDeSerie])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
                 redirect bienInstance
             }
             '*'{ respond bienInstance, [status: OK] }
@@ -244,7 +244,7 @@ class BienController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
