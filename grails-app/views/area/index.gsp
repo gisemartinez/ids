@@ -45,29 +45,27 @@
 				<g:if test="${flash.message}">
 					<div class="message" role="status">${flash.message}</div>
 				</g:if>	
-				<div class="table-responsive">
-					<table>
-						<thead>
-							<tr>
-								<g:sortableColumn property="Nombre de Area" title="${message(code: 'area.nombrearea.label', default: 'Nombre de Area')}" />
-								<g:sortableColumn property="fechaAlta" title="${message(code: 'area.fechaAlta.label', default: 'Fecha Alta')}" />
-								<th>Acciones</th>
+				<table>
+					<thead>
+						<tr>
+							<g:sortableColumn property="Nombre de Area" title="${message(code: 'area.nombrearea.label', default: 'Nombre de Area')}" />
+							<g:sortableColumn property="fechaAlta" title="${message(code: 'area.fechaAlta.label', default: 'Fecha Alta')}" />
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<g:each in="${areaInstanceList}" status="i" var="areaInstance">
+							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+								<td>${fieldValue(bean: areaInstance, field: "nombrearea")}</td>
+								<td><g:formatDate format="dd-MM-yyyy" date="${areaInstance.fechaAlta}" /></td>
+								<td>
+									<g:link action="show" id="${areaInstance.id}"><i class="md  md-assignment"></i></g:link>
+									<g:link action="edit" resource="${areaInstance}"><i class="md md-edit"></i></g:link>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							<g:each in="${areaInstanceList}" status="i" var="areaInstance">
-								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-									<td>${fieldValue(bean: areaInstance, field: "nombrearea")}</td>
-									<td><g:formatDate format="dd-MM-yyyy" date="${areaInstance.fechaAlta}" /></td>
-									<td>
-										<g:link action="show" id="${areaInstance.id}"><i class="md  md-assignment"></i></g:link>
-										<g:link action="edit" resource="${areaInstance}"><i class="md md-edit"></i></g:link>
-									</td>
-								</tr>
-							</g:each>
-						</tbody>
-					</table>
-				</div>
+						</g:each>
+					</tbody>
+				</table>
 				<div class="pagination">
 					<g:paginate total="${areaInstanceCount ?: 0}" />
 				</div>
