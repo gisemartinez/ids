@@ -67,7 +67,7 @@
 				<label for="password">
 					<g:message code="user.password.label" default="Contrase&ntildea" />
 				</label>
-				<g:textField name="password" required="" value="${userInstance?.password}"/>
+				<g:field type="password" name="password" required="" value="${userInstance?.password}"/>
 			</div>
 		</div>
 		<div class="col-md-6">
@@ -75,7 +75,7 @@
 				<label for="confirmPassword">
 					<g:message code="user.confirmPassword.label" default="Verificar Contrase&ntildea" />
 				</label>
-				<g:textField name="confirmPassword" required="" value="${userInstance?.password}"/>
+				<g:field type="password" name="confirmPassword" required="" value="${userInstance?.password}"/>
 			</div>
 		</div>
 	</div>
