@@ -53,7 +53,7 @@
 					<tbody>
 						<g:each in="${ubicacionInstanceList}" status="i" var="ubicacionInstance">
 							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-								<td><g:link action="show" id="${ubicacionInstance.id}">${fieldValue(bean: ubicacionInstance, field: "nombreubica")}</g:link></td>
+								<td>${fieldValue(bean: ubicacionInstance, field: "nombreubica")}</td>
 								<td><g:formatDate format="dd-MM-yyyy" date="${ubicacionInstance.fechaAlta}" /></td>
 								<td>
 									<g:link action="show" id="${ubicacionInstance.id}"><i class="md  md-assignment"></i></g:link>
