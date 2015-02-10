@@ -21,20 +21,6 @@
 			.fieldcontain{
 				margin-bottom: 10px;
 			}
-			.cerrarsesion{
-				display: block;
-				padding: 3px 20px;
-				clear: both;
-				font-weight: 400;
-				line-height: 1.42857143;
-				color: #333;
-				white-space: nowrap;
-			}
-			a.cerrarsesion:hover{
-				color: #262626;
-				text-decoration: none;
-				background-color: #f5f5f5;
-			}
 			.jumbotron{background-color: white;}
 			.barra_principal{
 				border-radius: 0px;
