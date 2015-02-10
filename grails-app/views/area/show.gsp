@@ -26,7 +26,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand">Crear</a>
+					<a class="navbar-brand">Detalle</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 					<!-- <form class="navbar-form navbar-left" action="busqueda" method="GET" role="search">
