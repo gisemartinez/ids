@@ -64,50 +64,45 @@
 						${flash.message}
 					</div>
 				</g:if>
-				<div class="table-responsive">
-					<table>
-						<thead>
-							<tr>
-								<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'C&oacutedigo de serie')}" />
-								<g:sortableColumn property="nombreBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Denominaci&oacuten')}" />
-								<th><g:message code="bien.responsableBien.label" default="Responsable" /></th>
-								<!-- <g:sortableColumn property="responsableBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Responsable')}" /> -->
-								<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripci&oacuten')}" />
-								<th><g:message code="bien.estado.label" default="Estado" /></th>
-								<th><g:message code="bien.tipo.label" default="Tipo" /></th>
-								<th><g:message code="bien.ubicacion.label" default="Ubicacion" /></th>
-								<th><g:message code="bien.area.label" default="Departamento" /></th>
-								<g:sortableColumn property="fechaAlta" title="${message(code: 'bien.fechaAlta.label', default: 'Fecha Alta')}" />
-								<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'bien.fechaBaja.label', default: 'Fecha Baja')}" />-->
-								<th>Acciones</th>
+				<table>
+					<thead>
+						<tr>
+							<g:sortableColumn property="codigoDeSerie" title="${message(code: 'bien.codigoDeSerie.label', default: 'C&oacutedigo de serie')}" />
+							<g:sortableColumn property="nombreBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Denominaci&oacuten')}" />
+							<th><g:message code="bien.responsableBien.label" default="Responsable" /></th>
+							<!-- <g:sortableColumn property="responsableBien" title="${message(code: 'bien.codigoDeSerie.label', default: 'Responsable')}" /> -->
+							<g:sortableColumn property="descripcion" title="${message(code: 'bien.descripcion.label', default: 'Descripci&oacuten')}" />
+							<th><g:message code="bien.estado.label" default="Estado" /></th>
+							<th><g:message code="bien.tipo.label" default="Tipo" /></th>
+							<th><g:message code="bien.ubicacion.label" default="Ubicacion" /></th>
+							<th><g:message code="bien.area.label" default="Departamento" /></th>
+							<g:sortableColumn property="fechaAlta" title="${message(code: 'bien.fechaAlta.label', default: 'Fecha Alta')}" />
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<g:each in="${bienInstanceList}" status="i" var="bienInstance">
+							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+								<td>${fieldValue(bean: bienInstance, field: "codigoDeSerie")}</td>
+								<td>${fieldValue(bean: bienInstance, field: "nombreBien")}</td>
+								<td>${fieldValue(bean: bienInstance, field: "responsableBien")}</td>
+								<td>${fieldValue(bean: bienInstance, field: "descripcion")}</td>									<td><span class="label label-default ${bienInstance.estado}">&nbsp${fieldValue(bean: bienInstance, field: "estado")}&nbsp</span></td>
+								<td>${fieldValue(bean: bienInstance, field: "tipo")}</td>
+								<td>${fieldValue(bean: bienInstance, field: "ubicacion")}</td>
+								<td>${fieldValue(bean: bienInstance, field: "area")}</td>
+								<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaAlta}" /></td>
+								<td>
+									<g:link action="show" id="${bienInstance.id}"><i class="md  md-assignment"></i></g:link>
+									<g:link action="edit" resource="${bienInstance}"><i class="md md-edit"></i></g:link>
+									<button class="btn btn-link" type="submit" form="${bienInstance.id}" style="padding: 0px 0px; border-style: none; color:#f44336">
+										<i class="md md-delete"></i>
+									</button>
+									<g:form url="[resource:bienInstance, action:'delete']" method="DELETE" id='${bienInstance.id}'></g:form>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							<g:each in="${bienInstanceList}" status="i" var="bienInstance">
-								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-									<td>${fieldValue(bean: bienInstance, field: "codigoDeSerie")}</td>
-									<td>${fieldValue(bean: bienInstance, field: "nombreBien")}</td>
-									<td>${fieldValue(bean: bienInstance, field: "responsableBien")}</td>
-									<td>${fieldValue(bean: bienInstance, field: "descripcion")}</td>
-									<td><span class="label label-default ${bienInstance.estado}">&nbsp${fieldValue(bean: bienInstance, field: "estado")}&nbsp</span></td>
-									<td>${fieldValue(bean: bienInstance, field: "tipo")}</td>
-									<td>${fieldValue(bean: bienInstance, field: "ubicacion")}</td>
-									<td>${fieldValue(bean: bienInstance, field: "area")}</td>
-									<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaAlta}" /></td>
-									<!--<td><g:formatDate format="dd-MM-yyyy" date="${bienInstance.fechaBaja}" /></td>-->
-									<td>
-										<g:link action="show" id="${bienInstance.id}"><i class="md  md-assignment"></i></g:link>
-										<g:link action="edit" resource="${bienInstance}"><i class="md md-edit"></i></g:link>
-										<button class="btn btn-link" type="submit" form="${bienInstance.id}" style="padding: 0px 0px; border-style: none; color:#f44336">
-											<i class="md md-delete"></i>
-										</button>
-										<g:form url="[resource:bienInstance, action:'delete']" method="DELETE" id='${bienInstance.id}'></g:form>
-									</td>
-								</tr>
-							</g:each>
-						</tbody>
-					</table>
-				</div>
+						</g:each>
+					</tbody>
+				</table>
 				<div class="pagination">
 					<g:paginate total="${bienInstanceCount ?: 0}" />
 				</div>
