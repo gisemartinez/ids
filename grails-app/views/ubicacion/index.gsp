@@ -42,26 +42,24 @@
 				<g:if test="${flash.message}">
 					<div class="message" role="status">${flash.message}</div>
 				</g:if>
-				<div class="table-responsive">
-					<table>
-						<thead>
-							<tr>
-								<g:sortableColumn property="Nombre de la Ubicacion" title="${message(code: 'ubicacion.nombreubica.label', default: 'Nombre de Ubicaci&oacuten')}" />
-								<g:sortableColumn property="fechaAlta" title="${message(code: 'ubicacion.fechaAlta.label', default: 'Fecha Alta')}" />
-								<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'ubicacion.fechaBaja.label', default: 'Fecha Baja')}" />-->
+				<table>
+					<thead>
+						<tr>
+							<g:sortableColumn property="Nombre de la Ubicacion" title="${message(code: 'ubicacion.nombreubica.label', default: 'Nombre de Ubicaci&oacuten')}" />
+							<g:sortableColumn property="fechaAlta" title="${message(code: 'ubicacion.fechaAlta.label', default: 'Fecha Alta')}" />
+							<!--<g:sortableColumn property="fechaBaja" title="${message(code: 'ubicacion.fechaBaja.label', default: 'Fecha Baja')}" />-->
+						</tr>
+					</thead>
+					<tbody>
+						<g:each in="${ubicacionInstanceList}" status="i" var="ubicacionInstance">
+							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+								<td><g:link action="show" id="${ubicacionInstance.id}">${fieldValue(bean: ubicacionInstance, field: "nombreubica")}</g:link></td>
+								<td><g:formatDate format="dd-MM-yyyy" date="${ubicacionInstance.fechaAlta}" /></td>
+								<!--<td><g:formatDate date="${ubicacionInstance.fechaBaja}" /></td>-->
 							</tr>
-						</thead>
-						<tbody>
-							<g:each in="${ubicacionInstanceList}" status="i" var="ubicacionInstance">
-								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-									<td><g:link action="show" id="${ubicacionInstance.id}">${fieldValue(bean: ubicacionInstance, field: "nombreubica")}</g:link></td>
-									<td><g:formatDate format="dd-MM-yyyy" date="${ubicacionInstance.fechaAlta}" /></td>
-									<!--<td><g:formatDate date="${ubicacionInstance.fechaBaja}" /></td>-->
-								</tr>
-							</g:each>
-						</tbody>
-					</table>
-				</div>
+						</g:each>
+					</tbody>
+				</table>
 				<div class="pagination">
 					<g:paginate total="${ubicacionInstanceCount ?: 0}" />
 				</div>
