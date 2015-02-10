@@ -62,9 +62,6 @@ $(document).ready(function(){
 	//Ambas
 	$('.navbar-right ul li').attr("style","text-align: right;")
 	
-	//Si hay un input de id=password ,cambiarlo a tipo pass(q no muestre lo que escribe)
-	$('input#password').attr('type','password')
-	
 	//Menús Desplagables
 	drop_up($(".perfil"))
 	drop_up($(".filtro"))
