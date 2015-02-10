@@ -102,26 +102,20 @@
 								</li>
 							</sec:ifAllGranted>
 						</ul>
-					</sec:ifLoggedIn>
-					<ul class="nav navbar-nav navbar-right">
-						<sec:ifLoggedIn>
+						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown perfil">
 								<a href="#"><sec:username/> <i class="md md-person"></i></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="${grailsApplication.config.my.user.username}/">Permisos</a></li>
-									<li>
-										<form name="submitForm" method="POST" action="${createLink(controller:'logout')}">
-											<a href="javascript:document.submitForm.submit()" class="cerrarsesion">Cerrar sesi&oacuten</a>
-										</form>
-										
-									</li>
+									<li><a href="javascript:document.submitForm.submit()">Cerrar sesi&oacuten</a></li>
 								</ul>
 							</li>
-						</sec:ifLoggedIn>
-					</ul>
+						</ul>
+					</sec:ifLoggedIn>
 				</div>
 			</div>
 		</nav>
+		<form name="submitForm" method="POST" action="${createLink(controller:'logout')}"></form>
 		<g:layoutBody/>
 	</body>
 </html>
