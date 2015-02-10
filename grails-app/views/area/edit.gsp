@@ -37,9 +37,7 @@
 			</div>
 		</nav>
 		<div class="collapse" id="crearArea">
-			<div>
-				<g:include controller="area" action="create" />
-			</div>
+			<g:include controller="area" action="create" />
 		</div>
 		<div class="container-fluid">
 			<div class="panel panel-default">
