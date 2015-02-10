@@ -92,7 +92,7 @@
 							<li class="dropdown perfil">
 								<a href="#"><sec:username/> <i class="md md-person"></i></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="${grailsApplication.config.my.user.username}/">Permisos</a></li>
+									<li><a href="/${grailsApplication.config.nombreAplicacion}/permisos">Permisos</a></li>
 									<li><a href="javascript:document.submitForm.submit()">Cerrar sesi&oacuten</a></li>
 								</ul>
 							</li>

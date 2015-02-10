@@ -137,6 +137,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
+  '/permisos':                ['permitAll']
     //los permisos a las diferentes urls va aca.en este caso para probar le puse permitAll pero podria poner solo el
     //nombre del rol
   /*  '/usuario/**':                    ['permitAll'],

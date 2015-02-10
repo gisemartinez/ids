@@ -1,4 +1,4 @@
-<%@ page import="abm.Bien" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,35 +6,59 @@
 		<title><g:message code="Permisos"/></title>
 	</head>
 	<body>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">${springSecurityService.authentication.authorities}</a>
-				</div>
+		<div class="row">
+			<div class="panel panel-default">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">
+			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+				   ROLE_SUPERVISOR
+					</sec:ifAllGranted>
+					<sec:ifAllGranted roles="ROLE_ENCARGADO">
+				    ROLE_ENCARGADO
+					</sec:ifAllGranted>
+					<sec:ifAllGranted roles="ROLE_OPERARIO">
+				    ROLE_OPERARIO
+					</sec:ifAllGranted>
 
-			</div>
-		</nav>
+			  </div>
+			  <div class="panel-body">
+			    <p>
+			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+				    Texto explicativo del rol. Este rol tiene acceso a:
+					</sec:ifAllGranted>
+					<sec:ifAllGranted roles="ROLE_ENCARGADO">
+				    Texto explicativo del rol. Este rol tiene acceso a:
+					</sec:ifAllGranted>
+					<sec:ifAllGranted roles="ROLE_OPERARIO">
+				    Texto explicativo del rol. Este rol tiene acceso a:
+					</sec:ifAllGranted>
+			    </p>
+			  </div>
 
-		<div class="container-fluid">
-			<div id="content-permisos" class="content scaffold-list" role="main">
-
-				<div class="table-responsive">
-					<table>
-						<thead>
-							<tr>
-
-							</tr>
-						</thead>
-						<tbody>
-	
-								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-									<td><g:link action="show" id="${bienInstance.id}">${fieldValue(bean: bienInstance, field: "codigoDeSerie")}</g:link></td>
-								</tr>
-
-						</tbody>
-					</table>
-				</div>
-				
+			  <!-- List group -->
+			  <ul class="list-group">
+			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+				    <li class="list-group-item">Cras justo odio</li>
+				    <li class="list-group-item">Dapibus ac facilisis in</li>
+				    <li class="list-group-item">Morbi leo risus</li>
+				    <li class="list-group-item">Porta ac consectetur ac</li>
+				    <li class="list-group-item">Vestibulum at eros</li>
+					</sec:ifAllGranted>
+					<sec:ifAllGranted roles="ROLE_ENCARGADO">
+				    <li class="list-group-item">Cras justo odio</li>
+				    <li class="list-group-item">Dapibus ac facilisis in</li>
+				    <li class="list-group-item">Morbi leo risus</li>
+				    <li class="list-group-item">Porta ac consectetur ac</li>
+				    <li class="list-group-item">Vestibulum at eros</li> 
+					</sec:ifAllGranted>
+					<sec:ifAllGranted roles="ROLE_OPERARIO">
+				    <li class="list-group-item">Cras justo odio</li>
+				    <li class="list-group-item">Dapibus ac facilisis in</li>
+				    <li class="list-group-item">Morbi leo risus</li>
+				    <li class="list-group-item">Porta ac consectetur ac</li>
+				    <li class="list-group-item">Vestibulum at eros</li>
+					</sec:ifAllGranted>
+			  </ul>
 			</div>
 		</div>
 	</body>
