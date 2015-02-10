@@ -64,7 +64,7 @@
 					<button class="btn btn-link" type="submit" form="form_edit_area" style="padding: 0px 12px; color:#777777">
 						<i class="md md-check"></i>
 					</button>
-					<g:link action="index" resource="${areaInstance}" style="padding: 0px 12px; color:#777777"><i class="md md-close"></i></g:link>
+					<g:link action="show" resource="${areaInstance}" style="padding: 0px 12px; color:#777777"><i class="md md-close"></i></g:link>
 				</div>
 			</div>
 		</div>
