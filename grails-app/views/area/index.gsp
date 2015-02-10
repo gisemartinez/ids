@@ -62,10 +62,6 @@
 									<td>
 										<g:link action="show" id="${areaInstance.id}"><i class="md  md-assignment"></i></g:link>
 										<g:link action="edit" resource="${areaInstance}"><i class="md md-edit"></i></g:link>
-										<button class="btn btn-link" type="submit" form="${areaInstance.id}" style="padding: 0px 0px; border-style: none; color:#f44336">
-											<i class="md md-delete"></i>
-										</button>
-										<g:form url="[resource:areaInstance, action:'delete']" method="DELETE" id='${areaInstance.id}'></g:form>
 									</td>
 								</tr>
 							</g:each>
