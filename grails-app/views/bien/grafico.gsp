@@ -47,6 +47,6 @@
 				</div>
 			</div>
 		</nav>	
-		<div id="top_x_div" style="height: 500px; margin: 0 auto"></div>
+		<div class="container-fluid" id="top_x_div" style="height: 500px; margin: 0 auto"></div>
 	</body>
 </html>
