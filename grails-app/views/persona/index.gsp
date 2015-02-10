@@ -50,41 +50,39 @@
 						${flash.message}
 					</div>
 				</g:if>
-				<div class="table-responsive">
-					<table>
-						<thead>
-							<tr>
-								<g:sortableColumn property="nombre" title="${message(code: 'persona.nombre.label', default: 'Nombre')}" />
-								<g:sortableColumn property="apellido" title="${message(code: 'persona.apellido.label', default: 'Apellido')}" />
-								<g:sortableColumn property="dni" title="${message(code: 'persona.dni.label', default: 'Dni')}" />
-								<th><g:message code="persona.area.label" default="Area" /></th>
-								<g:sortableColumn property="fechaAlta" title="${message(code: 'persona.fechaAlta.label', default: 'Fecha Alta')}" />
-								<th>Acciones</th>
+				<table>
+					<thead>
+						<tr>
+							<g:sortableColumn property="nombre" title="${message(code: 'persona.nombre.label', default: 'Nombre')}" />
+							<g:sortableColumn property="apellido" title="${message(code: 'persona.apellido.label', default: 'Apellido')}" />
+							<g:sortableColumn property="dni" title="${message(code: 'persona.dni.label', default: 'Dni')}" />
+							<th><g:message code="persona.area.label" default="Area" /></th>
+							<g:sortableColumn property="fechaAlta" title="${message(code: 'persona.fechaAlta.label', default: 'Fecha Alta')}" />
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<g:each in="${personaInstanceList}" status="i" var="personaInstance">
+							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+								<td>${fieldValue(bean: personaInstance, field: "nombre")}</td>
+								<td>${fieldValue(bean: personaInstance, field: "apellido")}</td>
+								<td>${fieldValue(bean: personaInstance, field: "dni")}</td>
+								<td>${fieldValue(bean: personaInstance, field: "area")}</td>
+								<td><g:formatDate format="dd-MM-yyyy" date="${personaInstance.fechaAlta}" /></td>
+								<td>
+									<g:link action="show" id="${personaInstance.id}"><i class="md  md-assignment"></i></g:link>
+									<g:link action="edit" resource="${personaInstance}"><i class="md md-edit"></i></g:link>
+									<button class="btn btn-link" type="submit" form="${personaInstance.id}" style="padding: 0px 0px; border-style: none; color:#f44336">
+										<i class="md md-delete"></i>
+									</button>
+									<g:form url="[resource:personaInstance, action:'delete']" method="DELETE" id='${personaInstance.id}'></g:form>
+								</td>	
 							</tr>
-						</thead>
-						<tbody>
-							<g:each in="${personaInstanceList}" status="i" var="personaInstance">
-								<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-									<td>${fieldValue(bean: personaInstance, field: "nombre")}</td>
-									<td>${fieldValue(bean: personaInstance, field: "apellido")}</td>
-									<td>${fieldValue(bean: personaInstance, field: "dni")}</td>
-									<td>${fieldValue(bean: personaInstance, field: "area")}</td>
-									<td><g:formatDate format="dd-MM-yyyy" date="${personaInstance.fechaAlta}" /></td>
-									<td>
-										<g:link action="show" id="${personaInstance.id}"><i class="md  md-assignment"></i></g:link>
-										<g:link action="edit" resource="${personaInstance}"><i class="md md-edit"></i></g:link>
-										<button class="btn btn-link" type="submit" form="${personaInstance.id}" style="padding: 0px 0px; border-style: none; color:#f44336">
-											<i class="md md-delete"></i>
-										</button>
-										<g:form url="[resource:personaInstance, action:'delete']" method="DELETE" id='${personaInstance.id}'></g:form>
-									</td>	
-								</tr>
-							</g:each>
-						</tbody>
-					</table>
-					<div class="pagination">
-						<g:paginate total="${personaInstanceCount ?: 0}" />
-					</div>
+						</g:each>
+					</tbody>
+				</table>
+				<div class="pagination">
+					<g:paginate total="${personaInstanceCount ?: 0}" />
 				</div>
 			</div>
 		</div>
