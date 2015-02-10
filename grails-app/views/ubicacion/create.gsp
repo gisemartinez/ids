@@ -39,6 +39,9 @@
 					<button class="btn btn-link" type="submit" form="form_create_ubicacion" style="padding: 0px 12px; color:#777777">
 						<i class="md md-check"></i>
 					</button>
+					<a data-toggle="collapse" href="#crearUbicacion" aria-expanded="false" aria-controls="crearUbicacion" style="padding: 0px 12px; color:#777777">
+						<i class="md md-close"></i>
+					</a>
 				</div>
 			</div>	
 		</div>
