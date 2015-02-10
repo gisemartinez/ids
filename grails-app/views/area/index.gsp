@@ -36,9 +36,7 @@
 			</div>
 		</nav>
 		<div class="collapse" id="crearArea">
-			<div>
-				<g:include controller="area" action="create" />
-			</div>
+			<g:include controller="area" action="create" />
 		</div>
 		<div class="container-fluid">
 			<div id="list-area" class="content scaffold-list" role="main">
