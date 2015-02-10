@@ -50,9 +50,7 @@
 			</div>
 		</nav>
 		<div class="collapse" id="crearBien">
-			<div class="">
-		    		<g:include controller="bien" action="create" />
-			</div>
+			<g:include controller="bien" action="create" />
 		</div>
 		<div class="container-fluid">
 			<div id="list-bien" class="content scaffold-list" role="main">
