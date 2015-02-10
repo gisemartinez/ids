@@ -16,6 +16,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<g:link action="show" resource="${personaInstance}" class="navbar-brand"><i class="md md-arrow-back"></i></g:link>
 					<a class="navbar-brand">Editar</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
