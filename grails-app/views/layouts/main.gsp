@@ -64,18 +64,20 @@
 									<i class="md md-work"></i>
 								</a>
 							</li>
-							<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+							<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
 								<li>
 									<a href="/${grailsApplication.config.nombreAplicacion}/bien/grafico" id="ic_estadisticas" title="Estad&iacutesticas">
 										<i class="md md-assessment"></i>
 									</a>
 								</li>
 							
+								<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 								<li>
 									<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" id="ic_personas" title="Usuarios">
 										<i class="md md-group"></i>
 									</a>
 								</li>
+								</sec:ifAllGranted>
 								<li>
 									<a href="/${grailsApplication.config.nombreAplicacion}/area/index" id="ic_areas" title="Areas">
 										<i class="md md-store"></i>
@@ -86,7 +88,7 @@
 										<i class="md md-place"></i>
 									</a>
 								</li>
-							</sec:ifAllGranted>
+							</sec:ifAnyGranted>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown perfil">
