@@ -77,7 +77,7 @@ class PersonaController {
         
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'persona.created.message', args: [message(code: 'persona.label', default: 'Persona')])
+                flash.message = message(code: 'persona.created.message', args: [message(code: 'persona.label', default: 'Persona'), personaInstance.apellido])
                 redirect personaInstance
             }
             '*' { respond personaInstance, [status: CREATED] }
@@ -106,7 +106,7 @@ class PersonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.apellido])
                 redirect personaInstance
             }
             '*'{ respond personaInstance, [status: OK] }
@@ -131,7 +131,7 @@ class PersonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.apellido])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

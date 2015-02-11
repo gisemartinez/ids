@@ -11,7 +11,7 @@
 			  <!-- Default panel contents -->
 			  <div class="panel-heading">
 			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-				   ROLE_SUPERVISOR
+				    ROLE_SUPERVISOR
 					</sec:ifAllGranted>
 					<sec:ifAllGranted roles="ROLE_ENCARGADO">
 				    ROLE_ENCARGADO
@@ -24,18 +24,34 @@
 			  <div class="panel-body">
 			    <p>
 			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-				    Texto explicativo del rol. Este rol tiene acceso a:
+				    <pre><FONT FACE="arial" SIZE=4 COLOR="black">Usted está logueado como SUPERVISOR, lo que le permite dar de alta nuevos usuarios, modificarlos y darlos de baja.
+					
+
+					
+Podrá realizar seguimiento a dichos usuarios y a los bienes del área al que pertenece, pudiendo obtener reportes de los mismos.</FONT>
 					</sec:ifAllGranted>
 					<sec:ifAllGranted roles="ROLE_ENCARGADO">
-				    Texto explicativo del rol. Este rol tiene acceso a:
+				    <pre><FONT FACE="arial" SIZE=4 COLOR="black">Usted está logueado como encargado. Como tal, usted tendrá la facultad de realizar los cambios de estados de los bienes evaluados solicitados por sus operarios.
+
+
+
+Podrá además realizar las altas, bajas y modificaciones de los bienes con los que cuenta su área.
+					
+
+
+Siendo encargado, será el responsable de administrar a los usuarios operarios y obtener reportes de sus rendimientos.</FONT>
 					</sec:ifAllGranted>
 					<sec:ifAllGranted roles="ROLE_OPERARIO">
-				    Texto explicativo del rol. Este rol tiene acceso a:
+				    <pre><FONT FACE="arial" SIZE=4 COLOR="black">Usted está logueado como operario. Como tal, usted podrá acceder al listado de bienes con los que cuenta su área, pudiendo así seleccionar los bienes a evaluar y realizar dicha información.
+
+
+
+Una vez evaluados, deberá solicitar el cambio de estado a su encargado a través de la opción enviar mail.</FONT>
 					</sec:ifAllGranted>
 			    </p>
 			  </div>
 
-			  <!-- List group -->
+			  <!-- List group 
 			  <ul class="list-group">
 			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 				    <li class="list-group-item">Cras justo odio</li>
@@ -58,7 +74,7 @@
 				    <li class="list-group-item">Porta ac consectetur ac</li>
 				    <li class="list-group-item">Vestibulum at eros</li>
 					</sec:ifAllGranted>
-			  </ul>
+			  </ul> -->
 			</div>
 		</div>
 	</body>
