@@ -1,11 +1,11 @@
-package abm
+package com.testapp
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(UserController)
+@TestFor(User)
 @Mock(User)
 class UserControllerSpec extends Specification {
 

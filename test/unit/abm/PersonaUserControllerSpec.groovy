@@ -5,7 +5,7 @@ package abm
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(PersonaUserController)
+@TestFor(PersonaUser)
 @Mock(PersonaUser)
 class PersonaUserControllerSpec extends Specification {
 
