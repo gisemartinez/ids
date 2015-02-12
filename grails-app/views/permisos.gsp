@@ -51,28 +51,28 @@ Una vez evaluados, deber&aacute solicitar el cambio de estado a su encargado a t
 			    </p>
 			  </div>
 
-			  <!-- List group 
+			  <!-- List group -->
 			  <ul class="list-group">
 			  		<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-				    <li class="list-group-item">Cras justo odio</li>
-				    <li class="list-group-item">Dapibus ac facilisis in</li>
-				    <li class="list-group-item">Morbi leo risus</li>
-				    <li class="list-group-item">Porta ac consectetur ac</li>
-				    <li class="list-group-item">Vestibulum at eros</li>
+				    <li class="list-group-item">Bienes: crear modificar y eliminar bienes</li>
+				    <li class="list-group-item">Estad&iacutesticas: ver gr&aacutefico de bienes cargados</li>
+				    <li class="list-group-item">Personas: crear modificar y eliminar personas</li>
+				    <li class="list-group-item">&Aacutereas: dar de alta y modificar &aacutereas</li>
+				    <li class="list-group-item">Ubicaciones: dar de alta y modificar ubicaciones</li>
 					</sec:ifAllGranted>
 					<sec:ifAllGranted roles="ROLE_ENCARGADO">
-				    <li class="list-group-item">Cras justo odio</li>
-				    <li class="list-group-item">Dapibus ac facilisis in</li>
-				    <li class="list-group-item">Morbi leo risus</li>
-				    <li class="list-group-item">Porta ac consectetur ac</li>
-				    <li class="list-group-item">Vestibulum at eros</li> 
+				    <li class="list-group-item">Bienes: crear modificar y eliminar bienes</li>
+				    <li class="list-group-item">Estad&iacutesticas: ver gr&aacutefico de bienes cargados</li>
+				    <li class="list-group-item">&Aacutereas: dar de alta y modificar &aacutereas</li>
+				    <li class="list-group-item">Ubicaciones: dar de alta y modificar ubicaciones</li>
+				   <!-- <li class="list-group-item">Vestibulum at eros</li> -->
 					</sec:ifAllGranted>
 					<sec:ifAllGranted roles="ROLE_OPERARIO">
-				    <li class="list-group-item">Cras justo odio</li>
-				    <li class="list-group-item">Dapibus ac facilisis in</li>
+				    <li class="list-group-item">Bienes: crear modificar y eliminar bienes</li>
+				  <!--  <li class="list-group-item">Dapibus ac facilisis in</li>
 				    <li class="list-group-item">Morbi leo risus</li>
 				    <li class="list-group-item">Porta ac consectetur ac</li>
-				    <li class="list-group-item">Vestibulum at eros</li>
+				    <li class="list-group-item">Vestibulum at eros</li> -->
 					</sec:ifAllGranted>
 			  </ul> -->
 			</div>
