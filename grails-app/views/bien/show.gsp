@@ -36,6 +36,7 @@
 						</div>
 						<button type="submit" class="btn btn-default"><i class="md md-search"></i></button>
 					</form>
+					<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien">
