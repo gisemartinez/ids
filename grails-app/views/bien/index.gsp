@@ -26,11 +26,13 @@
 						<button type="submit" class="btn btn-default"><i class="md md-search"></i></button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien">
-								<i class="md md-add"></i>
-							</a>
-						</li>
+						<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+							<li>
+								<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien">
+									<i class="md md-add"></i>
+								</a>
+							</li>
+						</sec:ifAnyGranted>
 						<li class="dropdown filtro">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 								<i class="md md-filter-list"></i>
@@ -49,9 +51,11 @@
 				</div>
 			</div>
 		</nav>
-		<div class="collapse" id="crearBien">
-			<g:include controller="bien" action="create" />
-		</div>
+		<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+			<div class="collapse" id="crearBien">
+				<g:include controller="bien" action="create" />
+			</div>
+		</sec:ifAnyGranted>
 		<div class="container-fluid">
 			<div id="list-bien" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
