@@ -37,19 +37,22 @@
 						<button type="submit" class="btn btn-default"><i class="md md-search"></i></button>
 					</form>
 					<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien">
-								<i class="md md-add"></i>
-							</a>
-						</li>
-					</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien">
+									<i class="md md-add"></i>
+								</a>
+							</li>
+						</ul>
+					</sec:ifAnyGranted>
 				</div>
 			</div>
 		</nav>
-		<div class="collapse" id="crearBien">
-			g:include controller="bien" action="create" />
-		</div>
+		<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+			<div class="collapse" id="crearBien">
+				g:include controller="bien" action="create" />
+			</div>
+		</sec:ifAnyGranted>
 		<div class="container-fluid">
 			<g:if test="${flash.message}">
 				<div class="alert alert-dismissible alert-success" role="alert">
