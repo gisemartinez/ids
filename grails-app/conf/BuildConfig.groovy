@@ -68,6 +68,7 @@ grails.project.dependency.resolution = {
         compile ":spring-security-core:2.0-RC4"
         compile ":mail:1.0.7"
         compile ":google-visualization:0.7"
+        compile ":audit-logging:1.0.3"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.3" // or ":hibernate:3.6.10.15"
