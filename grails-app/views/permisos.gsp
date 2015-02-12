@@ -65,7 +65,7 @@ Una vez evaluados, deber&aacute solicitar el cambio de estado a su encargado a t
 				   <!-- <li class="list-group-item">Vestibulum at eros</li> -->
 					</sec:ifAllGranted>
 					<sec:ifAllGranted roles="ROLE_OPERARIO">
-				    <li class="list-group-item">Bienes: crear modificar y eliminar bienes</li>
+				    <li class="list-group-item">Bienes: modificar bienes</li>
 				  <!--  <li class="list-group-item">Dapibus ac facilisis in</li>
 				    <li class="list-group-item">Morbi leo risus</li>
 				    <li class="list-group-item">Porta ac consectetur ac</li>
