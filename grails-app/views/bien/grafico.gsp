@@ -4,9 +4,13 @@
 		<meta name="layout" content="main">
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
+			var dataT= "${opt}"
+			var dT= dataT.replace("]","").replace("[","").split(",")
+
 			google.load("visualization", "1.1", {packages:["bar"]});
 			google.setOnLoadCallback(drawChart);
 			function drawChart() {
+
 				var data = new google.visualization.arrayToDataTable([
 					['Estado Actual de Bienes','Cantidad por Estado'],
 					["A Evaluar", ${a}],
