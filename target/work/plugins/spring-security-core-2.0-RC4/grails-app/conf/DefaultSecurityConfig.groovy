@@ -145,7 +145,8 @@ security {
 
 	/** authenticationEntryPoint */
 	auth {
-		loginFormUrl = '/login/auth'
+		//loginFormUrl = '/login/auth'
+		loginFormUrl = '/'
 		forceHttps = false
 		ajaxLoginFormUrl = '/login/authAjax'
 		useForward = false // redirect to login page
