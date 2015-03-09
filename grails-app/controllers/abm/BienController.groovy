@@ -144,8 +144,7 @@ class BienController {
             def f = bienesBaja().size()  
         
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
-       
-        render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f])
+        render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f,opt:opt])
     }
     def noticias(){
         //Es provisorio, debería traerme los de ésta semana
