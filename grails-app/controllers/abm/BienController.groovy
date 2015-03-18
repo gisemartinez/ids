@@ -14,29 +14,51 @@ import grails.gorm.*
 @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO','ROLE_OPERARIO'])
 @Transactional(readOnly = true)
 class BienController {
-     def springSecurityService
+     
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def permiso(){
-        return Role.findById( idRol() ).authority
-    }
-     def idRol(){
-        def idU = User.findById( idUser() )
-        return  UserRole.findByUser( idU ).role.id
-    }
-    def idUser(){
+    def springSecurityService
+    //>>>Constantes<<<//
+
+    //-----Estados------//
+    def A_EVALUAR = "A Evaluar"
+    def EN_USO = "En uso"
+    def A_REPARAR = "A Reparar"
+    def A_DONACION = "A donacion"
+    def A_DESCARTE = "A descarte"
+    def DE_BAJA = "Baja"
+    //-----Roles----//
+    def ROLE_SUPERVISOR = "ROLE_SUPERVISOR"
+    def ROLE_ENCARGADO = "ROLE_ENCARGADO"
+    def ROLE_OPERARIO = "ROLE_OPERARIO"
+    //-----Mails
+    def GISE = "gise.cpna@gmail"
+    def GUILLE = "ayestaranguillermo@gmail.com"
+    def NAIR = "nair.olivera.utn@gmail.com"
+    def ROMI = "romina.prada@gmail.com"
+    def PATRONUS = "patronus.ids@gmail.com"
+
+    
+    def idUserSesionActual(){
         return springSecurityService.loadCurrentUser().id
     }
-    def idPersona(){
-        return  PersonaUser.findByUserId( idUser() ).personaId
-    }
+
     def mostrarBienesSegunPermiso(){
+
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
-        if (permiso() == 'ROLE_SUPERVISOR')
+        if (
+            Role.permisoSesionActual( 
+                User.idRolSesionActual(
+                    idUserSesionActual()
+                    )
+                 )
+            == 
+            ROLE_SUPERVISOR)
+
             return Bien.findAll()
         else{
-            def areaUser = Persona.findById(idPersona()).area
+            def areaUser = Persona.findById(Persona.getIdPersonaSesionActual( idUserSesionActual() )).area
             return Bien.findAllByArea(areaUser)
         }
     }
@@ -48,36 +70,44 @@ class BienController {
         def lista = (mostrarBienesSegunPermiso()).size()
         return lista
     }
+    def estado() {
+        println params.estado
+        respond bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
+    }
 
+
+
+//redundancia
     def bienesAEvaluar(){
-        def listaAE = bienesSegunEstado(mostrarBienesSegunPermiso(), "A Evaluar")
+        def listaAE = bienesSegunEstado(mostrarBienesSegunPermiso(), A_EVALUAR)
         return listaAE
     }
 
     def bienesEnUso(){
-        def listaEU = bienesSegunEstado(mostrarBienesSegunPermiso(), "En uso")
+        def listaEU = bienesSegunEstado(mostrarBienesSegunPermiso(), EN_USO)
         return listaEU
     }
 
     def bienesAReparar(){
-        def listaAR = bienesSegunEstado(mostrarBienesSegunPermiso(), "A Reparar")
+        def listaAR = bienesSegunEstado(mostrarBienesSegunPermiso(), A_REPARAR)
         return listaAR
     }
     
     def bienesADonacion(){
-        def listaAD = bienesSegunEstado(mostrarBienesSegunPermiso(), "A donacion")
+        def listaAD = bienesSegunEstado(mostrarBienesSegunPermiso(),  A_DONACION)
         return listaAD
     }
 
     def bienesADescarte(){
-        def listaADs = bienesSegunEstado(mostrarBienesSegunPermiso(), "A descarte")
+        def listaADs = bienesSegunEstado(mostrarBienesSegunPermiso(), A_DESCARTE)
         return listaADs
     }
 
     def bienesBaja(){
-        def listaB = bienesSegunEstado(mostrarBienesSegunPermiso(), "Baja")
+        def listaB = bienesSegunEstado(mostrarBienesSegunPermiso(), DE_BAJA )
         return listaB
     }
+    
     def index(Integer max) {
         //seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
@@ -87,10 +117,17 @@ class BienController {
     def busqueda(Integer max) {
         def query = params.query
         def bienList
-        if (permiso() == 'ROLE_SUPERVISOR')
+        if (
+            Role.permisoSesionActual( 
+                User.idRolSesionActual(
+                    idUserSesionActual()
+                    )
+                 )
+            == 
+            ROLE_SUPERVISOR)
             bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
         else{
-            def areaUser = Persona.findById(idPersona()).area
+            def areaUser = Persona.findById(Persona.getIdPersonaSesionActual( idUserSesionActual() )).area
             bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0 and area_id = ?",[query,areaUser])
         }
         params.max = Math.min(max ?: 10, 100)
@@ -127,8 +164,8 @@ class BienController {
     def enviarMail(String contenidoMail, String destinatario){ 
         sendMail {
            to destinatario
-           cc "gise.cpna@gmail","ayestaranguillermo@gmail.com","romina.prada@gmail.com","nair.olivera.utn@gmail.com"
-           from "patronus.ids@gmail.com"
+           cc GISE,GUILLE,ROMI,NAIR
+           from PATRONUS
            subject "Patronus"
            text contenidoMail   
         }

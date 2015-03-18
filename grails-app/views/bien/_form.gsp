@@ -27,7 +27,8 @@
 					<label for="responsableBien">
 						<g:message code="bien.responsableBien.label" default="Responsable" />
 					</label>
-					<g:select id="responsableBien" name="responsableBien.id" from="${abm.Persona.filtrarPorRol(1)}" optionKey="id" required="" 
+					<!-- El id del rol está harcodeado. El 1 debería ser una variable-->
+					<g:select id="responsableBien" name="responsableBien.id" from="${abm.Persona.filtrarPersonasPorRol(1)}" optionKey="id" required="" 
 				noSelection= "['': 'Seleccione un responsable']" value="${bienInstance?.responsableBien?.id}" class="many-to-one"/>
 				</div>
 			</div>
@@ -60,7 +61,7 @@
 				<label for="estado">
 					<g:message code="bien.estado.label" default="Estado" />
 				</label>
-				<g:select id="estado" name="estado.id" from="${abm.Estado.list()}" optionKey="id" required="" 
+				<g:select id="estado" name="estado.id" from="${abm.Estado.listado(bienInstance.id)}" optionKey="id" required="" 
 				noSelection= "['': 'Seleccione un estado']"
 				value="${bienInstance?.estado?.id}" class="many-to-one"/>
 				

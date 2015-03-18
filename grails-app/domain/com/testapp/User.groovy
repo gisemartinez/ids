@@ -27,7 +27,10 @@ class User {
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role }
 	}
-
+	static long idRolSesionActual(idUserSesionActual){
+        def idU = User.findById( idUserSesionActual )
+        return  UserRole.findByUser( idU ).role.id
+    }
 	def beforeInsert() {
 		encodePassword()
 	}
