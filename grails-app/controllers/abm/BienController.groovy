@@ -17,7 +17,9 @@ class BienController {
      
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def springSecurityService
+    //def springSecurityService
+    def personaService
+    def bienService
     //>>>Constantes<<<//
 
     //-----Estados------//
@@ -38,7 +40,7 @@ class BienController {
     def ROMI = "romina.prada@gmail.com"
     def PATRONUS = "patronus.ids@gmail.com"
 
-    
+    /*
     def idUserSesionActual(){
         return springSecurityService.loadCurrentUser().id
     }
@@ -58,7 +60,7 @@ class BienController {
 
             return Bien.findAll()
         else{
-            def areaUser = Persona.findById(Persona.getIdPersonaSesionActual( idUserSesionActual() )).area
+            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( idUserSesionActual() )).area
             return Bien.findAllByArea(areaUser)
         }
     }
@@ -69,49 +71,16 @@ class BienController {
     def contadorBienes(){
         def lista = (mostrarBienesSegunPermiso()).size()
         return lista
-    }
+    }*/
     def estado() {
         println params.estado
         respond bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
-    }
-
-
-
-//redundancia
-    def bienesAEvaluar(){
-        def listaAE = bienesSegunEstado(mostrarBienesSegunPermiso(), A_EVALUAR)
-        return listaAE
-    }
-
-    def bienesEnUso(){
-        def listaEU = bienesSegunEstado(mostrarBienesSegunPermiso(), EN_USO)
-        return listaEU
-    }
-
-    def bienesAReparar(){
-        def listaAR = bienesSegunEstado(mostrarBienesSegunPermiso(), A_REPARAR)
-        return listaAR
-    }
-    
-    def bienesADonacion(){
-        def listaAD = bienesSegunEstado(mostrarBienesSegunPermiso(),  A_DONACION)
-        return listaAD
-    }
-
-    def bienesADescarte(){
-        def listaADs = bienesSegunEstado(mostrarBienesSegunPermiso(), A_DESCARTE)
-        return listaADs
-    }
-
-    def bienesBaja(){
-        def listaB = bienesSegunEstado(mostrarBienesSegunPermiso(), DE_BAJA )
-        return listaB
-    }
+    }    
     
     def index(Integer max) {
         //seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
-        respond mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
+        respond bienService.mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
     }
     
     def busqueda(Integer max) {
@@ -120,14 +89,14 @@ class BienController {
         if (
             Role.permisoSesionActual( 
                 User.idRolSesionActual(
-                    idUserSesionActual()
+                    bienService.idUserSesionActual()
                     )
                  )
             == 
             ROLE_SUPERVISOR)
             bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
         else{
-            def areaUser = Persona.findById(Persona.getIdPersonaSesionActual( idUserSesionActual() )).area
+            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( bienService.idUserSesionActual() )).area
             bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0 and area_id = ?",[query,areaUser])
         }
         params.max = Math.min(max ?: 10, 100)
@@ -136,29 +105,29 @@ class BienController {
     
     def estadoAevaluar(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
+        respond bienService.bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
     }
     def estadoAreparar(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bienesAReparar(),model:[ bienInstanceCount: Bien.count()],view:'index'
+        respond bienService.bienesAReparar(),model:[ bienInstanceCount: Bien.count()],view:'index'
     }
     def estadoEnUso(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bienesEnUso(), model:[ bienInstanceCount: Bien.count()],view:'index'     
+        respond bienService.bienesEnUso(), model:[ bienInstanceCount: Bien.count()],view:'index'     
     }
 
     def estadoAdonacion(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bienesADonacion(), model:[ bienInstanceCount: Bien.count()],view:'index'     
+        respond bienService.bienesADonacion(), model:[ bienInstanceCount: Bien.count()],view:'index'     
     }
     def estadoAdescarte(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bienesADescarte() ,model:[ bienInstanceCount: Bien.count()],view:'index'     
+        respond bienService.bienesADescarte() ,model:[ bienInstanceCount: Bien.count()],view:'index'     
      
     }
     def estadoBaja(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bienesBaja(), model:[ bienInstanceCount: Bien.count()],view:'index'     
+        respond bienService.bienesBaja(), model:[ bienInstanceCount: Bien.count()],view:'index'     
      
     }
     def enviarMail(String contenidoMail, String destinatario){ 
@@ -173,24 +142,24 @@ class BienController {
     
     @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO'])
     def grafico(){
-            def a = bienesAEvaluar().size()
-            def b = bienesEnUso().size()
-            def c = bienesAReparar().size()
-            def d = bienesADonacion().size()
-            def e = bienesADescarte().size()
-            def f = bienesBaja().size()  
+            def a = bienService.bienesAEvaluar().size()
+            def b = bienService.bienesEnUso().size()
+            def c = bienService.bienesAReparar().size()
+            def d = bienService.bienesADonacion().size()
+            def e = bienService.bienesADescarte().size()
+            def f = bienService.bienesBaja().size()  
         
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
         render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f,opt:opt])
     }
     def noticias(){
         //Es provisorio, debería traerme los de ésta semana
-        def cantAE = bienesAEvaluar().size()
-        def cantEU = bienesEnUso().size()
-        def cantAR = bienesAReparar().size()
-        def cantAD = bienesADonacion().size()
-        def cantADsc = bienesADescarte().size()
-        def cantB = bienesBaja().size()
+        def cantAE = bienService.bienesAEvaluar().size()
+        def cantEU = bienService.bienesEnUso().size()
+        def cantAR = bienService.bienesAReparar().size()
+        def cantAD = bienService.bienesADonacion().size()
+        def cantADsc = bienService.bienesADescarte().size()
+        def cantB = bienService.bienesBaja().size()
     render(
             view:'noticias',  
             model:

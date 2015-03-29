@@ -1,5 +1,10 @@
 <%@ page import="abm.Bien" %>
-
+<%@ page import="abm.EstadoService" %>
+<%@ page import="abm.PersonaService" %>
+<%
+    def personaService = grailsApplication.mainContext.getBean("personaService");
+    def estadoService = grailsApplication.mainContext.getBean("estadoService");
+%>
 
 <sec:ifAllGranted roles="ROLE_SUPERVISOR">
 	<div class="container">
@@ -28,7 +33,7 @@
 						<g:message code="bien.responsableBien.label" default="Responsable" />
 					</label>
 					<!-- El id del rol está harcodeado. El 1 debería ser una variable-->
-					<g:select id="responsableBien" name="responsableBien.id" from="${abm.Persona.filtrarPersonasPorRol(1)}" optionKey="id" required="" 
+					<g:select id="responsableBien" name="responsableBien.id" from="${personaService.filtrarPersonasPorRol(1)}" optionKey="id" required="" 
 				noSelection= "['': 'Seleccione un responsable']" value="${bienInstance?.responsableBien?.id}" class="many-to-one"/>
 				</div>
 			</div>
@@ -61,7 +66,7 @@
 				<label for="estado">
 					<g:message code="bien.estado.label" default="Estado" />
 				</label>
-				<g:select id="estado" name="estado.id" from="${abm.Estado.listado(bienInstance.id)}" optionKey="id" required="" 
+				<g:select id="estado" name="estado.id" from="${estadoService.listado(bienInstance.id)}" optionKey="id" required="" 
 				noSelection= "['': 'Seleccione un estado']"
 				value="${bienInstance?.estado?.id}" class="many-to-one"/>
 				
