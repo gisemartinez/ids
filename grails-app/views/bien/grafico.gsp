@@ -24,6 +24,8 @@
 					title: 'Cantidad de Bienes por Estado',
 					legend: { position: 'none' },
 					chart: { subtitle: '' },
+					width: 500,
+					height: 500,
 					axes: {
 						x: {
 							0: { side: 'top', label: ''} // Top x-axis.
@@ -45,6 +47,6 @@
 				</div>
 			</div>
 		</nav>	
-		<div class="container-fluid" id="top_x_div" style="height: 500px; margin: 0 auto"></div>
+		<div class="container-fluid" id="top_x_div" style="margin: 0 auto"></div>
 	</body>
 </html>
