@@ -66,7 +66,7 @@
 				<label for="estado">
 					<g:message code="bien.estado.label" default="Estado" />
 				</label>
-				<g:select id="estado" name="estado.id" from="${estadoService.listado(bienInstance.id)}" optionKey="id" required="" 
+				<g:select id="estado" name="estado.id" from="${estadoService.listado(bienInstance?.id)}" optionKey="id" required="" 
 				noSelection= "['': 'Seleccione un estado']"
 				value="${bienInstance?.estado?.id}" class="many-to-one"/>
 				
