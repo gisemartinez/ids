@@ -20,11 +20,80 @@ class BienService {
     def ROLE_SUPERVISOR = "ROLE_SUPERVISOR"
     def ROLE_ENCARGADO = "ROLE_ENCARGADO"
     def ROLE_OPERARIO = "ROLE_OPERARIO"
+    //-----Mails
+    def GISE = "gise.cpna@gmail"
+    def GUILLE = "ayestaranguillermo@gmail.com"
+    def NAIR = "nair.olivera.utn@gmail.com"
+    def ROMI = "romina.prada@gmail.com"
+    def PATRONUS = "patronus.ids@gmail.com"
 
     def springSecurityService
 
     def idUserSesionActual(){
         return springSecurityService.loadCurrentUser().id
+    }
+    def guardar(bienInstance){
+    	if (bienInstance == null) {
+            notFound()
+            return
+        }
+
+        if (bienInstance.hasErrors()) {
+            respond bienInstance.errors, view:'create'
+            return
+        }
+
+        bienInstance.save flush:true
+
+    }
+    def actualizar(bienInstance){
+    	if (bienInstance == null) {
+            notFound()
+            return
+        }
+
+        if (bienInstance.hasErrors()) {
+            respond bienInstance.errors, view:'edit'
+            return
+        }
+
+        bienInstance.save flush:true
+ 
+        def cuerpoMail = "Se ha modificado el bien :"+bienInstance.descripcion+". \nSu estado cambi&oacute a &quote"+bienInstance.estado.nombre+"&quote";
+            println(cuerpoMail)
+       //this.enviarMail(cuerpoMail,"pmdisanti@gmail.com")
+
+    }
+    def borrar(bienInstance){
+    	if (bienInstance == null) {
+            notFound()
+            return
+        }
+        bienInstance.delete flush:true
+    }
+    def enviarMail(String contenidoMail, String destinatario){
+    	sendMail {
+           to destinatario
+           cc GISE,GUILLE,ROMI,NAIR
+           from PATRONUS
+           subject "Patronus"
+           text contenidoMail   
+        }
+    }
+    def buscarBienesPorQuery(query){
+    	if (
+            Role.permisoSesionActual( 
+                User.idRolSesionActual(
+                    this.idUserSesionActual()
+                    )
+                 )
+            == 
+            ROLE_SUPERVISOR)
+            return Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
+        else{
+            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( this.idUserSesionActual() )).area
+            return Bien.findAll("from Bien where INSTR(nombreBien,?)>0 and area_id = ?",[query,areaUser])
+        }
     }
     def mostrarBienesSegunPermiso(){
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,

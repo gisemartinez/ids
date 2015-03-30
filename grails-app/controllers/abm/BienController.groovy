@@ -17,61 +17,9 @@ class BienController {
      
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    //def springSecurityService
     def personaService
     def bienService
-    //>>>Constantes<<<//
-
-    //-----Estados------//
-    def A_EVALUAR = "A Evaluar"
-    def EN_USO = "En uso"
-    def A_REPARAR = "A Reparar"
-    def A_DONACION = "A donacion"
-    def A_DESCARTE = "A descarte"
-    def DE_BAJA = "Baja"
-    //-----Roles----//
-    def ROLE_SUPERVISOR = "ROLE_SUPERVISOR"
-    def ROLE_ENCARGADO = "ROLE_ENCARGADO"
-    def ROLE_OPERARIO = "ROLE_OPERARIO"
-    //-----Mails
-    def GISE = "gise.cpna@gmail"
-    def GUILLE = "ayestaranguillermo@gmail.com"
-    def NAIR = "nair.olivera.utn@gmail.com"
-    def ROMI = "romina.prada@gmail.com"
-    def PATRONUS = "patronus.ids@gmail.com"
-
-    /*
-    def idUserSesionActual(){
-        return springSecurityService.loadCurrentUser().id
-    }
-
-    def mostrarBienesSegunPermiso(){
-
-        //--si el rol es Admin, traigo todos los bienes.En caso contrario,
-        //traigo los bienes que correspondan al area de la persona
-        if (
-            Role.permisoSesionActual( 
-                User.idRolSesionActual(
-                    idUserSesionActual()
-                    )
-                 )
-            == 
-            ROLE_SUPERVISOR)
-
-            return Bien.findAll()
-        else{
-            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( idUserSesionActual() )).area
-            return Bien.findAllByArea(areaUser)
-        }
-    }
-    def bienesSegunEstado(ArrayList listadoBienes, String nombreEstado){
-        def estado = Estado.findByNombre(nombreEstado)
-        return listadoBienes.findAll{it.estado.id == estado.id}
-    }
-    def contadorBienes(){
-        def lista = (mostrarBienesSegunPermiso()).size()
-        return lista
-    }*/
+ 
     def estado() {
         println params.estado
         respond bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
@@ -85,20 +33,8 @@ class BienController {
     
     def busqueda(Integer max) {
         def query = params.query
-        def bienList
-        if (
-            Role.permisoSesionActual( 
-                User.idRolSesionActual(
-                    bienService.idUserSesionActual()
-                    )
-                 )
-            == 
-            ROLE_SUPERVISOR)
-            bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
-        else{
-            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( bienService.idUserSesionActual() )).area
-            bienList = Bien.findAll("from Bien where INSTR(nombreBien,?)>0 and area_id = ?",[query,areaUser])
-        }
+        def bienList = bienService.buscarBienesPorQuery(query)
+       
         params.max = Math.min(max ?: 10, 100)
         respond bienList, model:[ bienInstanceCount: Bien.count()],view:'index';
     }    
@@ -130,73 +66,51 @@ class BienController {
         respond bienService.bienesBaja(), model:[ bienInstanceCount: Bien.count()],view:'index'     
      
     }
-    def enviarMail(String contenidoMail, String destinatario){ 
-        sendMail {
-           to destinatario
-           cc GISE,GUILLE,ROMI,NAIR
-           from PATRONUS
-           subject "Patronus"
-           text contenidoMail   
-        }
-    }
-    
+
     @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO'])
     def grafico(){
-            def a = bienService.bienesAEvaluar().size()
-            def b = bienService.bienesEnUso().size()
-            def c = bienService.bienesAReparar().size()
-            def d = bienService.bienesADonacion().size()
-            def e = bienService.bienesADescarte().size()
-            def f = bienService.bienesBaja().size()  
-        
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
-        render(view:'grafico' ,model:[a:a,b:b,c:c,d:d,e:e,f:f,opt:opt])
+        render(
+                view:'grafico',
+                model:
+                [
+                    a: bienService.bienesAEvaluar().size(),
+                    b: bienService.bienesEnUso().size(),
+                    c: bienService.bienesAReparar().size(),
+                    d: bienService.bienesADonacion().size(),
+                    e: bienService.bienesADescarte().size(),
+                    f: bienService.bienesBaja().size(), 
+                    opt:opt
+                ]
+            );
     }
     def noticias(){
         //Es provisorio, debería traerme los de ésta semana
-        def cantAE = bienService.bienesAEvaluar().size()
-        def cantEU = bienService.bienesEnUso().size()
-        def cantAR = bienService.bienesAReparar().size()
-        def cantAD = bienService.bienesADonacion().size()
-        def cantADsc = bienService.bienesADescarte().size()
-        def cantB = bienService.bienesBaja().size()
+        //Debería estar puesto en el servicio
     render(
             view:'noticias',  
             model:
             [
-                cantAE:cantAE,
-                cantEU:cantEU,
-                cantAR:cantAR,
-                cantAD:cantAD,
-                cantADsc:cantADsc,
-                cantB:cantB
+               cantAE:bienService.bienesAEvaluar().size(),
+                cantEU:bienService.bienesEnUso().size(),
+                cantAR:bienService.bienesAReparar().size(),
+                cantAD:bienService.bienesADonacion().size(),
+                cantADsc:bienService.bienesADescarte().size(),
+                cantB:bienService.bienesBaja().size()
             ]
-        )
+        );
 
     }
-
     def show(Bien bienInstance) {
         respond bienInstance
     }
-
     def create() {
         respond new Bien(params)
     }
 
     @Transactional
     def save(Bien bienInstance) {
-        if (bienInstance == null) {
-            notFound()
-            return
-        }
-
-        if (bienInstance.hasErrors()) {
-            respond bienInstance.errors, view:'create'
-            return
-        }
-
-        bienInstance.save flush:true
-
+        bienService.guardar(bienInstance)
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'bien.label', default: 'Bien'), bienInstance.nombreBien])
@@ -212,22 +126,7 @@ class BienController {
 
     @Transactional
     def update(Bien bienInstance) {
-        if (bienInstance == null) {
-            notFound()
-            return
-        }
-
-        if (bienInstance.hasErrors()) {
-            respond bienInstance.errors, view:'edit'
-            return
-        }
-
-        bienInstance.save flush:true
- 
-        def cuerpoMail= "Se ha modificado el bien :"+bienInstance.descripcion+". \nSu estado cambi&oacute a &quote"+bienInstance.estado.nombre+"&quote"
-            println(cuerpoMail)
-       // enviarMail(cuerpoMail,"pmdisanti@gmail.com")
-
+        bienService.actualizar(bienInstance)
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
@@ -239,14 +138,6 @@ class BienController {
 
     @Transactional
     def delete(Bien bienInstance) {
-
-        if (bienInstance == null) {
-            notFound()
-            return
-        }
-
-        bienInstance.delete flush:true
-
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
