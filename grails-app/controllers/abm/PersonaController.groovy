@@ -31,15 +31,27 @@ class PersonaController {
 
     @Transactional
     def save(Persona personaInstance, User userInstance) {
-        personaService.guardar(personaInstance,userInstance,params.role.id)
-        
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'persona.created.message', args: [message(code: 'persona.label', default: 'Persona'), personaInstance.apellido])
-                redirect personaInstance
+        try {
+            personaService.guardar(personaInstance,userInstance,params.role.id)
+            
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'persona.created.message', args: [message(code: 'persona.label', default: 'Persona'), personaInstance.apellido])
+                    redirect personaInstance
+                }
+                '*' { respond personaInstance, [status: CREATED] }
             }
-            '*' { respond personaInstance, [status: CREATED] }
+            
         }
+        catch(Exception e) {
+            println "Estoy fallando"
+            println params
+            respond new User(params), model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'index'
+        }
+        finally {
+            println "Fin del save"
+        }
+        
     }
 
     def edit(Persona personaInstance,User userInstance) {

@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import com.testapp.User
 import com.testapp.Role
 import com.testapp.UserRole
+import grails.validation.ValidationException
 @Transactional
 class PersonaService {
 
@@ -36,7 +37,8 @@ class PersonaService {
             return
         }
         if (personaInstance.hasErrors()) {
-            respond personaInstance.errors, view:'create'
+            //respond personaInstance.errors, view:'create'
+            throw new ValidationException("La Persona se ha guardado con errores", personaInstance.errors)
             return
         }
         //--------lo mismo pero con el usuario--------
@@ -46,7 +48,8 @@ class PersonaService {
         }
         if (userInstance.hasErrors()) {
             println "El usuario creado ya existe o tiene algún problema"
-            respond userInstance.errors, view:'create'
+            //respond userInstance.errors, view:'create'
+            throw new ValidationException("El usuario se ha guardado con errores", userInstance.errors)
             return
         }
         if (roleInstance == null) {
@@ -56,13 +59,16 @@ class PersonaService {
         }
         if (roleInstance.hasErrors()) {
             println "El rol tiene algún problema"
-            respond userInstance.errors, view:'create'
+            throw new ValidationException("El rol se ha guardado con errores", roleInstance.errors)
+           // respond userInstance.errors, view:'create'
             return
         }
         
         if (userInstance.password != userInstance.confirmPassword){
             println "Error.Ingrese nuevamente la contraseña."
-            respond userInstance.errors, view:'create'
+
+            //respond userInstance.errors, view:'create'
+            throw new ValidationException("Las contraseñas ingresadas no son iguales", userInstance.errors)
             return
         }
         personaInstance.save flush:true
