@@ -8,6 +8,9 @@ import grails.validation.ValidationException
 @Transactional
 class PersonaService {
 
+    // <<<ERRORES>>
+    def SE_HA_GUARDADO_CON_ERRORES = "se ha guardado con errores"
+    def CONTRASENIAS_DIFF = "Las contraseñas son diferentes"
  	//Si se le da el id del rol que se necesita, filtra por esa categoría
 	ArrayList filtrarPersonasPorRol(def idRol){
 	      def rol = idRol
@@ -30,6 +33,9 @@ class PersonaService {
 		def role_id = com.testapp.UserRole.findByUser(user).roleId
 		return com.testapp.Role.findById(role_id)
 	}
+    def crear(Persona personaInstance,User userInstance,idRol){
+
+    }
 	def guardar(Persona personaInstance,User userInstance,idRol){
 		def roleInstance = Role.findById(idRol)
 		if (personaInstance == null) {
@@ -38,7 +44,7 @@ class PersonaService {
         }
         if (personaInstance.hasErrors()) {
             //respond personaInstance.errors, view:'create'
-            throw new ValidationException("La Persona se ha guardado con errores", personaInstance.errors)
+            throw new ValidationException("La Persona"+ SE_HA_GUARDADO_CON_ERRORES, personaInstance.errors)
             return
         }
         //--------lo mismo pero con el usuario--------
@@ -47,28 +53,15 @@ class PersonaService {
             return
         }
         if (userInstance.hasErrors()) {
-            println "El usuario creado ya existe o tiene algún problema"
             //respond userInstance.errors, view:'create'
-            throw new ValidationException("El usuario se ha guardado con errores", userInstance.errors)
-            return
-        }
-        if (roleInstance == null) {
-            notFound()
-            println "Es un rol nulo!"
-            return
-        }
-        if (roleInstance.hasErrors()) {
-            println "El rol tiene algún problema"
-            throw new ValidationException("El rol se ha guardado con errores", roleInstance.errors)
-           // respond userInstance.errors, view:'create'
+            throw new ValidationException("El usuario"+ SE_HA_GUARDADO_CON_ERRORES, userInstance.errors)
             return
         }
         
         if (userInstance.password != userInstance.confirmPassword){
-            println "Error.Ingrese nuevamente la contraseña."
 
             //respond userInstance.errors, view:'create'
-            throw new ValidationException("Las contraseñas ingresadas no son iguales", userInstance.errors)
+            throw new ValidationException(CONTRASENIAS_DIFF, userInstance.errors)
             return
         }
         personaInstance.save flush:true
@@ -93,19 +86,54 @@ class PersonaService {
         personaInstance.delete flush:true
         user.delete flush:true
     }
-    def actualizar(personaInstance,userInstance){
-    	if (personaInstance == null) {
+    def actualizar(personaInstance,userInstance,idRol){
+        def roleInstance = Role.findById(idRol)
+        if (personaInstance == null) {
+            notFound()
+            return
+        }
+        if (personaInstance.hasErrors()) {
+            //respond personaInstance.errors, view:'create'
+            throw new ValidationException("La Persona"+ SE_HA_GUARDADO_CON_ERRORES, personaInstance.errors)
+            return
+        }
+        //--------lo mismo pero con el usuario--------
+         if (userInstance == null) {
+            notFound()
+            return
+        }
+        if (userInstance.hasErrors()) {
+            //respond userInstance.errors, view:'create'
+            throw new ValidationException("El usuario"+ SE_HA_GUARDADO_CON_ERRORES, userInstance.errors)
+            return
+        }
+        
+        if (userInstance.password != userInstance.confirmPassword){
+
+            //respond userInstance.errors, view:'create'
+            throw new ValidationException(CONTRASENIAS_DIFF, userInstance.errors)
+            return
+        }
+        personaInstance.save flush:true
+        userInstance.save flush:true
+        //------por mas que sean IDs diferentes, la relacion se guarda igual
+        UserRole.create userInstance, roleInstance, true
+        //def relationUserRol = new UserRole(userInstance,roleInstance).save(flush:true)
+        def relationPersonaUser = new PersonaUser(personaInstance,userInstance).save(flush:true)
+
+    	/*if (personaInstance == null) {
             notFound()
             return
         }
 
         if (personaInstance.hasErrors()) {
-            respond personaInstance.errors, view:'edit'
+            //respond personaInstance.errors, view:'edit'
+            throw new ValidationException("Error en la actualizacion", userInstance.errors)
             return
         }
 
         personaInstance.save flush:true
-        userInstance.save flush:true
+        userInstance.save flush:true*/
     }
 
 }

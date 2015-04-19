@@ -44,32 +44,49 @@ class PersonaController {
             
         }
         catch(Exception e) {
-            println "Estoy fallando"
-            println params
+            //println "Estoy fallando"
+            //println params
             respond new User(params), model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'index'
-        }
-        finally {
-            println "Fin del save"
         }
         
     }
 
     def edit(Persona personaInstance,User userInstance) {
-        def roleInstance = personaService.getRolDePersona(personaInstance)
+        try {
+            def roleInstance = personaService.getRolDePersona(personaInstance)
         respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
+        }
+        catch(Exception e) {
+            println "Exception edit"
+            println e
+        }
+        
+        
     }
 
     @Transactional
     def update(Persona personaInstance, User userInstance) {
-        personaService.actualizar(personaInstance,userInstance)
+        try {
+            println personaInstance
+            println userInstance
+            println "Rol id: " + params.role.id
+            personaService.actualizar(personaInstance,userInstance,params.role.id)
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.apellido])
-                redirect personaInstance
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.apellido])
+                    redirect personaInstance
+                }
+                '*'{ respond personaInstance, [status: OK] }
             }
-            '*'{ respond personaInstance, [status: OK] }
+            
         }
+        catch(Exception e) {
+            println "Exception update"
+            println e
+            respond userInstance, model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'edit'
+        }
+        
     }
 
     @Transactional
