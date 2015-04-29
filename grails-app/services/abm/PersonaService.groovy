@@ -33,6 +33,15 @@ class PersonaService {
 		def role_id = com.testapp.UserRole.findByUser(user).roleId
 		return com.testapp.Role.findById(role_id)
 	}
+    def actualizarRolDeUsuario(idRol,userInstance){
+        //busco y elimino el par UsuarioRol
+        def u_r = UserRole.findByUser(com.testapp.User.findById(idUser))
+        u_r.delete()
+        def r = Role.findById(idRol)
+        //creo un par UsuarioRol nuevo
+        UserRole.create userInstance, r , true
+     }
+
     def crear(Persona personaInstance,User userInstance,idRol){
 
     }
@@ -116,10 +125,12 @@ class PersonaService {
         }
         personaInstance.save flush:true
         userInstance.save flush:true
+        this.actualizarRolDeUsuario(idRol,userInstance)
+        
         //------por mas que sean IDs diferentes, la relacion se guarda igual
-        UserRole.create userInstance, roleInstance, true
+        //UserRole.create userInstance, roleInstance, true
         //def relationUserRol = new UserRole(userInstance,roleInstance).save(flush:true)
-        def relationPersonaUser = new PersonaUser(personaInstance,userInstance).save(flush:true)
+        //def relationPersonaUser = new PersonaUser(personaInstance,userInstance).save(flush:true)
 
     	/*if (personaInstance == null) {
             notFound()
