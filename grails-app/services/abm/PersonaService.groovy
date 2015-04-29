@@ -35,7 +35,7 @@ class PersonaService {
 	}
     def actualizarRolDeUsuario(idRol,userInstance){
         //busco y elimino el par UsuarioRol
-        def u_r = UserRole.findByUser(com.testapp.User.findById(idUser))
+        def u_r = UserRole.findByUser(com.testapp.User.findById(userInstance.id))
         u_r.delete()
         def r = Role.findById(idRol)
         //creo un par UsuarioRol nuevo
