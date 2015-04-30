@@ -143,6 +143,7 @@
 								</span>
 							</li>
 						</g:if>
+						<!--
 						<g:if test="${personaInstance?.fechaBaja}">
 							<li class="list-group-item">
 								<strong>
@@ -155,6 +156,7 @@
 								</span>
 							</li>
 						</g:if>
+					-->
 					</ul>
 					<g:form url="[resource:personaInstance, action:'delete']" method="DELETE" id="form_show_persona">
 					</g:form>
