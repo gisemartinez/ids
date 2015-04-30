@@ -19,8 +19,9 @@ class PersonaController {
         respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
     }
 
-    def show(Persona personaInstance) {
-        respond personaInstance
+    def show(Persona personaInstance, User userInstance) {
+        def roleInstance = personaService.getRolDePersona(personaInstance)
+        respond personaInstance, model:[userInstance:userInstance, roleInstance : roleInstance]
     }
 
     def create() {

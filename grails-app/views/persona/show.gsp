@@ -1,4 +1,5 @@
 <%@ page import="abm.Persona" %>
+<%@ page import="com.testapp.User" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -86,6 +87,18 @@
 								</span>	
 							</li>
 						</g:if>
+						<g:if test="${userInstance?.username}">
+							<li class="list-group-item">
+								<strong>
+									<span id="username-label" class="property-label">
+										<g:message code="user.username.label" default="Usuario/e-mail" />
+									</span>
+								</strong>
+								<span class="property-value" aria-labelledby="username-label">
+									<g:fieldValue bean="${userInstance}" field="username"/>
+								</span>
+							</li>
+						</g:if>
 						<g:if test="${personaInstance?.dni}">
 							<li class="list-group-item">
 								<strong>
@@ -97,7 +110,7 @@
 									<g:fieldValue bean="${personaInstance}" field="dni"/>
 								</span>
 							</li>
-						</g:if>
+						</g:if>		
 						<g:if test="${personaInstance?.area}">
 							<li class="fieldcontain list-group-item list-group-item">
 								<strong>
@@ -106,6 +119,16 @@
 								<span class="property-value" aria-labelledby="area-label">
 									<g:link controller="area" action="show" id="${personaInstance?.area?.id}">${personaInstance?.area?.encodeAsHTML()}</g:link>
 								</span>
+							</li>
+						</g:if>
+						<g:if test="${roleInstance?.authority}">
+							<li class="list-group-item">
+								<strong>
+									<span id="authority-label" class="property-label"><g:message code="role.authority.label" default="Rol" /></span>
+								</strong>
+								
+									<span class="property-value" aria-labelledby="authority-label"><g:fieldValue bean="${roleInstance}" field="authority"/></span>
+								
 							</li>
 						</g:if>
 						<g:if test="${personaInstance?.fechaAlta}">
