@@ -15,8 +15,8 @@ class PersonaService {
 	ArrayList filtrarPersonasPorRol(def idRol){
 	      def rol = idRol
 	      def listaUsuarios = com.testapp.UserRole.findAll("from UserRole where role_id=?",[rol]).userId
-	      def listaPersonas = abm.PersonaUser.findAllByUserId(listaUsuarios).personaId
-	      return Persona.findAllById(listaPersonas)
+	      def listaPersonas = abm.PersonaUser.findAll("from UserRole where user_id in (:usuarios)",[usuarios: listaUsuarios]).userId
+	      return Persona.findAll("from Persona where id in (:personas)",[personas: listaPersonas])	      
 	}
 	//este método debéría ir en la clase PersonaUser o en User
 	com.testapp.User getUserDePersona(personaInstance){
