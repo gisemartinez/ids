@@ -2,6 +2,12 @@
 <%@ page import="com.testapp.User" %>
 <%@ page import="com.testapp.Role" %>
 
+<%@ page import="com.testapp.RoleService" %>
+<%
+    def roleService = grailsApplication.mainContext.getBean("roleService");
+%>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
@@ -47,7 +53,7 @@
                 <label for="roleId">
                     <g:message code="role.roleId.label" default="Rol" />
                 </label>
-                <g:select id="role" name="role.id" from="${com.testapp.Role.list()}" optionKey="id" optionValue="authority" required="" 
+                <g:select id="role" name="role.id" from="${roleService.listado()}" optionKey="id" optionValue="authority" required="" 
                 noSelection= "['': 'Seleccione un rol']"
                 value="${roleInstance?.id}"/>
             </div>
