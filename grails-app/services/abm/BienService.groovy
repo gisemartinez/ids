@@ -28,6 +28,7 @@ class BienService {
     def PATRONUS = "patronus.ids@gmail.com"
 
     def springSecurityService
+    def personaService
 
     def idUserSesionActual(){
         return springSecurityService.loadCurrentUser().id
