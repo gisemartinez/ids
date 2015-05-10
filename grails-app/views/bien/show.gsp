@@ -50,7 +50,7 @@
 		</nav>
 		<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
 			<div class="collapse" id="crearBien">
-				g:include controller="bien" action="create" />
+				<g:include controller="bien" action="create" />
 			</div>
 		</sec:ifAnyGranted>
 		<div class="container-fluid">
