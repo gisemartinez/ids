@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/abm/" />
+<title>Editar bien</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Editar bien</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/abm/bien/show/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=i.md.md-edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=#form_edit_bien &gt; fieldset.form &gt; div.container &gt; div.row &gt; div.col-lg-6 &gt; div.required &gt; #estado</td>
+	<td>label=A Reparar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=#form_edit_bien &gt; fieldset.form &gt; div.container &gt; div.row &gt; div.col-lg-6 &gt; div.required &gt; #codigoPatrimonio</td>
+	<td>123478</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=body &gt; div.container-fluid &gt; div.panel.panel-default &gt; div.panel-footer &gt; button.btn.btn-link</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
