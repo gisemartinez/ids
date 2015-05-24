@@ -45,9 +45,10 @@ class PersonaController {
             
         }
         catch(Exception e) {
-            //println "Estoy fallando"
-            //println params
-            respond new User(params), model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'index'
+            respond new User(params),
+             
+                model:[personaInstance: new Persona(params),roleInstance: new Role(params),msg: e.getMessage()]
+                view:'../../views/error'
         }
         
     }
@@ -85,22 +86,34 @@ class PersonaController {
         catch(Exception e) {
             println "Exception update"
             println e
-            respond userInstance, model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'edit'
+            respond userInstance,
+             model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'edit'
         }
         
     }
 
     @Transactional
     def delete(Persona personaInstance) {
-        personaService.borrar(personaInstance)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.apellido])
-                redirect action:"index", method:"GET"
+        try {
+            personaService.borrar(personaInstance)
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.apellido])
+                    redirect action:"index", method:"GET"
+                }
+                '*'{ render status: NO_CONTENT }
             }
-            '*'{ render status: NO_CONTENT }
+            
         }
+        catch(Exception e) {
+            println "error"
+            println e
+            respond new User(params), 
+            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: e.getMessage()],
+            view:'../../views/error'
+        }
+        
+
     }
 
     protected void notFound() {

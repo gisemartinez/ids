@@ -16,7 +16,7 @@ class BienService {
     def A_DONACION = "A donacion"
     def A_DESCARTE = "A descarte"
     def DE_BAJA = "Baja"
-    //-----Roles----//
+    //-----Roles----//(podría llamarse desde los servicios del rol)
     def ROLE_SUPERVISOR = "ROLE_SUPERVISOR"
     def ROLE_ENCARGADO = "ROLE_ENCARGADO"
     def ROLE_OPERARIO = "ROLE_OPERARIO"
@@ -27,12 +27,10 @@ class BienService {
     def ROMI = "romina.prada@gmail.com"
     def PATRONUS = "patronus.ids@gmail.com"
 
-    def springSecurityService
+    //def springSecurityService
     def personaService
-
-    def idUserSesionActual(){
-        return springSecurityService.loadCurrentUser().id
-    }
+    def userService
+    def roleService
     def guardar(bienInstance){
     	if (bienInstance == null) {
             notFound()
@@ -82,34 +80,20 @@ class BienService {
         }
     }
     def buscarBienesPorQuery(query){
-    	if (
-            Role.permisoSesionActual( 
-                User.idRolSesionActual(
-                    this.idUserSesionActual()
-                    )
-                 )
-            == 
-            ROLE_SUPERVISOR)
+    	if (roleService.nombreDelRolDeSesionActual() == ROLE_SUPERVISOR)
             return Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
         else{
-            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( this.idUserSesionActual() )).area
+            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( userService.idUserSesionActual() )).area
             return Bien.findAll("from Bien where INSTR(nombreBien,?)>0 and area_id = ?",[query,areaUser])
         }
     }
     def mostrarBienesSegunPermiso(){
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
-        if (Role.permisoSesionActual( 
-	                User.idRolSesionActual(
-	                    idUserSesionActual()
-	                    )
-	                 )
-            == 
-        	ROLE_SUPERVISOR)
-           
+        if (roleService.nombreDelRolDeSesionActual() == ROLE_SUPERVISOR)
             return Bien.findAll()
         else{
-            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( idUserSesionActual() )).area
+            def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( userService.idUserSesionActual() )).area
             return Bien.findAllByArea(areaUser)
         }
     }

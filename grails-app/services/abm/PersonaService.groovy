@@ -8,30 +8,36 @@ import grails.validation.ValidationException
 @Transactional
 class PersonaService {
 
+    def userService
+    def roleService
+
     // <<<ERRORES>>
     def SE_HA_GUARDADO_CON_ERRORES = "se ha guardado con errores"
     def CONTRASENIAS_DIFF = "Las contraseñas son diferentes"
+    def USUARIO_IMPOSIBLE_DE_BORRAR = "El usuario que intenta borrar es el usuario dueño de ésta sesión"
+    def TIENE_MISMO_ROL = "El usuario que intenta borrar posee el mismo rol que ústed"
  	//Si se le da el id del rol que se necesita, filtra por esa categoría
 	ArrayList filtrarPersonasPorRol(def idRol){
 	      def rol = idRol
-	      def listaUsuarios = com.testapp.UserRole.findAll("from UserRole where role_id=?",[rol]).userId
-	      def listaPersonas = abm.PersonaUser.findAll("from UserRole where user_id in (:usuarios)",[usuarios: listaUsuarios]).userId
+	      def listaUsuarios = UserRole.findAll("from UserRole where role_id=?",[rol]).userId
+	      def listaPersonas = PersonaUser.findAll("from UserRole where user_id in (:usuarios)",[usuarios: listaUsuarios]).userId
 	      return Persona.findAll("from Persona where id in (:personas)",[personas: listaPersonas])	      
 	}
 	//este método debéría ir en la clase PersonaUser o en User
-	com.testapp.User getUserDePersona(personaInstance){
+	User getUserDePersona(personaInstance){
 		def persona_user = PersonaUser.findByPersonaId(personaInstance.id)
-		return com.testapp.User.findById(persona_user.userId)
+		return User.findById(persona_user.userId)
 	}
 	long getIdPersonaSesionActual(idUserSesionActual){
         return  PersonaUser.findByUserId( idUserSesionActual ).personaId
     }
     //este método debéría ir en la clase UserRole o Role
 	 
-	com.testapp.Role getRolDePersona(personaInstance){
+	Role getRolDePersona(personaInstance){
 		def user = this.getUserDePersona(personaInstance)
-		def role_id = com.testapp.UserRole.findByUser(user).roleId
-		return com.testapp.Role.findById(role_id)
+        println user
+		def role_id = UserRole.findByUser(user).roleId
+		return Role.findById(role_id)
 	}
     def actualizarRolDeUsuario(idRol,userInstance){
         //busco y elimino el par UsuarioRol
@@ -53,7 +59,7 @@ class PersonaService {
         }
         if (personaInstance.hasErrors()) {
             //respond personaInstance.errors, view:'create'
-            throw new ValidationException("La Persona"+ SE_HA_GUARDADO_CON_ERRORES, personaInstance.errors)
+            throw new RuntimeException("La Persona"+ SE_HA_GUARDADO_CON_ERRORES, personaInstance.errors)
             return
         }
         //--------lo mismo pero con el usuario--------
@@ -63,14 +69,14 @@ class PersonaService {
         }
         if (userInstance.hasErrors()) {
             //respond userInstance.errors, view:'create'
-            throw new ValidationException("El usuario"+ SE_HA_GUARDADO_CON_ERRORES, userInstance.errors)
+            throw new RuntimeException("El usuario"+ SE_HA_GUARDADO_CON_ERRORES, userInstance.errors)
             return
         }
         
         if (userInstance.password != userInstance.confirmPassword){
 
             //respond userInstance.errors, view:'create'
-            throw new ValidationException(CONTRASENIAS_DIFF, userInstance.errors)
+            throw new RuntimeException(CONTRASENIAS_DIFF, userInstance.errors)
             return
         }
         personaInstance.save flush:true
@@ -86,14 +92,32 @@ class PersonaService {
             notFound()
             return
         }
-        //Declaré un método en la clase persona que devuelve el user
-        def user = this.getUserDePersona(personaInstance)
 
-        PersonaUser.findByPersonaId(personaInstance.id).delete flush:true
-        UserRole.findByUser(user).delete flush:true
+        def userInstance = this.getUserDePersona(personaInstance) 
+        //el usuario a eliminar es el de la sesión iniciada?
+        if( userService.idUserSesionActual() == userInstance.id){
+            //log.Error "Son usuarios con un mismo rol "
 
-        personaInstance.delete flush:true
-        user.delete flush:true
+            throw new RuntimeException(USUARIO_IMPOSIBLE_DE_BORRAR)
+
+        }
+        //Comparten el rol?
+        if (roleService.roleIgualAlDeLaSesionActual(userInstance.id)){
+
+            throw new RuntimeException(TIENE_MISMO_ROL)
+
+        } else {
+            //tiene permisos para ésta operacion?
+            if (roleService.roleEsDeMenorJerarquia(userInstance.id)) {
+                PersonaUser.findByPersonaId(personaInstance.id).delete flush:true
+                UserRole.findByUser(userInstance).delete flush:true
+                personaInstance.delete flush:true
+                userInstance.delete flush:true
+            } else {
+                throw new RuntimeException(NO_POSEE_LOS_PERMISOS_NECESARIOS)
+            }
+        }
+
     }
     def actualizar(personaInstance,userInstance,idRol){
         def roleInstance = Role.findById(idRol)
@@ -103,7 +127,7 @@ class PersonaService {
         }
         if (personaInstance.hasErrors()) {
             //respond personaInstance.errors, view:'create'
-            throw new ValidationException("La Persona"+ SE_HA_GUARDADO_CON_ERRORES, personaInstance.errors)
+            throw new RuntimeException("La Persona"+ SE_HA_GUARDADO_CON_ERRORES, personaInstance.errors)
             return
         }
         //--------lo mismo pero con el usuario--------
@@ -113,14 +137,14 @@ class PersonaService {
         }
         if (userInstance.hasErrors()) {
             //respond userInstance.errors, view:'create'
-            throw new ValidationException("El usuario"+ SE_HA_GUARDADO_CON_ERRORES, userInstance.errors)
+            throw new RuntimeException("El usuario"+ SE_HA_GUARDADO_CON_ERRORES, userInstance.errors)
             return
         }
         
         if (userInstance.password != userInstance.confirmPassword){
 
             //respond userInstance.errors, view:'create'
-            throw new ValidationException(CONTRASENIAS_DIFF, userInstance.errors)
+            throw new RuntimeException(CONTRASENIAS_DIFF, userInstance.errors)
             return
         }
         personaInstance.save flush:true

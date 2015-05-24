@@ -11,7 +11,5 @@ class Role {
 	static constraints = {
 		authority blank: false, unique: true
 	}
-	static String permisoSesionActual ( idRolSesionActual ){
-        return Role.findById( idRolSesionActual ).authority
-    }
+
 }
