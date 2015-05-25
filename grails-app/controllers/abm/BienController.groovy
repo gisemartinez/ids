@@ -34,9 +34,13 @@ class BienController {
     def busqueda(Integer max) {
         def query = params.query
         def bienList = bienService.buscarBienesPorQuery(query)
-       
-        params.max = Math.min(max ?: 10, 100)
-        respond bienList, model:[ bienInstanceCount: Bien.count()],view:'index';
+        if (bienList?.empty) {
+            flash.message = "No se encontro ningun bien."
+            redirect view:'index'
+        } else {
+            params.max = Math.min(max ?: 10, 100)
+            respond bienList, model:[bienInstanceCount: Bien.count()],view:'index';
+        }
     }    
     
     def estadoAevaluar(Integer max) {
