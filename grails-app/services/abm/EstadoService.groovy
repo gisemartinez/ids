@@ -5,54 +5,77 @@ import grails.transaction.Transactional
 @Transactional
 class EstadoService {
 
+    //constantes
+
+    def A_EVALUAR = "A Evaluar"
+    def EN_USO = "En uso"
+    def A_REPARAR = "A Reparar"
+    def A_DONACION = "A donacion"
+    def A_DESCARTE = "A descarte"
+    def DE_BAJA = "Baja"
+
+    def getEstadoAEvaluar(){
+        return A_EVALUAR
+    }
+    def getEstadoEnUso(){
+        return EN_USO
+    }
+    def getEstadoAReparar(){
+        return A_REPARAR
+    }
+    def getEstadoADonacion(){
+        return A_DONACION
+    }
+    def getEstadoADescarte(){
+        return A_DESCARTE
+    }
+    def getEstadoDeBaja(){
+        return DE_BAJA
+    }
     def listado(idBienActual){
-    	def A_EVALUAR = "A Evaluar"
-	    def EN_USO = "En uso"
-	    def A_REPARAR = "A Reparar"
-	    def A_DONACION = "A donacion"
-	    def A_DESCARTE = "A descarte"
-	    def DE_BAJA = "Baja"
+    	
+
     	if (idBienActual)
     	{
     		def estado = Bien.findById(idBienActual).estado
     		println estado
     		switch(estado.nombre) {
-    			case A_EVALUAR:
+    			case this.getEstadoAEvaluar():
     				return Estado.where{
-	    				nombre == A_DONACION || 
-	    				nombre == EN_USO || 
-	    				nombre == A_REPARAR ||
-	    				nombre == A_DESCARTE ||
-                        nombre == A_EVALUAR
+	    				nombre == this.getEstadoADonacion() || 
+	    				nombre == this.getEstadoEnUso() || 
+	    				nombre == this.getEstadoAReparar() ||
+	    				nombre == this.getEstadoADescarte() ||
+                        nombre == this.getEstadoAEvaluar()
 	    			}.findAll();
     				
     			break;
-    			case A_DONACION:
+    			case this.getEstadoADonacion:
     				return Estado.where{
-	    				nombre == DE_BAJA ||
-                        nombre == A_DONACION
+	    				nombre == this.getEstadoDeBaja() ||
+                        nombre == this.getEstadoADonacion()
 	    			}.findAll();
     				
     			break;
-    			case EN_USO:
+    			case this.getEstadoEnUso():
     				return Estado.where{
-	    				nombre == A_EVALUAR||
-                        nombre == EN_USO
+	    				nombre == this.getEstadoAEvaluar()||
+                        nombre == this.getEstadoEnUso()
 	    			}.findAll();
     				
     			break;
-    			case A_REPARAR:
+    			case this.getEstadoAReparar():
     				return Estado.where{
-	    				nombre == A_DESCARTE || 
-	    				nombre == EN_USO ||
-                        nombre == A_REPARAR
+	    				nombre == this.getEstadoADescarte() || 
+	    				nombre == this.getEstadoEnUso() ||
+                        nombre == this.getEstadoAReparar()
 	    			}.findAll();
     				
     			break;
-    			case A_DESCARTE:
+    			case this.getEstadoADescarte():
     				return Estado.where{
-	    				nombre == DE_BAJA ||
-                        nombre == A_DESCARTE
+	    				nombre == this.getEstadoDeBaja() ||
+                        nombre == this.getEstadoADescarte()
 	    			}.findAll();
     				
     			break;

@@ -9,17 +9,7 @@ import grails.gorm.*
 
 @Transactional
 class BienService {
-	//-----Estados------//
-    def A_EVALUAR = "A Evaluar"
-    def EN_USO = "En uso"
-    def A_REPARAR = "A Reparar"
-    def A_DONACION = "A donacion"
-    def A_DESCARTE = "A descarte"
-    def DE_BAJA = "Baja"
-    //-----Roles----//(podría llamarse desde los servicios del rol)
-    def ROLE_SUPERVISOR = "ROLE_SUPERVISOR"
-    def ROLE_ENCARGADO = "ROLE_ENCARGADO"
-    def ROLE_OPERARIO = "ROLE_OPERARIO"
+	
     //-----Mails
     def GISE = "gise.cpna@gmail"
     def GUILLE = "ayestaranguillermo@gmail.com"
@@ -31,6 +21,8 @@ class BienService {
     def personaService
     def userService
     def roleService
+    def estadoService
+
     def guardar(bienInstance){
     	if (bienInstance == null) {
             notFound()
@@ -80,7 +72,7 @@ class BienService {
         }
     }
     def buscarBienesPorQuery(query){
-    	if (roleService.nombreDelRolDeSesionActual() == ROLE_SUPERVISOR)
+    	if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor())
             return Bien.findAll("from Bien where INSTR(nombreBien,?)>0",[query])
         else{
             def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( userService.idUserSesionActual() )).area
@@ -90,7 +82,7 @@ class BienService {
     def mostrarBienesSegunPermiso(){
         //--si el rol es Admin, traigo todos los bienes.En caso contrario,
         //traigo los bienes que correspondan al area de la persona
-        if (roleService.nombreDelRolDeSesionActual() == ROLE_SUPERVISOR)
+        if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor())
             return Bien.findAll()
         else{
             def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( userService.idUserSesionActual() )).area
@@ -102,32 +94,32 @@ class BienService {
         return listadoBienes.findAll{it.estado.id == estado.id}
     }
     def bienesAEvaluar(){
-        def listaAE = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), A_EVALUAR)
+        def listaAE = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), estadoService.getEstadoAEvaluar())
         return listaAE
     }
 
     def bienesEnUso(){
-        def listaEU = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), EN_USO)
+        def listaEU = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), estadoService.getEstadoEnUso())
         return listaEU
     }
 
     def bienesAReparar(){
-        def listaAR = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), A_REPARAR)
+        def listaAR = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), estadoService.getEstadoAReparar())
         return listaAR
     }
     
     def bienesADonacion(){
-        def listaAD = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(),  A_DONACION)
+        def listaAD = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(),  estadoService.getEstadoADonacion())
         return listaAD
     }
 
     def bienesADescarte(){
-        def listaADs = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), A_DESCARTE)
+        def listaADs = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), estadoService.getEstadoADescarte())
         return listaADs
     }
 
     def bienesBaja(){
-        def listaB = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), DE_BAJA )
+        def listaB = this.bienesSegunEstado(this.mostrarBienesSegunPermiso(), estadoService.getEstadoDeBaja() )
         return listaB
     }
 

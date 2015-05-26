@@ -16,6 +16,7 @@ class PersonaService {
     def CONTRASENIAS_DIFF = "Las contraseñas son diferentes"
     def USUARIO_IMPOSIBLE_DE_BORRAR = "El usuario que intenta borrar es el usuario dueño de ésta sesión"
     def TIENE_MISMO_ROL = "El usuario que intenta borrar posee el mismo rol que ústed"
+    
  	//Si se le da el id del rol que se necesita, filtra por esa categoría
 	ArrayList filtrarPersonasPorRol(def idRol){
 	      def rol = idRol
