@@ -142,6 +142,7 @@ class BienController {
 
     @Transactional
     def delete(Bien bienInstance) {
+        bienService.borrar(bienInstance)
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
