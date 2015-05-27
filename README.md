@@ -51,21 +51,27 @@ Init Xampp (special atention to MySql and Apache module )
 -------
 Third :  _<strong>Download this repository</strong>_
 Open the git bash console and open the path where you want to install the repository :
+```sh
 
-<code>
-  >>cd path/that/you/want
-  path/that/you/want>>git clone https://github.com/gisemartinez/ids/
-</code>
+$ cd path/that/you/want
+$ git clone https://github.com/gisemartinez/ids/
+
+```
 -------
 
-Fourth : Start the App 
+Fourth : _Start the App _
 Open a command window and open the path where you downloaded the repo.
 
-<code>
-  >>cd path/that/you/want
-  >>cd ids
-  path/that/you/want/ids>>grails run-app
-</code>
+```sh
+
+$ cd path/that/you/want/ids
+$ grails run-app
+
+```
+--------
+Fifth : _Voilá! _
+Open sublime and start to work :)
+
 
 
 
