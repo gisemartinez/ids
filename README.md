@@ -54,7 +54,7 @@ Open the git bash console and open the path where you want to install the reposi
 ```sh
 
 $ cd path/that/you/want
-$ git clone https://github.com/gisemartinez/ids/
+$ git clone https://github.com/gisemartinez/ids.git
 
 ```
 -------
