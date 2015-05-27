@@ -59,7 +59,7 @@ $ git clone https://github.com/gisemartinez/ids/
 ```
 -------
 
-Fourth : _Start the App _
+Fourth : _Start the App_
 Open a command window and open the path where you downloaded the repo.
 
 ```sh
@@ -69,7 +69,7 @@ $ grails run-app
 
 ```
 --------
-Fifth : _Voilá! _
+Fifth : _Voilá!_
 Open sublime and start to work :)
 
 
