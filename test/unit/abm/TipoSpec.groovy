@@ -7,7 +7,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Tipo)
-class TipoSpec extends Specification {
+class TipoSpec {
 
     def setup() {
     }
@@ -16,5 +16,9 @@ class TipoSpec extends Specification {
     }
 
     void "test something"() {
-    }
+	def tipos= new Tipo(nombretipo: "A evaluar")
+	tipos*.save(flush: true)
+	assertEquals "A evaluar", tipos.nombretipo
+	
+		}	
 }
