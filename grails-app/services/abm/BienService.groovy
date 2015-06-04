@@ -123,6 +123,17 @@ class BienService {
         return listaB
     }
 
-
-  
+    def ordenarLista(ArrayList lista, String ordenarPor, String orden){
+        //Seteo al codigo de serie como critero de ordenamiento por defecto 
+        if (ordenarPor == null) {ordenarPor = "codigoDeSerie"}
+        //ordeno
+        return lista.sort{
+            a, b -> 
+                if (orden == 'desc') {
+                    b."${ordenarPor}" <=> a."${ordenarPor}"
+                } else {
+                    a."${ordenarPor}" <=> b."${ordenarPor}"
+                }
+        }
+    }
 }
