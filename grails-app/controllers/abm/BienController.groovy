@@ -1,6 +1,5 @@
 package abm
 
-
 import com.testapp.UserRole
 import com.testapp.User
 import com.testapp.Role
@@ -9,7 +8,6 @@ import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.gorm.*
-
 
 @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO','ROLE_OPERARIO'])
 @Transactional(readOnly = true)
@@ -26,51 +24,17 @@ class BienController {
     }    
     
     def index(Integer max) {
-        //seteo el maximo a mostrar
+        println(params)
+        //Seteo el maximo a mostrar
         params.max = Math.min(max ?: 10, 100)
+        //Seteo al codigo de serie como critero de ordenamiento por defecto 
+        def lista = bienService.mostrarBienesSegunPermiso()
+        //Ordeno
+        def listaOrdenada = bienService.ordenarLista(lista,params.sort,params.order)       
+        respond listaOrdenada, model:[bienInstanceCount: Bien.count()] ,view:'index'
         respond bienService.mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
     }
     
-    def busqueda(Integer max) {
-        def query = params.query
-        def bienList = bienService.buscarBienesPorQuery(query)
-        if (bienList?.empty) {
-            flash.message = "No se encontro ningun bien."
-            redirect view:'index'
-        } else {
-            params.max = Math.min(max ?: 10, 100)
-            respond bienList, model:[bienInstanceCount: Bien.count()],view:'index';
-        }
-    }    
-    
-    def estadoAevaluar(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond bienService.bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
-    }
-    def estadoAreparar(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond bienService.bienesAReparar(),model:[ bienInstanceCount: Bien.count()],view:'index'
-    }
-    def estadoEnUso(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond bienService.bienesEnUso(), model:[ bienInstanceCount: Bien.count()],view:'index'     
-    }
-
-    def estadoAdonacion(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond bienService.bienesADonacion(), model:[ bienInstanceCount: Bien.count()],view:'index'     
-    }
-    def estadoAdescarte(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond bienService.bienesADescarte() ,model:[ bienInstanceCount: Bien.count()],view:'index'     
-     
-    }
-    def estadoBaja(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond bienService.bienesBaja(), model:[ bienInstanceCount: Bien.count()],view:'index'     
-     
-    }
-
     @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO'])
     def grafico(){
         def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
@@ -88,14 +52,14 @@ class BienController {
                 ]
             );
     }
+    
     def noticias(){
         //Es provisorio, debería traerme los de ésta semana
         //Debería estar puesto en el servicio
-    render(
+        render(
             view:'noticias',  
-            model:
-            [
-               cantAE:bienService.bienesAEvaluar().size(),
+            model:[
+                cantAE:bienService.bienesAEvaluar().size(),
                 cantEU:bienService.bienesEnUso().size(),
                 cantAR:bienService.bienesAReparar().size(),
                 cantAD:bienService.bienesADonacion().size(),
@@ -103,8 +67,8 @@ class BienController {
                 cantB:bienService.bienesBaja().size()
             ]
         );
-
     }
+    
     def show(Bien bienInstance) {
         respond bienInstance
     }
