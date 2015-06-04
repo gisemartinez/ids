@@ -14,5 +14,6 @@ class UrlMappings {
         "/"(view:"/index")
         "500"(view:'/error')
         "/permisos"(view:"/permisos")
+        "/qrcode"(view:"/qrcode")
 	}
 }
