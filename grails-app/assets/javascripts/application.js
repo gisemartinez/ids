@@ -10,13 +10,10 @@
 //= require_tree bootstrap 
 
 $(document).ready(function(){
-
-	//
-	//bootstrap
-	//
+	//Footer
+	$('body').append('<!--Footer--><div class="row container-fluid" style="margin-top:100px"></div>')
 
 	//a todos los inputs (menos a los submits) le agrego la clase form-control
-
 	$('input,select,textarea').addClass("form-control")
 	$('input:checkbox,input:submit').removeClass("form-control")
 	$('.fieldcontain').removeClass("fieldcontain")
@@ -24,13 +21,15 @@ $(document).ready(function(){
 	$('.list-group').css('margin-bottom','0')
 
 	//Tablas
-	$('table').addClass("table table-hover")
-	$('table').wrap('<div class="panel panel-default table-responsive">')
-	$('th,td').attr("style", "text-align:center")
+	$('table').addClass("table")
+	$('table').wrap('<div class="table-responsive">')
+	$('th').css('vertical-align','middle')
+	$('th,td').css('text-align', 'center')
 	$('th a').attr("style", "color:white;text-decoration:none")
 	$('th.sortable a').attr('title','Cambiar orden')
+	$('th.sortable a').append('<i class="mdi-navigation-unfold-more"></i>')
 	
-	//Coloreo los labels estado dependiendo su valor.
+	//Coloreo los labels de estado dependiendo su valor.
 	$("span.Reparar").attr('style','color:white;background-color:#f44336')
 	$("span.Uso").attr('style','color:white;background-color:#4CAF50')
 	$("span.Baja").attr('style','color:white;background-color:#212121')
@@ -40,34 +39,19 @@ $(document).ready(function(){
 	
 	//Si no hay elementos para mostrar..
 	if(!$('tbody').children().length){
-		$('.table-responsive').before('<div class="alert alert-warning" role="alert"><i class="md md-info"></i> No hay datos cargados. <a class="alert-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="accion">Desea agregar uno?</a></div>')
+		$('.table-responsive').before('<div class="alert alert-dismissable alert-info"><button type="button" class="close" data-dismiss="alert">×</button><i class="mdi-action-info"></i> No hay bienes cargados. <a class="alert-link" data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien" id="accion">Desea cargar uno?</a></div>')
 		$('.table-responsive').css('display','none')
 	}
 
 	//Si no hay suficientes elementos para paginar..
 	if($('ul.pagination li.disabled')){
 		$('div.pagination').css('display','none')	
-	}
-	
-	//Barra Principal
-	$('.barra_principal ul').attr("style", "background-color:#009688")
-	$('.barra_principal a').attr("style", "color:white;background-color:#009688;padding:15px 10px;")
-	$('.barra_principal .navbar-right ul a').css('padding','3px 20px;')
-	$('.barra_principal .md').addClass('md-2x')
-	$('#bs-example-navbar-collapse-1').attr("style", "background-color:#009688")
-	
-	//Barra Secundaria
-	$('#bs-example-navbar-collapse-2').attr("style", "background-color:#f8f8f8")
-	
-	//Ambas
-	$('.navbar-right ul li').attr("style","text-align: right;")
+	}	
 	
 	//Menús Desplagables
 	drop_up($(".perfil"))
-	drop_up($(".filtro"))
 	drop_down($(".perfil"))
-	drop_down($(".filtro"))
-
+	
 	function drop_up(elem){
 		elem.mouseout(function(){
 			elem.removeClass("open")
@@ -79,5 +63,4 @@ $(document).ready(function(){
 			elem.addClass("open")
 		})
 	}
-	
 });
