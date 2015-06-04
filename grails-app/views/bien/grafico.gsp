@@ -40,13 +40,19 @@
 		</script>
 	</head> 
 	<body>
-		<nav class="navbar navbar-default barra_acciones">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand">Estadísticas</a>
+		<div class="container-fluid">
+			<legend>Estadísticas</legend>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="container-fluid" id="top_x_div" style="margin:0 auto"></div>
+				</div>
+				<div class="col-lg-4">
+					<div class="container-fluid" id="top_x_div2" style="margin:0 auto"></div>
+				</div>
+				<div class="col-lg-4">
+					<div class="container-fluid" id="top_x_div3" style="margin:0 auto"></div>
 				</div>
 			</div>
-		</nav>	
-		<div class="container-fluid" id="top_x_div" style="margin: 0 auto"></div>
+		</div>		
 	</body>
 </html>
