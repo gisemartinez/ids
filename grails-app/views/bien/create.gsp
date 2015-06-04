@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}"/>
+		<title><g:message code="default.create.label" args="[entityName]"/></title>
 	</head>
 	<body>
 		<div class="container-fluid">
+			<legend>Crear Bien</legend>
 			<div class="panel panel-default">
-				<div class="panel-heading">Crear Bien</div>
 				<div class="panel-body">
 					<!-- <g:if test="${flash.message}">
-					<div class="message" role="status">${flash.message}</div>
+						<div class="message" role="status">${flash.message}</div>
 					</g:if> -->
 					<g:hasErrors bean="${bienInstance}">
 					<ul class="errors" role="alert">
@@ -19,21 +19,17 @@
 						</g:eachError>
 					</ul>
 					</g:hasErrors>
-					<g:form url="[resource:bienInstance, action:'save']" id="form_create_bien">
-						<fieldset class="form">
+					<g:form url="[resource:bienInstance, action:'save']" id="form_create_bien" class="form-horizontal">
+						<fieldset>
 							<g:render template="form"/>
+							<div class="col-lg-12">
+								<a href="#crearBien" data-toggle="collapse" aria-expanded="false" aria-controls="crearBien" class="btn btn-danger mdi-content-clear"></a>
+								<button type="submit" form="form_create_bien" class="btn btn-success mdi-action-done"></button>
+							</div>
 						</fieldset>
-					</g:form>				
+					</g:form>						
 				</div>
-				<div class="panel-footer" >
-					<button class="btn btn-link" type="submit" form="form_create_bien" style="padding: 0px 12px; color:#777777">
-						<i class="md md-check"></i>
-					</button>
-					<a data-toggle="collapse" href="#crearBien" aria-expanded="false" aria-controls="crearBien" style="padding: 0px 12px; color:#777777">
-						<i class="md md-close"></i>
-					</a>
-				</div>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>
