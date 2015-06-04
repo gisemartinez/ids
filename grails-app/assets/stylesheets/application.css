@@ -16,7 +16,5 @@
 
 *{font-family: 'Roboto', sans-serif;}
 th{font-weight: normal}
-th,th>a{color: white;}
-th{background-color: #428bca;}
-
-/**= require_tree materialize/css/*/
+th,th>a{color: white}
+th{background-color: #2196F3}
