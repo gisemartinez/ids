@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,28 +5,16 @@
 		<title><g:message code="Permisos"/></title>
 	</head>
 	<body>
-		<nav class="navbar navbar-default barra_acciones">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand">Permisos</a>
-				</div>
+		<div class="navbar navbar-material-teal-300 barra_acciones">
+			<div class="navbar-header">
+				<a class="navbar-brand">Permisos</a>
 			</div>
-		</nav>
+		</div>
 		<div class="container-fluid">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-						ROLE_SUPERVISOR
-					</sec:ifAllGranted>
-					<sec:ifAllGranted roles="ROLE_ENCARGADO">
-						ROLE_ENCARGADO
-					</sec:ifAllGranted>
-					<sec:ifAllGranted roles="ROLE_OPERARIO">
-						ROLE_OPERARIO
-					</sec:ifAllGranted>
-				</div>
 				<div class="panel-body">
 					<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+						<legend>Supervisor</legend>
 						Usted est&aacute logueado como SUPERVISOR, lo que le permite dar de alta nuevos usuarios, modificarlos y darlos de baja.
 						Podr&aacute realizar seguimiento a dichos usuarios y a los bienes del &aacuterea al que pertenece, pudiendo obtener reportes de los mismos.
 						<br><br>
@@ -45,20 +32,76 @@
 					</sec:ifAllGranted>
 					<ul class="list-group">
 						<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-							<li class="list-group-item">Bienes: crear modificar y eliminar bienes</li>
-							<li class="list-group-item">Estad&iacutesticas: ver gr&aacutefico de bienes cargados</li>
-							<li class="list-group-item">Personas: crear modificar y eliminar personas</li>
-							<li class="list-group-item">&Aacutereas: dar de alta y modificar &aacutereas</li>
-							<li class="list-group-item">Ubicaciones: dar de alta y modificar ubicaciones</li>
+							<div class="list-group">
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Bienes</h4>
+										<p class="list-group-item-text">Crear, modificar y eliminar bienes.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Estadísticas</h4>
+										<p class="list-group-item-text">Ver gráfico de bienes cargados.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Personas</h4>
+										<p class="list-group-item-text">Crear, modificar y eliminar personas.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Áreas</h4>
+										<p class="list-group-item-text">Dar de alta y modificar áreas.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Ubicaciones</h4>
+										<p class="list-group-item-text">Dar de alta y modificar ubicaciones.</p>
+									</div>
+								</div>
+							</div>
 						</sec:ifAllGranted>
 						<sec:ifAllGranted roles="ROLE_ENCARGADO">
-							<li class="list-group-item">Bienes: crear modificar y eliminar bienes</li>
-							<li class="list-group-item">Estad&iacutesticas: ver gr&aacutefico de bienes cargados</li>
-							<li class="list-group-item">&Aacutereas: dar de alta y modificar &aacutereas</li>
-							<li class="list-group-item">Ubicaciones: dar de alta y modificar ubicaciones</li>
+							<div class="list-group">
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Bienes</h4>
+										<p class="list-group-item-text">Crear, modificar y eliminar bienes.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Estadísticas</h4>
+										<p class="list-group-item-text">Ver gráfico de bienes cargados.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Áreas</h4>
+										<p class="list-group-item-text">Dar de alta y modificar áreas.</p>
+									</div>
+								</div>
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Ubicaciones</h4>
+										<p class="list-group-item-text">Dar de alta y modificar ubicaciones.</p>
+									</div>
+								</div>
+							</div>
 						</sec:ifAllGranted>
 						<sec:ifAllGranted roles="ROLE_OPERARIO">
-							<li class="list-group-item">Bienes: modificar bienes</li>
+							<div class="list-group">
+								<div class="list-group-item">
+									<div class="row-content">
+										<h4 class="list-group-item-heading">Bienes</h4>
+										<p class="list-group-item-text">Crear, modificar y eliminar bienes.</p>
+									</div>
+								</div>
+							</div>
 						</sec:ifAllGranted>
 					</ul>
 				</div>
