@@ -50,7 +50,7 @@ class EstadoService {
 	    			}.findAll();
     				
     			break;
-    			case this.getEstadoADonacion:
+    			case this.getEstadoADonacion():
     				return Estado.where{
 	    				nombre == this.getEstadoDeBaja() ||
                         nombre == this.getEstadoADonacion()
