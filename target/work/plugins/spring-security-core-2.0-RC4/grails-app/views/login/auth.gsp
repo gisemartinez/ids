@@ -4,8 +4,16 @@
 		<title><g:message code="springSecurity.login.title"/></title>
 	</head>
 	<body>
-		<div style="text-align:center; margin-bottom: 20px"><h4>Inicia sesión para acceder Patronus:</h4></div>
-		<div class="panel panel-default" style="margin:0 auto; max-width:350px">
+		<legend style="text-align:center">Inicia sesión para acceder a Patronus:</legend>
+		
+		<g:if test='${flash.message}'>
+			<div class="alert alert-dismissible alert-danger" role="alert" style="max-width:350px; margin:0 auto 20px">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<i class="mdi-alert-error"></i> <!-- <strong>Error!</strong>  -->El usuario o la contrase&#241a son incorrectos.
+			</div>
+		</g:if>
+		
+		<div class="panel panel-default" style="margin:0 auto 20px; max-width:350px">
 			<div class="panel-body">
 				<div style="text-align:center; margin-bottom: 20px"><i class="mdi-action-account-circle" style="font-size:8em"></i></div>
 				<div class="container-fluid" style="max-width:300px;">
@@ -28,12 +36,6 @@
 						</div>
 					</form>
 				</div>
-				<g:if test='${flash.message}'>
-					<div class="alert alert-danger alert-dismissible" role="alert" style="max-width:350px; margin:0 auto">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<i class="md md-error"></i> <!-- <strong>Error!</strong>  -->El usuario o la contrase&#241a son incorrectos.
-					</div>
-				</g:if>
 			</div>
 		</div>
 	</body>
