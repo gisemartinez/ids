@@ -34,11 +34,6 @@
 			#ic_ubicaciones{color:#e57373; font-size: 2em;}
 			#ic_perfil{font-size: 2em;}
 			
-			.btn-fab{
-				position: fixed;
-				bottom: 15px;
-				right: 15px;
-			}
 			.mfb-component--br a:hover, .mfb-component--br a:focus{color: white}
 
 			.list-group .list-group-item .list-group-item-heading {
@@ -173,7 +168,7 @@
 							if($(window).width() > 1199){
 								$('.barra_principal').stop();
 								$('.barra_principal').animate({ top: '0px' }, 'slow');
-								$('body').css('padding-top','65px')
+								$('body').css('padding-top','75px')
 							}
 							else {
 								$('.barra_principal').stop();
