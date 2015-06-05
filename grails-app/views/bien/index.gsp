@@ -99,35 +99,15 @@
 				col_5: "select",
 				col_6: "select",
 				col_7: "select",
-				col_9: "none"
+				col_9: "none",
+				btn: true,
+				btn_text: "Buscar"
 			}
 			setFilterGrid("myTable",0,myTableFilters);
 		</script>
 		<script>
 			$("a[href='#crearBien']").click(function() {
 				$("html, body").animate({ scrollTop: 0 }, "slow");
-			})
-		</script>
-		<script>
-			$(document).ready(function(){
-				function addRowHandlers() {
-				    var table = document.getElementById("myTable");
-				    var rows = table.getElementsByTagName("tr");
-				    for (i = 0; i < rows.length; i++) {
-				        var currentRow = table.rows[i];
-				        var createClickHandler = 
-				            function(row) 
-				            {
-				                return function() { 
-				                                        var cell = row.getElementsByTagName("td")[0];
-				                                        var id = cell.innerHTML;
-				                                        alert("id:" + id);
-				                                 };
-				            };
-
-				        currentRow.onclick = createClickHandler(currentRow);
-				    }
-				}
 			})
 		</script>
 	</body>
