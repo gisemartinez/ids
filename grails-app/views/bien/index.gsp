@@ -15,6 +15,7 @@
 			<div class="collapse" id="crearBien">
 				<g:include controller="bien" action="create"/>
 			</div>
+			<asset:javascript src="mfb.js"/>
 			<ul class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
 				<li class="mfb-component__wrap">
 					<!-- the main menu button -->
@@ -87,12 +88,9 @@
 				<div class="pagination">
 					<g:paginate total="${bienInstanceCount ?: 0}"/>
 				</div>
-				
-				<!-- <a href="#crearBien" data-toggle="collapse" aria-expanded="false" aria-controls="crear" class="btn btn-info btn-fab btn-raised mdi-content-add"></a> -->
-				
 			</div>
 		</div>
-		<asset:javascript src="mfb.js"/>
+		
 		<script language="javascript" type="text/javascript">
 			var myTableFilters = {
 				col_4: "select",
