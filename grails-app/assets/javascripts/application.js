@@ -21,8 +21,8 @@ $(document).ready(function(){
 	$('.list-group').css('margin-bottom','0')
 
 	//Tablas
-	$('table').addClass("table")
-	$('table').wrap('<div class="table-responsive">')
+	$('table').addClass("table table-hover")
+	$('table').wrap('<div class="panel table-responsive">')
 	$('th').css('vertical-align','middle')
 	$('th,td').css('text-align', 'center')
 	$('th a').attr("style", "color:white;text-decoration:none")
