@@ -16,6 +16,7 @@ class PersonaService {
     def CONTRASENIAS_DIFF = "Las contraseñas son diferentes"
     def USUARIO_IMPOSIBLE_DE_BORRAR = "El usuario que intenta borrar es el usuario dueño de ésta sesión"
     def TIENE_MISMO_ROL = "El usuario que intenta borrar posee el mismo rol que ústed"
+    def TIENE_BIENES_ASOCIADOS = "El usuario que intenta borrar posee bienes bajo su responsabilidad"
     
  	//Si se le da el id del rol que se necesita, filtra por esa categoría
 	ArrayList filtrarPersonasPorRol(def idRol){
@@ -90,10 +91,9 @@ class PersonaService {
     }
     def borrar(personaInstance){
         if (personaInstance == null) {
-            notFound()
-            return
+           throw new RuntimeException("Persona inexistente")
         }
-
+            
         def userInstance = this.getUserDePersona(personaInstance) 
         //el usuario a eliminar es el de la sesión iniciada?
         if( userService.idUserSesionActual() == userInstance.id){
@@ -118,7 +118,7 @@ class PersonaService {
                 throw new RuntimeException(NO_POSEE_LOS_PERMISOS_NECESARIOS)
             }
         }
-
+    
     }
     def actualizar(personaInstance,userInstance,idRol){
         def roleInstance = Role.findById(idRol)

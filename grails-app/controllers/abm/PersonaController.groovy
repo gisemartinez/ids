@@ -56,11 +56,14 @@ class PersonaController {
     def edit(Persona personaInstance,User userInstance) {
         try {
             def roleInstance = personaService.getRolDePersona(personaInstance)
-        respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
+            respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
         }
         catch(Exception e) {
-            println "Exception edit"
+            println "error"
             println e
+            respond new User(params), 
+            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: e.getMessage()],
+            view:'../../views/error'
         }
         
         
@@ -84,10 +87,11 @@ class PersonaController {
             
         }
         catch(Exception e) {
-            println "Exception update"
+            println "error"
             println e
-            respond userInstance,
-             model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'edit'
+            respond new User(params), 
+            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: e.getMessage()],
+            view:'../../views/error'
         }
         
     }
@@ -104,6 +108,12 @@ class PersonaController {
                 '*'{ render status: NO_CONTENT }
             }
             
+        }
+        catch(org.springframework.dao.DataIntegrityViolationException e) {
+            def mensaje = "La persona que está tratando de eliminar es responsable de bienes, áreas o departamentos y es por eso que no se continuará."
+            respond new User(params), 
+            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: mensaje],
+            view:'../../views/error'
         }
         catch(Exception e) {
             println "error"
