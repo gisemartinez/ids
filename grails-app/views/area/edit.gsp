@@ -7,10 +7,6 @@
 		<title><g:message code="default.edit.label" args="[entityName]"/></title>
 	</head>
 	<body>
-		<!--Crear Area-->
-		<div class="collapse" id="crearArea">
-			<g:include controller="area" action="create"/>
-		</div>
 		<div class="container-fluid">
 			<legend>Editar Área</legend>
 			<g:if test="${flash.message}">
