@@ -1,82 +1,121 @@
-/*
-* This is a manifest file that'll be compiled into application.css, which will include all the files
-* listed below.
-*
-* Any CSS file within this directory can be referenced here using a relative path.
-*
-* You're free to add application-wide styles to this file and they'll appear at the top of the
-* compiled file, but it's generally better to create a new file per style scope.
-*
-*= require_self
-*/
+// This is a manifest file that'll be compiled into application.js.
+//
+// Any JavaScript file within this directory can be referenced here using a relative path.
+//
+// You're free to add application-wide JavaScript to this file, but it's generally better 
+// to create separate JavaScript files as needed.
+//= require jquery
+//= require_self
 
-*{font-family: 'Roboto','Droid Sans',arial,sans-serif}
+//= require_tree bootstrap 
 
-/*//NAVBARS//*/
-.navbar.navbar,.navbar-default.navbar {color:white}
-.navmenu-nav>li.account-circle,.navmenu-nav>li.account-circle>a.account-circle,.perfil {background-color:#009688;color:white}
-.navmenu-default .navmenu-nav>.dropdown.perfil>a b.caret,.navmenu-default .navmenu-nav>.dropdown.perfil>a:hover b.caret {
-	float:right;margin-top:9px;border-top-color:white
-}
-.navmenu-default .navmenu-nav.dropdown-menu,.navbar-default .navbar-offcanvas .navmenu-nav.dropdown-menu {
-	border-bottom:1px #e7e7e7 solid;background-color:white
-}
-.navmenu-nav>li {
-	color:#777
-}
-.dropdown-header {padding: 6px 20px 3px 20px}
-.navmenu-icon {padding: 6px 0 6px 15px}
-.navmenu-icon,.navmenu-default .navmenu-nav>li>a.navmenu-link-with-icon,.navmenu-default .navmenu-nav>li>a:hover.navmenu-link-with-icon {
-	display:inline-block;font-weight:400;color:inherit
-}
-/***BODY***/
-@media (min-width: 1199px) {body {padding-top: 75px}}
-@media (max-width: 1199px) {body {padding-top: 65px}}
-/***ALERT***/
-div.alert{border-radius:2px}
-/***TABLE***/
-#myTable,.panel.table-responsive{margin-bottom:0}
-#myTable>thead>tr>th {vertical-align:middle;border-bottom:none;white-space:nowrap;font-weight:normal;background-color:#2196F3}
-th,th>a {color: white}
-th,td {text-align:center}
-th a,th a:hover,th a:focus {color:white;text-decoration:none}
-/***LABEL***/
-span.Reparar {background-color:#f44336}
-span.Uso {background-color:#4CAF50}
-span.Baja {background-color:#212121}
-span.Descarte {background-color:#795548}
-span.Donacion {background-color:#FFC107}
-span.Evaluar {background-color:#2196F3}
-label {font-weight:normal}
-/***DROPDOWN MENU***/
-.dropdown-menu>li>a {font-weight:300}
-/***ICON***/
-[class^="mdi-"], [class*="mdi-"] {font-size:1em}
-.big-icon {font-size:2em}
-a[class^="mdi-"], a[class*="mdi-"] {text-decoration:none}
-.navbar .navbar-nav>li>a.bien{color:#BCAAA4;font-size:20px}
-.navbar .navbar-nav>li>a.estadistica{color:#A5D6A7;font-size:20px}
-.navbar .navbar-nav>li>a.persona{color:#90CAF9;font-size:20px}
-.navbar .navbar-nav>li>a.area{color:#FFCC80;font-size:20px}
-.navbar .navbar-nav>li>a.ubicacion{color:#EF9A9A;font-size:20px}
-.navmenu .navmenu-nav>li.active {background-color:#E6E6E6}
-.navmenu .navmenu-nav>li.active.bien,.navmenu .navmenu-nav>li.bien:hover{color:#795548}
-.navmenu .navmenu-nav>li.active.estadistica,.navmenu .navmenu-nav>li.estadistica:hover{color:#4CAF50}
-.navmenu .navmenu-nav>li.active.persona,.navmenu .navmenu-nav>li.persona:hover{color:#2196F3}
-.navmenu .navmenu-nav>li.active.area,.navmenu .navmenu-nav>li.area:hover{color:#FF5722}
-.navmenu .navmenu-nav>li.active.ubicacion,.navmenu .navmenu-nav>li.ubicacion:hover{color:#F44336}
-/***FORM***/
-div[class^="col-"] {margin-bottom:15px}
-.form-group:last-child,
-.form-horizontal .form-group:last-child>div[class^="col-"]:last-child {margin-bottom:0px}
-.form-horizontal .control-label {padding-top:4px}
-span.checkbox-material {margin-right:10px}
-/***MODAL***/
-.modal-title {font-weight:500}
-.modal-content .modal-body {padding:16px 24px}
-/***PANEL***/
-.panel-body:not(:last-child) {padding-bottom:0}
-.panel-footer{text-align:right;border-top:0;background-color:white}
-/***LIST***/
-.list-group {margin-bottom:0}
-.list-group .list-group-item .list-group-item-heading {font-size:14px;font-weight:400}
+$(document).ready(function(){
+	
+	$.material.init()
+
+	$(function () {$('[data-toggle="tooltip"]').tooltip()})
+
+	$(function () {
+		var url = window.location.pathname
+		var animation_duration = 1000
+		var easing = "linear"
+
+		if (url.indexOf("bien")>-1) {$('li.bien').addClass('active')}
+		if (url.indexOf("estadistica")>-1) {$('li.estadistica').addClass('active')}
+		if (url.indexOf("persona")>-1) {$('li.persona').addClass('active')}
+		if (url.indexOf("area")>-1) {$('li.area').addClass('active')}
+		if (url.indexOf("ubicacion")>-1) {$('li.ubicacion').addClass('active')}
+
+		if (url.indexOf("bien")>-1) {$('a.bien').animate({fontSize:'36px'},animation_duration,easing)}
+		if (url.indexOf("estadistica")>-1) {$('a.estadistica').animate({fontSize:'36px'},animation_duration,easing)}
+		if (url.indexOf("persona")>-1) {$('a.persona').animate({fontSize:'36px'},animation_duration,easing)}
+		if (url.indexOf("area")>-1) {$('a.area').animate({fontSize:'36px'},animation_duration,easing)}
+		if (url.indexOf("ubicacion")>-1) {$('a.ubicacion').animate({fontSize:'36px'},animation_duration,easing)}
+	})	
+	
+	// Estilo de los inputs
+	$('input,select,textarea').addClass("form-control")
+	$('input:checkbox,input:submit').removeClass("form-control")
+
+	// Tablas
+	$('table').addClass("table table-hover").wrap('<div class="panel table-responsive">')
+	$('th.sortable a').attr('data-toggle','tooltip').attr('data-toggle','tooltip').attr('data-placement','top').attr('title','').attr('data-original-title','Cambiar orden')
+	
+	$('.sortable a').append('<i class="mdi-navigation-unfold-more"></i>')
+	$('.sorted.asc a').children().remove()
+	$('.sorted.asc a').append('<i class="mdi-navigation-expand-less"></i>')
+	$('.sorted.desc a').children().remove()
+	$('.sorted.desc a').append('<i class="mdi-navigation-expand-more"></i>')
+
+
+	if(!$('tbody').children().length){
+		$('.table-responsive').before('<div class="alert alert-dismissable alert-info"><button type="button" class="close" data-dismiss="alert">×</button><i class="mdi-action-info"></i> No hay nada cargado. <a class="alert-link" href="#create" id="accion">Desea cargar algo?</a></div>')
+		$('.table-responsive').css('display','none')
+	}
+
+	// Paginacion
+	if($('ul.pagination li.disabled')){
+		$('div.pagination').css('display','none')
+	}
+	
+	// Desplegables
+	$(".perfil").hover(
+		function(){$(this).addClass("open")},
+		function(){$(this).removeClass("open")}
+	)
+	
+	// Oculta la barra de navegacion y el FAB cuando nos desplazamos hacia abajo y los muestra cuando lo hacemos hacia arriba o llegamos al fondo
+	var prevScrollTop = 0, curDir = 'down', prevDir = 'up'
+	$(window).scroll(function() {
+		var x = $('div.navbar').height(), curScrollTop = $(this).scrollTop()
+		if(curScrollTop > Math.max(x,prevScrollTop) && curScrollTop + $(this).height() != $(document).height()) {
+			curDir = 'down';
+			if(curDir != prevDir ) {
+				$('div.navbar').stop().animate({ top: '-70px' }, 'slow')
+				$('.mfb-component--br').attr('data-mfb-state', 'closed').stop().animate({ bottom: '-200px' }, 'slow')
+			}
+		} else {
+			curDir = 'up'
+			if(curDir != prevDir) {
+				$('div.navbar').stop().animate({ top: '0px' }, 'slow')
+				$('.mfb-component--br').stop().animate({ bottom: '0px' }, 'slow')
+			}
+		}
+		prevDir = curDir;
+		prevScrollTop = curScrollTop
+	})
+		
+	$('.delete').click(function() {
+		var form,entity
+		if ($(this).data('form') == undefined) {form = "form_delete"} else form = $(this).data('form')
+		if ($(this).data('entity') == undefined) {entity = ""} else entity = $(this).data('entity')
+		//Si aun no existe ningun modal
+		if (!$('#dataConfirmModal').length) {
+			$('body').append(
+				'<div id="dataConfirmModal" class="modal fade">'+
+					'<div class="modal-dialog modal-sm">'+
+						'<div class="modal-content">'+
+							'<div class="modal-header">'+
+								'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
+								'<h4 class="modal-title">Borrar '+entity+'</h4>'+
+							'</div>'+
+							'<div class="modal-body">'+
+								'<p>¿Desea borrar esto?</p>'+
+							'</div>'+
+							'<div class="modal-footer">'+
+								'<button type="button" data-dismiss="modal" class="btn btn-flat btn-default">Cancelar</button>'+
+								'<button id="confirmbutton" type="submit" form='+form+' class="btn btn-flat btn-primary">Borrar</button>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+				'</div>'
+			)
+		} else {
+			var modal = $('#dataConfirmModal')
+			// Redireccionamos el boton al formulario correspondiente.
+			modal.find('#confirmbutton').attr('form',form)
+		}
+		$('#dataConfirmModal').modal({show:true});
+		return false;
+	})
+});
