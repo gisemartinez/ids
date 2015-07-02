@@ -14,6 +14,27 @@ $(document).ready(function(){
 	$.material.init()
 
 	$(function () {$('[data-toggle="tooltip"]').tooltip()})
+	
+	//Clear Input Button//
+	$('input:not([type="button"]):not([type="submit"]):not([type="hidden"]),textarea').addClass("clearable-input").bind('input change',function(){
+		if($(this).val()) {
+			$(this).next().css('display','inline-block')
+		}
+		else $(this).next().css('display','none')
+
+		if ($(this).parent().prop("tagName") == "TD") {$('tr input[type="button"]').trigger( "click" )}
+	}).after('<button class="btn-link btn-clear mdi-content-clear" id="btn-clear" tabIndex="-1"></button>')
+	$('button#btn-clear').click(function(){
+		$(this).prev().val('').trigger('input')
+	})
+	
+	//Submit Form on Password Field Enter//
+	$('form input[type="password"]').keypress(function(e){
+		if (e.which == 13) {
+			e.preventDefault()
+			$('button[type="submit"]').trigger( "click" )
+		}
+	})
 
 	$(function () {
 		var url = window.location.pathname
@@ -60,8 +81,14 @@ $(document).ready(function(){
 	
 	// Desplegables
 	$(".perfil").hover(
-		function(){$(this).addClass("open")},
-		function(){$(this).removeClass("open")}
+		function(){
+			$(this).addClass("open")
+			$('.perfil>a>b').removeClass('mdi-navigation-arrow-drop-down').addClass('mdi-navigation-arrow-drop-up')
+		},
+		function(){
+			$(this).removeClass("open")
+			$('.perfil>a>b').removeClass('mdi-navigation-arrow-drop-up').addClass('mdi-navigation-arrow-drop-down')
+		}
 	)
 	
 	// Oculta la barra de navegacion y el FAB cuando nos desplazamos hacia abajo y los muestra cuando lo hacemos hacia arriba o llegamos al fondo
