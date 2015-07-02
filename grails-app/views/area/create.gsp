@@ -28,7 +28,7 @@
 					</g:form>
 				</div>
 				<div class="panel-footer">
-					<a href="#create" class="btn btn-default" data-panel-height="134">Cancelar</a>
+					<a id="create" class="btn btn-default" data-panel-height="134">Cancelar</a>
 					<g:submitButton form="form_create" name="update" value="Crear" class="btn btn-primary"/>
 				</div>
 			</div>
