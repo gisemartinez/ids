@@ -37,6 +37,9 @@
 		<asset:javascript src="moment-with-locales.min.js"/>
 		<asset:javascript src="bootstrap-material-datetimepicker.js"/>
 		<asset:javascript src="fab.js"/>
+		
+		<g:set var="userId" value="${sec.loggedInUserInfo(field:'id')}" />
+		
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -110,26 +113,25 @@
 					</ul>
 				</li>
 				<li class="bien">
-					<span class="navmenu-icon"><i class="mdi-device-now-widgets"></i></span>
-					<g:link controller='bien' action='index' class="navmenu-link-with-icon">Bienes</g:link>
+					<g:link controller='bien' action='index' class="mdi-device-now-widgets">Bienes</g:link>
 				</li>
 				<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
 				<li class="estadistica">
-					<span class="navmenu-icon"><i class="mdi-action-assessment"></i></span>
-					<g:link controller='estadistica' action='index' class="navmenu-link-with-icon">Estadisticas</g:link></li>
+					<g:link controller='estadistica' action='index' class="mdi-action-assessment">Estadisticas</g:link></li>
 				<li class="persona">
-					<span class="navmenu-icon"><i class="mdi-social-group"></i></span>
-					<g:link controller='persona' action='index' class="navmenu-link-with-icon">Personas</g:link>
+					<g:link controller='persona' action='index' class="mdi-social-group">Personas</g:link>
 				</li>
 				<li class="area">
-					<span class="navmenu-icon"><i class="mdi-action-store"></i></span>
-					<g:link controller='area' action='index' class="navmenu-link-with-icon">Áreas</g:link>
+					<g:link controller='area' action='index' class="mdi-action-store">Áreas</g:link>
 				</li>
 				<li class="ubicacion">
-					<span class="navmenu-icon"><i class="mdi-maps-place"></i></span>
-					<g:link controller='ubicacion' action='index' class="navmenu-link-with-icon">Ubicaciones</g:link>
+					<g:link controller='ubicacion' action='index' class="mdi-maps-place">Ubicaciones</g:link>
 				</li>
 				</sec:ifAnyGranted>
+				<li class="divider"></li>
+				<li>
+					<g:link controller="persona" action="edit" id="${userId}" class="mdi-action-settings">Ajustes</g:link>
+				</li>
 			</ul>
 		</div>
 		<form name="form_logout" method="POST" action="${createLink(controller:'logout')}"></form>
