@@ -806,6 +806,7 @@
 					this.setElementValue();
 					$('#' + this.name).modal('hide'); break;
 			}
+			$('input[type="button"]').trigger( "click" );
 		},
 		_onCancelClick: function()
 		{
