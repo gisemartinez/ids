@@ -10,27 +10,50 @@
 *= require_self
 */
 
+textarea{resize:none}
+
+/*Clearable Inputs*/
+.clearable-input {
+	display: inline-block;
+}
+.btn-clear,.btn-clear:hover,.btn-clear:focus {
+	display: none;border: transparent;text-decoration: none;
+	vertical-align: middle;padding: 13px 0;
+}
+textarea + .btn-clear {
+	bottom: 45px
+}
+.btn-clear:before {
+	z-index: 1;
+	position: absolute;right: 5px;bottom: 6px;
+	text-align: center;
+	color: #999;
+}
+
 *{font-family: 'Roboto','Droid Sans',arial,sans-serif}
 /*//NAVBARS//*/
 .navbar.navbar,.navbar-default.navbar {color:white}
 .navmenu-nav>li.account-circle,.navmenu-nav>li.account-circle>a.account-circle,.perfil {background-color:#009688;color:white}
-.navmenu-default .navmenu-nav>.dropdown.perfil>a b.caret,.navmenu-default .navmenu-nav>.dropdown.perfil>a:hover b.caret {
-	float:right;margin-top:9px;border-top-color:white
-}
+.navmenu-nav>li.account-circle,.navmenu-nav>li.account-circle {padding-top: 15px}
+.perfil>a b {float:right;margin-top: 2px;}
 .navmenu-default .navmenu-nav.dropdown-menu,.navbar-default .navbar-offcanvas .navmenu-nav.dropdown-menu {
-	border-bottom:1px #e7e7e7 solid;background-color:white
+	border-bottom:1px #E7E7E7 solid;background-color:white
 }
-.navmenu-nav>li {
-	color:#777
-}
+.navmenu-nav>li {color:#777}
 .dropdown-header {padding: 6px 20px 3px 20px}
-.navmenu-icon {padding: 6px 0 6px 15px}
-.navmenu-icon,.navmenu-default .navmenu-nav>li>a.navmenu-link-with-icon,.navmenu-default .navmenu-nav>li>a:hover.navmenu-link-with-icon {
-	display:inline-block;font-weight:400;color:inherit
+.navmenu-default li.divider {height: 1px;background-color: #E7E7E7}
+.navmenu-default a[class^="mdi-"]:before, .navmenu-default a[class*="mdi-"]:before {
+	padding-right: 30px;
+	font-family: Material-Design-Icons;
 }
-/***BODY***/
+.navmenu-default .navmenu-nav>li.active>a,.navmenu-default .navmenu-nav>li.active>a:hover,
+.navmenu-default .navmenu-nav>li>a,.navmenu-default .navmenu-nav>li>a:hover {font-family: inherit;color:inherit}
+
 @media (min-width: 1199px) {body {padding-top: 75px}}
-@media (max-width: 1199px) {body {padding-top: 65px}}
+@media (max-width: 1199px) {
+	body {padding-top: 65px}
+	.form-group {margin-bottom: 0px}
+}
 /***ALERT***/
 div.alert{border-radius:2px}
 /***TABLE***/
