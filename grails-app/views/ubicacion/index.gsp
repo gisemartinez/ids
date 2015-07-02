@@ -16,7 +16,7 @@
 		<asset:javascript src="mfb.js"/>
 		<ul class="mfb-component--br" data-mfb-toggle="hover">
 			<li class="mfb-component__wrap">
-				<a class="mfb-component__button--main" href="#create" data-panel-height="119">
+				<a id="create" class="mfb-component__button--main" data-panel-height="119">
 					<i class="mfb-component__main-icon--resting mdi-content-add"></i>
 					<i class="mfb-component__main-icon--active mdi-content-add"></i>
 				</a>
