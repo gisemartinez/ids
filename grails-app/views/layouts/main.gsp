@@ -66,9 +66,9 @@
 					</sec:ifAnyGranted>
 				</ul>
 				<ul class="nav navbar-nav navbar-right" style="margin-right:0">
-					<li><a id="ic_notificaciones" class="mdi-social-notifications"><span class="badge">3</span></a></li>
+					<li class="dropdown notificaciones" id="notificaciones"><a class="mdi-social-notifications"><span class="badge">3</span></a></li>
 					<li class="dropdown perfil">
-						<a id="ic_perfil" class="mdi-social-person"></a>
+						<a class="mdi-social-person"></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="" class="mdi-action-account-circle" style="font-size:2em"></a></li>
 							<li class="dropdown-header">Usuario</li>
@@ -90,6 +90,16 @@
 				</ul>
 			</div>
 		</div>
+		
+		<g:formRemote name="form_refresh_notifications" update="notificaciones" url="[controller: 'bien', action:'noticias']"></g:formRemote>
+
+		<script>
+			(function(){
+				$('#form_refresh_notifications').submit()
+				setTimeout(arguments.callee, 60000);
+			})();
+		</script>
+		
 		<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm hidden-md hidden-lg">
 			<!-- <a class="navmenu-brand" href="#">PATRonus</a> -->
 			<ul class="nav navmenu-nav">
