@@ -48,11 +48,15 @@ class BienService {
             return
         }
 
-        bienInstance.save flush:true
- 
-        def cuerpoMail = "Se ha modificado el bien :"+bienInstance.descripcion+". \nSu estado cambi&oacute a &quote"+bienInstance.estado.nombre+"&quote";
+        if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor()) {bienInstance.save flush:true}
+        else {
+            def usuario = userService.userSesionActual().username
+            def cuerpoMail = "El usuario "+usuario+" ha intentado modificar el bien: "+bienInstance.descripcion+".\ncodigoPatrimonio: " +bienInstance.codigoPatrimonio+"\nnombreBien: "+bienInstance.nombreBien+"\ncodigoDeSerie: "+bienInstance.codigoDeSerie+"\ndescripcion: "+bienInstance.descripcion+"\nresponsableBien: "+bienInstance.responsableBien+"\ntipo: "+bienInstance.tipo+"\nubicacion: "+bienInstance.ubicacion.nombreubica+"\narea: "+bienInstance.area.nombrearea+"\nestado: "+bienInstance.estado.nombre+"\n"
+            //this.enviarMail(cuerpoMail,GUILLE)
             println(cuerpoMail)
-       //this.enviarMail(cuerpoMail,"pmdisanti@gmail.com")
+            bienInstance.discard()
+            return
+        }
 
     }
     def borrar(bienInstance){

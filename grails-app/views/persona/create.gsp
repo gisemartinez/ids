@@ -6,36 +6,32 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<g:message code="default.create.label" args="[entityName]"/>
-				</div>
+			<div class="panel panel-default panel-fab">
+				<span class="mdi-content-add"></span>
 				<div class="panel-body">
 					<!-- <g:if test="${flash.message}">
-					<div class="message" role="status">${flash.message}</div>
-					</g:if> -->
+						<div class="message" role="status">${flash.message}</div>
+					</g:if>
 					<g:hasErrors bean="${personaInstance}">
-					<ul class="errors" role="alert">
-						<g:eachError bean="$personaInstance}" var="error">
-						<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-						</g:eachError>
-					</ul>
-					</g:hasErrors>
-					<g:form url="[resource:personaInstance, action:'save']" id="form_create_persona">
-						<fieldset class="form">
+						<ul class="errors" role="alert">
+							<g:eachError bean="$personaInstance}" var="error">
+								<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
+									<g:message error="${error}"/>
+								</li>
+							</g:eachError>
+						</ul>
+					</g:hasErrors> -->
+					<g:form url="[resource:personaInstance, action:'save']" id="form_create" class="form-horizontal">
+						<fieldset>
 							<g:render template="form"/>
 						</fieldset>
-					</g:form>				
+					</g:form>
 				</div>
-				<div class="panel-footer" >
-					<button class="btn btn-link" type="submit" form="form_create_persona" style="padding: 0px 12px; color:#777777">
-						<i class="md md-check"></i>
-					</button>
-					<a data-toggle="collapse" href="#crearPersona" aria-expanded="false" aria-controls="crearPersona" style="padding: 0px 12px; color:#777777">
-						<i class="md md-close"></i>
-					</a>
+				<div class="panel-footer">
+					<a id="create" class="btn btn-default" data-panel-height="327">Cancelar</a>
+					<g:submitButton form="form_create" name="update" value="Crear" class="btn btn-primary"/>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>

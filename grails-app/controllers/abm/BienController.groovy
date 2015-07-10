@@ -17,6 +17,7 @@ class BienController {
 
     def personaService
     def bienService
+    def roleService
  
     def estado() {
         println params.estado
@@ -95,12 +96,23 @@ class BienController {
     @Transactional
     def update(Bien bienInstance) {
         bienService.actualizar(bienInstance)
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
-                redirect bienInstance
+        if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor()) {
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'Bien.label', default: 'Bien'), bienInstance.nombreBien])
+                    redirect bienInstance
+                }
+                '*'{ respond bienInstance, [status: OK] }
             }
-            '*'{ respond bienInstance, [status: OK] }
+        }
+        else {
+            request.withFormat {
+                form multipartForm {
+                    flash.message = "Se ha enviado un mail al supervisor para que realice los cambios."
+                    redirect bienInstance
+                }
+                '*'{ respond bienInstance, [status: OK] }
+            }
         }
     }
 

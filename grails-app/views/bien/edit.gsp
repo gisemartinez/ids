@@ -7,14 +7,8 @@
 		<title><g:message code="default.edit.label" args="[entityName]"/></title>
 	</head>
 	<body>
-		<!--Crear Bien-->
-		<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
-			<div class="collapse" id="crearBien">
-				<g:include controller="bien" action="create" />
-			</div>
-		</sec:ifAnyGranted>
 		<div class="container-fluid">
-			<legend>Editar</legend>
+			<legend>Editar Bien</legend>
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<g:if test="${flash.message}">
@@ -28,16 +22,16 @@
 							</g:eachError>
 						</ul>
 					</g:hasErrors>
-					<g:form url="[resource:bienInstance, action:'update']" method="PUT" id="form_edit_bien" class="form-horizontal">
+					<g:form url="[resource:bienInstance, action:'update']" method="PUT" id="form_edit" class="form-horizontal">
 						<g:hiddenField name="version" value="${bienInstance?.version}" />
 						<fieldset>
 							<g:render template="form"/>
-							<div class="col-lg-12">
-								<g:link action="show" resource="${bienInstance}" class="btn btn-danger mdi-content-clear"></g:link>
-								<button type="submit" form="form_edit_bien" class="btn btn-success mdi-action-done"></button>
-							</div>
 						</fieldset>
 					</g:form>
+				</div>
+				<div class="panel-footer">
+					<g:link action="show" id="${bienInstance.id}" class="btn btn-default">Cancelar</g:link>
+					<g:submitButton form="form_edit" name="update" value="Guardar" class="btn btn-primary"/>
 				</div>
 			</div>
 		</div>

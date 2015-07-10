@@ -118,12 +118,14 @@ class PersonaController {
         catch(Exception e) {
             println "error"
             println e
-            respond new User(params), 
-            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: e.getMessage()],
-            view:'../../views/error'
+            request.withFormat {
+                form multipartForm {
+                    flash.message = e.getMessage()
+                    redirect action:"index", method:"GET"
+                }
+                '*'{ render status: NO_CONTENT }
+            }
         }
-        
-
     }
 
     protected void notFound() {

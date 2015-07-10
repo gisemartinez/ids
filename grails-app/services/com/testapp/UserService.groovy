@@ -11,4 +11,7 @@ class UserService {
 	def idUserSesionActual(){
         return springSecurityService.loadCurrentUser().id
     }
+    def userSesionActual(){
+        return springSecurityService.loadCurrentUser()
+    }
 }

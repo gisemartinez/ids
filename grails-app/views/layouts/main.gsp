@@ -9,180 +9,143 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
 		<title><g:layoutTitle default="Grails"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
-		
+		<!-- Hojas de estilo -->
+		<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+		<!-- <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css'> -->
+		<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material.css'>
+		<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.css'>
+		<link rel='stylesheet' href='//jasny.github.io/bootstrap/dist/css/jasny-bootstrap.min.css'>
+		<!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 		<asset:stylesheet src="application.css"/>
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href='//cdn.jsdelivr.net/bootstrap.material-design/0.2.2/css/material-wfont.min.css' rel='stylesheet' type='text/css'>
-		<link href='//cdn.jsdelivr.net/bootstrap.material-design/0.2.2/css/ripples.min.css' rel='stylesheet' type='text/css'>
-
+		<asset:stylesheet src="bootstrap-material-datetimepicker.css"/>
+		<asset:stylesheet src="fab.css"/>
+		<!-- Scripts -->
 		<asset:javascript src="application.js"/>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="//cdn.jsdelivr.net/bootstrap.material-design/0.2.2/js/material.min.js"></script>
-		<script src="//cdn.jsdelivr.net/bootstrap.material-design/0.2.2/js/ripples.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js'></script>
+		<script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js'></script>
+		<asset:javascript src="jasny-bootstrap.js"/>
+		<!--
+			Con el agregado de:
+				$('.table-responsive').css('overflow','hidden')
+			en la funcion disableScrolling, y:
+				$('body').css('overflow', 'auto')
+				$('.table-responsive').css('overflow','auto')
+    		en la funcion hide.
+		-->
+		<asset:javascript src="moment-with-locales.min.js"/>
+		<asset:javascript src="bootstrap-material-datetimepicker.js"/>
+		<asset:javascript src="fab.js"/>
+		
+		<g:set var="userId" value="${sec.loggedInUserInfo(field:'id')}" />
+		
 		<g:layoutHead/>
-		<style>
-			@media (min-width: 1199px) {body {padding-top: 75px}}
-			@media (max-width: 1199px) {body {padding-top: 65px}}
-			
-			/*Color y tamaño de los iconos*/
-			#ic_bienes{color:#bcaaa4; font-size: 2em;}
-			#ic_estadisticas{color:#A5D6A7; font-size: 2em;}
-			#ic_personas{color:#90CAF9; font-size: 2em;}
-			#ic_areas{color:#FFAB91; font-size: 2em;}
-			#ic_ubicaciones{color:#e57373; font-size: 2em;}
-			#ic_perfil{font-size: 2em;}
-			
-			.mfb-component--br a:hover, .mfb-component--br a:focus{color: white}
-
-			.list-group .list-group-item .list-group-item-heading {
-				font-size: 16px;
-			}
-
-			#barra_principal {
-				/*background-color: #880E4F;*/
-				transition: background .5s ease-in-out;}
-
-			select{margin-top: 5px;}
-
-			/*Barra Secundaria*/
-			.barra_acciones{position: fixed; top: 60px; width: 100%; z-index: 900;}
-			@media (max-width: 1199px) {.barra_acciones {top: 50px}}
-		</style>
 	</head>
 	<body>
 		<sec:ifLoggedIn>
-			<div class="navbar navbar-default navbar-fixed-top barra_principal" id="barra_principal">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse1">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/${grailsApplication.config.nombreAplicacion}" title="Inicio">PATRonus</a>
-				</div>
-				<div class="navbar-collapse collapse navbar-responsive-collapse1">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href="/${grailsApplication.config.nombreAplicacion}/bien/index" id="ic_bienes" title="Bienes" class="mdi-device-now-widgets"></a>
-						</li>
-						<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
-							<li>
-								<a href="/${grailsApplication.config.nombreAplicacion}/bien/grafico" id="ic_estadisticas" title="Estad&iacutesticas" class="mdi-action-assessment"></a>
-							</li>
-							<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-							<li>
-								<a href="/${grailsApplication.config.nombreAplicacion}/persona/index" id="ic_personas" title="Usuarios" class="mdi-social-group"></a>
-							</li>
-							</sec:ifAllGranted>
-							<li>
-								<a href="/${grailsApplication.config.nombreAplicacion}/area/index" id="ic_areas" title="Areas" class="mdi-action-store"></a>
-							</li>
-							<li>
-								<a href="/${grailsApplication.config.nombreAplicacion}/ubicacion/index" id="ic_ubicaciones" title="Ubicaciones" class="mdi-maps-place"></a>
-							</li>
-						</sec:ifAnyGranted>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" style="margin-right:0">
-						<li><a id="ic_notificaciones" class="mdi-social-notifications"><span class="badge">3</span></a></li>
-						<li class="dropdown perfil">
-							<a id="ic_perfil" class="mdi-social-person"></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="" class="mdi-action-account-circle" style="font-size:2em"></a></li>
-								<li class="dropdown-header">Usuario</li>
-								<li><a><sec:username/></a></li>
-								<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-									<li class="dropdown-header">Rol: Supervisor</li>
-								</sec:ifAllGranted>
-								<sec:ifAllGranted roles="ROLE_ENCARGADO">
-									<li class="dropdown-header">Rol: Encargado</li>
-								</sec:ifAllGranted>
-								<sec:ifAllGranted roles="ROLE_OPERARIO">
-									<li class="dropdown-header">Rol: Operario</li>
-								</sec:ifAllGranted>
-								<li><a href="/${grailsApplication.config.nombreAplicacion}/permisos">Permisos</a></li>
-								<li class="divider"></li>
-								<li><a href="javascript:document.form_logout.submit()">Cerrar sesi&oacuten</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<g:link class="navbar-brand">PATRonus</g:link>					
 			</div>
-		</sec:ifLoggedIn>
+			<div class="navbar-collapse collapse navbar-responsive-collapse">
+				<ul class="nav navbar-nav">
+					<li><g:link controller='bien' action='index' class="mdi-device-now-widgets bien"></g:link></li>
+					<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+						<li><g:link controller='estadistica' action='index' class="mdi-action-assessment estadistica"></g:link></li>
+						<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+							<li><g:link controller='persona' action='index' class="mdi-social-group persona"></g:link></li>
+						</sec:ifAllGranted>
+						<li><g:link controller='area' action='index' class="mdi-action-store area"></g:link></li>
+						<li><g:link controller='ubicacion' action='index' class="mdi-maps-place ubicacion"></g:link></li>
+					</sec:ifAnyGranted>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="margin-right:0">
+					<li class="dropdown notificaciones" id="notificaciones"><a class="mdi-social-notifications"><span class="badge">3</span></a></li>
+					<li class="dropdown perfil">
+						<a class="mdi-social-person"></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="" class="mdi-action-account-circle" style="font-size:2em"></a></li>
+							<li class="dropdown-header">Usuario</li>
+							<li><a><sec:username/></a></li>
+							<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+								<li class="dropdown-header">Rol: Supervisor</li>
+							</sec:ifAllGranted>
+							<sec:ifAllGranted roles="ROLE_ENCARGADO">
+								<li class="dropdown-header">Rol: Encargado</li>
+							</sec:ifAllGranted>
+							<sec:ifAllGranted roles="ROLE_OPERARIO">
+								<li class="dropdown-header">Rol: Operario</li>
+							</sec:ifAllGranted>
+							<li><g:link resource='permisos'>Permisos</g:link></li>
+							<li class="divider"></li>
+							<li><a href="javascript:document.form_logout.submit()">Cerrar sesi&oacuten</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<g:formRemote name="form_refresh_notifications" update="notificaciones" url="[controller: 'bien', action:'noticias']"></g:formRemote>
 
+		<script>
+			(function(){
+				$('#form_refresh_notifications').submit()
+				setTimeout(arguments.callee, 60000);
+			})();
+		</script>
+		
+		<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm hidden-md hidden-lg">
+			<!-- <a class="navmenu-brand" href="#">PATRonus</a> -->
+			<ul class="nav navmenu-nav">
+				<li class="account-circle"><a class="mdi-action-account-circle account-circle" style="font-size:3em;"></a></li>
+				<li class="dropdown perfil">
+					<a class="dropdown-toggle" data-toggle="dropdown" style="background-color:#009688;color:white;">
+						<sec:username/> <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu navmenu-nav">
+						<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+							<li class="dropdown-header">Rol: Supervisor</li>
+						</sec:ifAllGranted>
+						<sec:ifAllGranted roles="ROLE_ENCARGADO">
+							<li class="dropdown-header">Rol: Encargado</li>
+						</sec:ifAllGranted>
+						<sec:ifAllGranted roles="ROLE_OPERARIO">
+							<li class="dropdown-header">Rol: Operario</li>
+						</sec:ifAllGranted>
+						<li><g:link resource='permisos'>Permisos</g:link></li>
+						<li><a href="javascript:document.form_logout.submit()">Cerrar sesi&oacuten</a></li>
+					</ul>
+				</li>
+				<li class="bien">
+					<g:link controller='bien' action='index' class="mdi-device-now-widgets">Bienes</g:link>
+				</li>
+				<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+				<li class="estadistica">
+					<g:link controller='estadistica' action='index' class="mdi-action-assessment">Estadisticas</g:link></li>
+				<li class="persona">
+					<g:link controller='persona' action='index' class="mdi-social-group">Personas</g:link>
+				</li>
+				<li class="area">
+					<g:link controller='area' action='index' class="mdi-action-store">Áreas</g:link>
+				</li>
+				<li class="ubicacion">
+					<g:link controller='ubicacion' action='index' class="mdi-maps-place">Ubicaciones</g:link>
+				</li>
+				</sec:ifAnyGranted>
+				<li class="divider"></li>
+				<li>
+					<g:link controller="persona" action="edit" id="${userId}" class="mdi-action-settings">Ajustes</g:link>
+				</li>
+			</ul>
+		</div>
 		<form name="form_logout" method="POST" action="${createLink(controller:'logout')}"></form>
-
+		</sec:ifLoggedIn>
 		<g:layoutBody/>
-		<script>
-			$.material.init();
-		</script>
-
-		<!--<script>
-			$( '#ic_bienes' ).hover( 
-				function(){
-					$('#barra_principal').css('background','#795548')
-				},
-				function(){
-					$('#barra_principal').css('background','white')
-				}
-			)
-		</script>-->
-		<script>
-			$(function(){
-				$(window).resize(function() {
-					if($(window).width() > 1199){
-						$('body').css('padding-top','75px')
-					}
-					else {
-						$('body').css('padding-top','65px')
-					}
-				});
-			});
-		</script>
-		<script>
-			$(function(){
-				var prevScroll = 0, curDir = 'down', prevDir = 'up';
-				$(window).scroll(function(){
-					if($(this).scrollTop() > prevScroll){
-						curDir = 'down';
-						if(curDir != prevDir){
-							if($(window).width() > 1199){
-								$('.barra_principal').stop();
-								$('.barra_principal').animate({ top: '-60px' }, 'slow');
-								$('body').css('padding-top','15px')
-							}
-							else {
-								$('.barra_principal').stop();
-								$('.barra_principal').animate({ top: '-50px' }, 'slow');
-								$('body').css('padding-top','15px')
-							}
-							$('.mfb-component--br').stop();
-							$('.mfb-component--br').attr('data-mfb-state', 'closed');
-							$('.mfb-component--br').animate({ bottom: '-200px' }, 'slow');
-							prevDir = curDir;
-						}
-					} else {
-						curDir = 'up';
-						if(curDir != prevDir){
-							if($(window).width() > 1199){
-								$('.barra_principal').stop();
-								$('.barra_principal').animate({ top: '0px' }, 'slow');
-								$('body').css('padding-top','75px')
-							}
-							else {
-								$('.barra_principal').stop();
-								$('.barra_principal').animate({ top: '0px' }, 'slow');
-								$('body').css('padding-top','65px')
-							}
-							$('.mfb-component--br').stop();
-							$('.mfb-component--br').animate({ bottom: '0px' }, 'slow');
-							prevDir = curDir;
-						}
-					}
-					prevScroll = $(this).scrollTop();
-				});
-			})
-		</script>
 	</body>
 </html>
