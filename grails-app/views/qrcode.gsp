@@ -13,30 +13,42 @@
 				font-weight: 400;
 				display: block;
 			}
+			.tabs .indicator {
+				background-color: #009688 !important
+			}
+			.tabs .tab a, .tabs .tab a:hover {
+				color: #009688 !important
+			}
 		</style>
 		<asset:javascript src="llqrcode.js"/>
 		<asset:javascript src="webqr.js"/>
 	</head>
 	<body>
-		<!-- Header -->
-		<div class="row container-fluid" style="margin-top:40px"></div>
-		
 		<div style="max-width:320px; margin:0 auto">
 			<!-- Escaneo por video o imagen -->
-			<div class="btn-group btn-group-justified">
-				<a onclick="setwebcam()" class="btn btn-default mdi-av-videocam big-icon"></a>
-				<a onclick="setimg()" class="btn btn-default mdi-image-camera-alt big-icon"></a>
-			</div>
+			<ul class="tabs">
+				<li class="tab col s3"><a href="#test1" onclick="setwebcam()">Test 1</a></li>
+				<li class="tab col s3"><a href="#test2" onclick="setimg()">Test 2</a></li>
+			</ul>
 			<!-- Drag n Drop o Seleccion de archivo -->
 			<div id="outdiv" class="row">
 				<div id="qrfile"></div>
 			</div>
 			<!-- Resultado -->
+			<div id="test1" class="col s12">
+				<div id="outdiv" class="row">
+					<div id="qrfile"></div>
+				</div>
+			</div>
+			<div id="test2" class="col s12">
+				<div id="outdiv" class="row">
+					<div id="qrfile"></div>
+				</div>
+			</div>
+			
 			<div id="result" style="text-align: center"></div>
 			<canvas id="qr-canvas" width="800" height="600" style="width: 800px; height: 600px; display: none"></canvas>
 			<script type="text/javascript">load();</script>
 		</div>
-		<!-- Footer -->
-		<div class="row container-fluid" style="margin-top:40px"></div>
 	</body>
 </html>
