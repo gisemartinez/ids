@@ -4,36 +4,33 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}"/>
-		<title><g:message code="default.edit.label" args="[entityName]"/></title>
+		<g:set var="title" value="Editar"/>
+		<title>${title}</title>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<legend>Editar Bien</legend>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<g:if test="${flash.message}">
-						<div class="message" role="status">${flash.message}</div>
-					</g:if>
-					<g:hasErrors bean="${bienInstance}">
-						<ul class="errors" role="alert">
-							<g:eachError bean="${bienInstance}" var="error">
-								<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/>
-								</li>
-							</g:eachError>
-						</ul>
-					</g:hasErrors>
-					<g:form url="[resource:bienInstance, action:'update']" method="PUT" id="form_edit" class="form-horizontal">
-						<g:hiddenField name="version" value="${bienInstance?.version}" />
-						<fieldset>
-							<g:render template="form"/>
-						</fieldset>
-					</g:form>
-				</div>
-				<div class="panel-footer">
-					<g:link action="show" id="${bienInstance.id}" class="btn btn-default">Cancelar</g:link>
-					<g:submitButton form="form_edit" name="update" value="Guardar" class="btn btn-primary"/>
+		<div class="container">
+			<div class="row">
+				<div class="col s12 offset-m1 m10 offset-l2 l8">
+					<div class="card">
+						<g:form url="[resource:bienInstance, action:'update']" method="PUT" id="form_edit">
+							<div class="card-image">
+								<asset:image src="sample-1.jpg"/>
+								<span class="card-title">Editar Bien</span>
+							</div>
+							<div class="card-content">
+								<g:render template="/if-errors" bean="${bienInstance}" var="instance"/>
+								<g:hiddenField name="version" value="${bienInstance?.version}" />
+								<g:render template="form"/>
+							</div>
+						</g:form>
+						<div class="card-action">
+							<g:link action="show" id="${bienInstance.id}">Cancelar</g:link>
+							<g:submitButton form="form_edit" name="update" value="Guardar" class="btn-flat white"/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+		<script>$('.brand-logo').text('${title}')</script>
 	</body>
 </html>
