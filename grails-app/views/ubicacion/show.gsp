@@ -8,54 +8,43 @@
 	</head>
 	<body>
 		<!--Volver al listado-->
-		<ul class="mfb-component--br" data-mfb-toggle="hover">
-			<li class="mfb-component__wrap">
-				<g:link action="index" class="mfb-component__button--main">
-					<i class="mfb-component__main-icon--resting mdi-action-list"></i>
-					<i class="mfb-component__main-icon--active mdi-action-list"></i>
-				</g:link>
-			</li>
-		</ul>
-		<div class="container-fluid">
+		<g:link action="index" class="btn-floating btn-large waves-effect waves-light red" style="position: fixed; bottom: 15px; right: 15px;">
+			<i class="material-icons">list</i>
+		</g:link>
+		<div class="container">
+			<!--Alertas-->
 			<g:if test="${flash.message}">
 				<div class="message" role="status">
 					${flash.message}
 				</div>
 			</g:if>
 			<div class="row">
-				<div class="col-lg-6">
-					<legend>Detalle de Ubicación</legend>			
-					<div class="panel panel-default" style="margin:0 auto 20px">
-						<div class="panel-body">
+				<div class="col s12 offset-m1 m10 offset-l2 l8">
+					<div class="card">
+						<div class="card-image">
+							<asset:image src="sample-1.jpg"/>
+							<span class="card-title" id="persona">Detalle de Ubicación</span>
+						</div>
+						<div class="card-content">
 							<div class="list-group">
-								<div class="list-group-item">
-									<div class="row-content">
+								<div class="row">
+									<div class="col s12 m6 l4">
 										<g:if test="${ubicacionInstance?.nombreubica}">
-											<h4 class="list-group-item-heading"><g:message code="ubicacion.nombreubica.label" default="Nombre de la Ubicacion"/></h4>
-											<p class="list-group-item-text"><g:fieldValue bean="${ubicacionInstance}" field="nombreubica"/></p>
+											<label><g:message code="ubicacion.nombreubica.label" default="Nombre de la Ubicacion"/></label>
+											<p><g:fieldValue bean="${ubicacionInstance}" field="nombreubica"/></p>
 										</g:if>
 									</div>
-								</div>
-								<div class="list-group-item">
-									<div class="row-content">
+									<div class="col s12 m6 l4">
 										<g:if test="${ubicacionInstance?.fechaAlta}">
-											<h4 class="list-group-item-heading"><g:message code="ubicacion.fechaAlta.label" default="Fecha Alta"/></h4>
-											<p class="list-group-item-text"><g:formatDate format="dd-MM-yyyy" date="${ubicacionInstance?.fechaAlta}"/></p>
-										</g:if>
-									</div>
-								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${ubicacionInstance?.fechaBaja}">
-											<h4 class="list-group-item-heading"><g:message code="ubicacion.fechaBaja.label" default="Fecha Baja"/></h4>
-											<p class="list-group-item-text"><g:formatDate format="dd-MM-yyyy" date="${ubicacionInstance?.fechaBaja}"/></p>
+											<label><g:message code="ubicacion.fechaAlta.label" default="Fecha Alta"/></label>
+											<p><g:formatDate format="dd-MM-yyyy" date="${ubicacionInstance?.fechaAlta}"/></p>
 										</g:if>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="panel-footer" style="text-align:right">
-							<g:link action="edit" id="${ubicacionInstance.id}" class="btn btn-primary">Editar</g:link>
+						<div class="card-action">
+							<g:link action="edit" id="${ubicacionInstance.id}">Editar</g:link>
 						</div>
 					</div>
 				</div>
