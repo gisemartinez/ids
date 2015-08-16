@@ -3,15 +3,15 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}"/>
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
-		<asset:javascript src="tablefilter.js"/>
+		<g:set var="title" value="Listado"/>
+		<title>${title}</title>
 	</head>
 	<body>
-		<!--Crear Bien-->
-		<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+		<div class="container">
 			<g:render template="create"/>
-		</sec:ifAnyGranted>
-		<g:render template="list"/>
+			<g:render template="/search"/>
+			<g:render template="list"/>
+		</div>
+		<script>$('.brand-logo').text('${title}')</script>
 	</body>
 </html>
