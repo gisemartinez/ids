@@ -1,7 +1,5 @@
 package abm
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
@@ -12,9 +10,32 @@ class AreaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Area.list(params), model:[areaInstanceCount: Area.count()]
+    def areaService
+
+    def index() {
+    }
+
+    def list(Integer max) {
+        println(params)
+        //Seteo el maximo a mostrar
+        params.max = Math.min(max ?: 2, 100)
+        params.offset = params.offset ?: 0
+        params.query = params.query ?: ""
+        params.sort = params.sort ?: "nombrearea"
+        params.order = params.order ?: "asc"
+        //Realizo la busqueda
+        def listSinMaxNiOffset = areaService.getAreas(0,0,params.query)
+        def listaConMaxYOffset = areaService.getAreas(params.max,params.offset,params.query)
+        //Ordeno
+        def listaOrdenada = areaService.ordenarLista(listaConMaxYOffset,params.sort,params.order)
+        render(
+            template:'list',
+            model: [
+                areaInstanceList:       listaOrdenada,
+                areaInstanceCount:      listSinMaxNiOffset.size(),
+                params:                 params
+            ]
+        )
     }
 
     def show(Area areaInstance) {
