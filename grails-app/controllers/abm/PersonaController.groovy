@@ -1,6 +1,5 @@
 package abm
 
-
 import com.testapp.User
 import com.testapp.Role
 import com.testapp.UserRole
@@ -14,9 +13,31 @@ class PersonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def personaService
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+
+    def index() {
+    }
+
+    def list(Integer max) {
+        println(params)
+        //Seteo el maximo a mostrar
+        params.max = Math.min(max ?: 2, 100)
+        params.offset = params.offset ?: 0
+        params.query = params.query ?: ""
+        params.sort = params.sort ?: "nombre"
+        params.order = params.order ?: "asc"
+        //Realizo la busqueda
+        def listSinMaxNiOffset = personaService.getPersonasSegunPermiso(0,0,params.query)
+        def listaConMaxYOffset = personaService.getPersonasSegunPermiso(params.max,params.offset,params.query)
+        //Ordeno
+        def listaOrdenada = personaService.ordenarLista(listaConMaxYOffset,params.sort,params.order)
+        render(
+            template:'list',
+            model: [
+                personaInstanceList:        listaOrdenada,
+                personaInstanceCount:       listSinMaxNiOffset.size(),
+                params:                     params
+            ]
+        )
     }
 
     def show(Persona personaInstance, User userInstance) {
@@ -25,8 +46,6 @@ class PersonaController {
     }
 
     def create() {
-
-        //respond new Persona(params.nombre,params.apellido,params.dni,params.username,params.password)
         respond new Persona(params), model:[userInstance:new User(params)]
     }
 
@@ -56,14 +75,11 @@ class PersonaController {
     def edit(Persona personaInstance,User userInstance) {
         try {
             def roleInstance = personaService.getRolDePersona(personaInstance)
-            respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
+        respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
         }
         catch(Exception e) {
-            println "error"
+            println "Exception edit"
             println e
-            respond new User(params), 
-            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: e.getMessage()],
-            view:'../../views/error'
         }
         
         
@@ -87,11 +103,10 @@ class PersonaController {
             
         }
         catch(Exception e) {
-            println "error"
+            println "Exception update"
             println e
-            respond new User(params), 
-            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: e.getMessage()],
-            view:'../../views/error'
+            respond userInstance,
+             model:[personaInstance: new Persona(params), roleInstance: new Role(params)], view:'edit'
         }
         
     }
@@ -108,12 +123,6 @@ class PersonaController {
                 '*'{ render status: NO_CONTENT }
             }
             
-        }
-        catch(org.springframework.dao.DataIntegrityViolationException e) {
-            def mensaje = "La persona que está tratando de eliminar es responsable de bienes, áreas o departamentos y es por eso que no se continuará."
-            respond new User(params), 
-            model:[personaInstance: new Persona(params), roleInstance: new Role(params),msg: mensaje],
-            view:'../../views/error'
         }
         catch(Exception e) {
             println "error"
