@@ -1,5 +1,5 @@
 <!-- <p>Cantidad de bienes dados de alta:${cantidad}</p> -->
-<a id="ic_notificaciones" class="mdi-social-notifications"><span class="badge">${cantidad}</span></a>
+<a id="ic_notificaciones" class="mdi-social-notifications"><span class="badge">5</span></a>
 <ul class="dropdown-menu" role="menu">
 	<li><a>A evaluar</a><span class="badge">${cantAE}</span></li>
 	<li><a>A reparar</a><span class="badge">${cantAR}</span></li>
