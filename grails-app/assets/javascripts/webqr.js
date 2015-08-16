@@ -17,22 +17,18 @@ var v=null;
 // 	'</div>'+
 // '</div>';
 
-var imghtml='<div id="qrfile">'+
-                '<p>Arrastra un CodigoQR aquí</p>'+
-                '<canvas id="out-canvas" width="320" height="240" style="display:block;margin:0 auto"></canvas>'+
-                '<div id="imghelp">'+
-                    '<div class="form-group">'+
-                        '<label for="inputFile" class="col-lg-12 control-label">O selecciona un archivo:</label>'+
-                        '<div class="col-lg-12">'+
-                            '<div class="form-control-wrapper fileinput">'+
-                                '<input type="text" readonly="" class="form-control" placeholder="Buscar...">'+
-                                '<input type="file" id="inputFile" multiple="" onchange="handleFiles(this.files)">'+
-                                '<span class="material-input"></span>'+
-                            '</div>'+
+var imghtml =   '<div id="qrfile">'+
+                    '<p>Arrastra un CodigoQR aquí</p>'+
+                    '<canvas id="out-canvas" width="320" height="240" style="display:block;margin:0 auto"></canvas>'+
+                    '<div id="imghelp" class="file-field input-field">'+
+                        '<input class="file-path validate" type="text"/>'+
+                        '<div class="btn">'+
+                            '<span>File</span>'+
+                            '<input type="file" id="inputFile" onchange="handleFiles(this.files)"/>'+
                         '</div>'+
                     '</div>'+
-                '</div>'+
-            '</div>'
+                '</div>'
+
 
 var vidhtml = '<video id="v" autoplay></video>';
 
@@ -122,7 +118,8 @@ function read(a)
 {
     var html="<br>";
     if(a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
-        html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
+        //html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
+        html+="<a href='"+a+"'>"+a+"</a><br>";
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
     document.getElementById("result").innerHTML=html;
 }	
@@ -172,7 +169,7 @@ function load()
 function setwebcam()
 {
 	//document.getElementById("result").innerHTML="- scanning -";
-    document.getElementById("result").innerHTML="- escaneando -";
+    document.getElementById("result").innerHTML='<p>- escaneando -</p>';
     if(stype==1)
     {
         setTimeout(captureToCanvas, 500);    
