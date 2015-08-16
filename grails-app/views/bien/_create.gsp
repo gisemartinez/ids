@@ -1,36 +1,28 @@
-<div class="container-fluid">
-	<!-- Panel FAB -->
-	<div class="panel panel-default panel-fab">
-		<span class="mdi-content-add"></span>
-		<div class="panel-body">
-			<!-- <g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${bienInstance}">
-				<ul class="errors" role="alert">
-					<g:eachError bean="${bienInstance}" var="error">
-						<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
-							<g:message error="${error}"/>
-						</li>
-					</g:eachError>
-				</ul>
-			</g:hasErrors> -->
-			<g:form url="[resource:bienInstance, action:'save']" id="form_create" class="form-horizontal">
-				<g:render template="form"/>
-			</g:form>						
-		</div>
-		<div class="panel-footer">
-			<a id="create" class="btn btn-default" data-panel-height="406">Cancelar</a>
-			<g:submitButton form="form_create" name="update" value="Crear" class="btn btn-primary"/>
+<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
+	<div class="row card-fab-row">
+		<div class="col s12 offset-m1 m10 offset-l2 l8 card-fab-col">
+			<div class="card card-fab">
+				<i class="material-icons white-text center-align">add</i>
+				<g:form url="[resource:bienInstance, action:'save']" id="form_create" class="form-fab">
+					<div class="card-image">
+						<asset:image src="sample-1.jpg"/>
+						<span class="card-title">Crear Bien</span>
+					</div>
+					<div class="card-content">
+						<g:render template="/if-errors" bean="${bienInstance}" var="instance"/>
+						<g:hiddenField name="version" value="${bienInstance?.version}" />
+						<g:render template="form"/>
+					</div>
+				</g:form>
+				<div class="card-action">
+					<a id="create" data-card-height="1224" style="cursor:pointer">Cancelar</a>
+					<g:submitButton form="form_create" name="update" value="Crear" class="btn-flat white"/>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- FAB -->
-	<ul class="mfb-component--br" data-mfb-toggle="hover">
-		<li class="mfb-component__wrap">
-			<a id="create" class="mfb-component__button--main" data-panel-height="400">
-				<i class="mfb-component__main-icon--resting mdi-content-add"></i>
-				<i class="mfb-component__main-icon--active mdi-content-add"></i>
-			</a>
-		</li>
-	</ul>
-</div>
+	<a id="create" class="btn-floating btn-large waves-effect waves-light red" data-card-height="1224" style="position: fixed; bottom: 15px; right: 15px;">
+		<i class="material-icons">add</i>
+	</a>
+</sec:ifAnyGranted>
