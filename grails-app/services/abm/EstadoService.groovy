@@ -32,11 +32,8 @@ class EstadoService {
     def getEstadoDeBaja(){
         return DE_BAJA
     }
-    def listado(idBienActual){
-    	
-
-    	if (idBienActual)
-    	{
+    def listado(idBienActual) {
+    	if (idBienActual) {
     		def estado = Bien.findById(idBienActual).estado
     		println estado
     		switch(estado.nombre) {
@@ -48,21 +45,18 @@ class EstadoService {
 	    				nombre == this.getEstadoADescarte() ||
                         nombre == this.getEstadoAEvaluar()
 	    			}.findAll();
-    				
     			break;
     			case this.getEstadoADonacion():
     				return Estado.where{
 	    				nombre == this.getEstadoDeBaja() ||
                         nombre == this.getEstadoADonacion()
 	    			}.findAll();
-    				
     			break;
     			case this.getEstadoEnUso():
     				return Estado.where{
 	    				nombre == this.getEstadoAEvaluar()||
                         nombre == this.getEstadoEnUso()
 	    			}.findAll();
-    				
     			break;
     			case this.getEstadoAReparar():
     				return Estado.where{
@@ -70,29 +64,20 @@ class EstadoService {
 	    				nombre == this.getEstadoEnUso() ||
                         nombre == this.getEstadoAReparar()
 	    			}.findAll();
-    				
     			break;
     			case this.getEstadoADescarte():
     				return Estado.where{
 	    				nombre == this.getEstadoDeBaja() ||
                         nombre == this.getEstadoADescarte()
 	    			}.findAll();
-    				
     			break;
     			default :
     				return Estado.findAll()
-    				
     			break;
-
     		}
-    		
-    	
     	}
-    	else
-    	{
+    	else {
     		return Estado.findByNombre("A Evaluar")
     	}
-    	
     }
-
 }
