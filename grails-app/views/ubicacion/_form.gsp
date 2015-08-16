@@ -1,9 +1,9 @@
 <%@ page import="abm.Ubicacion" %>
-<div class="form-group">
-	<label for="nombreubica" class="col-lg-2 control-label">
-		<g:message code="ubicacion.nombreubica.label" default="Nombre de la Ubicaci&oacuten" />
-	</label>
-	<div class="col-md-10 ${hasErrors(bean: ubicacionInstance, field: 'nombreubica', 'error')} required">
-		<g:textField name="nombreubica" required="" value="${ubicacionInstance?.nombreubica}" class="form-control"/>
+<div class="row">
+	<div class="input-field col s12 m12 l12 ${hasErrors(bean: ubicacionInstance, field: 'nombreubica', 'error')}">
+		<g:textField name="nombreubica" value="${bienInstance?.nombreBien}" required class="validate"/>
+		<label for="nombreubica">
+			<g:message code="ubicacion.nombreubica.label" default="Nombre de la Ubicaci&oacuten"/>
+		</label>
 	</div>
 </div>
