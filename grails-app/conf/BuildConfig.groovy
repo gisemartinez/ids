@@ -51,16 +51,13 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
-
         compile "org.springframework:spring-orm:$springVersion"
         compile "net.sf.jasperreports:jasperreports:5.6.0"
-
     }
 
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.53"
-
         // plugins for the compile step
         compile ":scaffolding:2.1.0"
         compile ':cache:1.1.6'
@@ -69,14 +66,14 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0.7"
         compile ":google-visualization:0.7"
         compile ":audit-logging:1.0.3"
-
+        // https://github.com/amitjain1982/remote-pagination
+        compile ":remote-pagination:0.4.8"
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.3" // or ":hibernate:3.6.10.15"
         runtime ":database-migration:1.4.0"
-        runtime ":jquery:1.11.1"
-        runtime ':twitter-bootstrap:3.3.1'
+        // runtime ":jquery:1.11.1"
+        // runtime ':twitter-bootstrap:3.3.1'
         runtime ':jasper:1.10.0'
-
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
         //compile ":less-asset-pipeline:1.7.0"
