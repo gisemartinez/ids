@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.gorm.*
+import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogEvent
 
 @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO','ROLE_OPERARIO'])
 @Transactional(readOnly = true)
@@ -18,61 +19,64 @@ class BienController {
     def personaService
     def bienService
     def roleService
- 
-    def estado() {
-        println params.estado
-        respond bienesAEvaluar(), model:[ bienInstanceCount: Bien.count()],view:'index';
-    }    
     
-    def index(Integer max) {
+    def index() {
+    }
+
+    def list(Integer max) {
         println(params)
         //Seteo el maximo a mostrar
-        params.max = Math.min(max ?: 10, 100)
-        //Seteo al codigo de serie como critero de ordenamiento por defecto 
-        def lista = bienService.mostrarBienesSegunPermiso()
+        params.max = Math.min(max ?: 2, 100)
+        params.offset = params.offset ?: 0
+        params.query = params.query ?: ""
+        params.sort = params.sort ?: "codigoDeSerie"
+        params.order = params.order ?: "asc"
+        //Realizo la busqueda
+        def listSinMaxNiOffset = bienService.getBienesSegunPermiso(0,0,params.query)
+        def listaConMaxYOffset = bienService.getBienesSegunPermiso(params.max,params.offset,params.query)
         //Ordeno
-        def listaOrdenada = bienService.ordenarLista(lista,params.sort,params.order)       
-        respond listaOrdenada, model:[bienInstanceCount: Bien.count()] ,view:'index'
-        respond bienService.mostrarBienesSegunPermiso(), model:[bienInstanceCount: Bien.count()] ,view:'index'
-    }
-    
-    @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO'])
-    def grafico(){
-        def opt =['#21AAFF', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6','#e6693e']
+        def listaOrdenada = bienService.ordenarLista(listaConMaxYOffset,params.sort,params.order)
         render(
-                view:'grafico',
-                model:
-                [
-                    a: bienService.bienesAEvaluar().size(),
-                    b: bienService.bienesEnUso().size(),
-                    c: bienService.bienesAReparar().size(),
-                    d: bienService.bienesADonacion().size(),
-                    e: bienService.bienesADescarte().size(),
-                    f: bienService.bienesBaja().size(), 
-                    opt:opt
-                ]
-            );
+            template:'list',
+            model: [
+                bienInstanceList:       listaOrdenada,
+                bienInstanceCount:      listSinMaxNiOffset.size(),
+                params:                 params
+            ]
+        )
     }
     
     def noticias(){
         //Es provisorio, debería traerme los de ésta semana
         //Debería estar puesto en el servicio
+        println("Refrescando las noticias")
         render(
-            view:'noticias',  
-            model:[
-                cantAE:bienService.bienesAEvaluar().size(),
-                cantEU:bienService.bienesEnUso().size(),
-                cantAR:bienService.bienesAReparar().size(),
-                cantAD:bienService.bienesADonacion().size(),
-                cantADsc:bienService.bienesADescarte().size(),
-                cantB:bienService.bienesBaja().size()
+            template:'noticias',  
+            model:
+            [
+                cantAE:     bienService.bienesAEvaluar().size(),
+                cantEU:     bienService.bienesEnUso().size(),
+                cantAR:     bienService.bienesAReparar().size(),
+                cantAD:     bienService.bienesADonacion().size(),
+                cantADsc:   bienService.bienesADescarte().size(),
+                cantB:      bienService.bienesBaja().size()
             ]
         );
     }
-    
+
     def show(Bien bienInstance) {
-        respond bienInstance
+        def cambios = AuditLogEvent.findAll('from AuditLogEvent where persistedObjectId = ? and propertyName = ?',[bienInstance.id.toString(),'estado'])
+        
+        respond bienInstance,
+        model:
+        [
+            actores:        cambios.actor,
+            fechas:         cambios.dateCreated,
+            valoresNuevos:  cambios.newValue,
+            cant:           cambios.size()
+        ]
     }
+
     def create() {
         respond new Bien(params)
     }
@@ -96,6 +100,7 @@ class BienController {
     @Transactional
     def update(Bien bienInstance) {
         bienService.actualizar(bienInstance)
+
         if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor()) {
             request.withFormat {
                 form multipartForm {
