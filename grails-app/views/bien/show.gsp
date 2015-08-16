@@ -5,15 +5,6 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'bien.label', default: 'Bien')}" />
 		<title><g:message code="Bien creado"/></title>
-		<style>
-			div.google-visualization-tooltip {
-				font-family: 'Roboto'
-			}
-			#visualization {
-			    width:100%;
-			    height:100%;
-			}
-		</style>		
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 			var cant = "${cant}"
@@ -21,85 +12,33 @@
 				google.load("visualization", "1.1", {packages:["timeline"]});
 				google.setOnLoadCallback(drawChart);
 
+				var actores = quitarEspacios("${actores}").replace("[","").replace("]","").split(","),
+				fechas = quitarEspacios("${fechas}").replace("[","").replace("]","").split(","),
+				valoresNuevos = quitarEspacios("${valoresNuevos}").replace("[","").replace("]","").split(",")
+
 				$(window).resize(function() {drawChart()})
-				
-				var actores = "${actores}"
-					var exit = 0;
+
+				function quitarEspacios(string){
+					var exit = 0
 					while (exit != 1) {
-						if (actores == actores.replace(", ",",")) exit = 1
-						else actores = actores.replace(", ",",")
+					if (string == string.replace(", ",",")) exit = 1
+						else string = string.replace(", ",",")
 					}
-				
-				var fechas = "${fechas}"
-					var exit = 0;
-					while (exit != 1) {
-						if (fechas == fechas.replace(", ",",")) exit = 1
-						else fechas = fechas.replace(", ",",")
-					}
-
-				var valoresNuevos = "${valoresNuevos}"
-					var exit = 0;
-					while (exit != 1) {						
-						if (valoresNuevos == valoresNuevos.replace(", ",",")) exit = 1
-						else valoresNuevos = valoresNuevos.replace(", ",",")
-					}
-
-				var fech = [""], newvals = [""], act = [""]; 
-				for (var i = 0; i < cant; i++) {
-					fech[i] = [""];	act[i] = [""]; newvals[i] = [""];
+					return string
 				}
 
-				for (var i = 0, x = 0; i < fechas.length; i++) {
-					switch (fechas[i]) {
-						case "[":
-							//Comienzo del string.
-							break;
-						case "]":
-							//Fin del string.
-							break;
-						case ",":
-							//Separador de fechas.
-							x++;
-							break;
-						default:
-							fech[x] += fechas[i];
-							break;
+				function cantidadEstados(){
+					for (aux=[],i=0;i<valoresNuevos.length;i++) {
+						if (aux.indexOf(valoresNuevos[i]) < 0) aux.push(valoresNuevos[i])
 					}
-				}
-				
-				for (var i = 0, x = 0; i < actores.length; i++) {
-					switch (actores[i]) {
-						case "[":
-							break;
-						case "]":
-							break;
-						case ",":
-							x++;
-							break;
-						default:
-							act[x] += actores[i];
-							break;
-					}
-				}
-				
-				for (var i = 0, x = 0; i < valoresNuevos.length; i++) {
-					switch (valoresNuevos[i]) {
-						case "[":
-							break;
-						case "]":
-							break;
-						case ",":
-							x++;
-							break;
-						default:
-							newvals[x] += valoresNuevos[i];
-							break;
-					}
+					return aux.length
 				}
 
-				function anio(fecha) {return parseInt(moment(fecha).format("YYYY"))}
-				function mes(fecha) {return parseInt(moment(fecha).format("M"))}
-				function dia(fecha) {return parseInt(moment(fecha).format("D"))}
+				function anio(fecha) {return parseInt(fecha.substr(0,4))}
+
+				function mes(fecha) {return parseInt(fecha.substr(5,2))}
+
+				function dia(fecha) {return parseInt(fecha.substr(8,2))}
 
 				function drawChart() {
 					var container = document.getElementById('visualization');
@@ -114,17 +53,17 @@
 					for (var i = 0; i < cant; i++) {
 						if (i < (cant - 1) )
 							dataTable.addRow([
-								newvals[i],
-								act[i],
-								new Date(anio(fech[i]), mes(fech[i]), dia(fech[i])),
-								new Date(anio(fech[i+1]), mes(fech[i+1]), dia(fech[i+1]))
+								valoresNuevos[i],
+								actores[i],
+								new Date(anio(fechas[i]), mes(fechas[i]), dia(fechas[i])),
+								new Date(anio(fechas[i+1]), mes(fechas[i+1]), dia(fechas[i+1]))
 							])
 						else {
 							var today = new Date()
 							dataTable.addRow([
-								newvals[i],
-								act[i],
-								new Date(anio(fech[i]), mes(fech[i]), dia(fech[i])),
+								valoresNuevos[i],
+								actores[i],
+								new Date(anio(fechas[i]), mes(fechas[i]), dia(fechas[i])),
 								new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
 							])
 						}
@@ -134,11 +73,13 @@
 						timeline: {
 							rowLabelStyle: { fontName: 'Roboto', fontSize: 14, color: 'black' },
 							barLabelStyle: { fontName: 'Roboto', fontSize: 14 }
-						}
+
+						},height: 47*cantidadEstados()+55
 					}
 					chart.draw(dataTable,options);
-				}				
-			}			
+					$('#visualization').css('height',47*cantidadEstados()+30)
+				}
+			}
 		</script>
 		<script>
 			function showQR() {
@@ -148,15 +89,10 @@
 	</head>
 	<body onload="drawChart()">
 		<!--Volver al listado-->
-		<ul class="mfb-component--br" data-mfb-toggle="hover">
-			<li class="mfb-component__wrap">
-				<g:link action="index" class="mfb-component__button--main">
-					<i class="mfb-component__main-icon--resting mdi-action-list"></i>
-					<i class="mfb-component__main-icon--active mdi-action-list"></i>
-				</g:link>
-			</li>
-		</ul>
-		<div class="container-fluid">
+		<g:link action="index" class="btn-floating btn-large waves-effect waves-light red" style="position: fixed; bottom: 15px; right: 15px;">
+			<i class="material-icons">list</i>
+		</g:link>
+		<div class="container">
 			<!--Alertas-->
 			<g:if test="${flash.message}">
 				<div class="alert alert-dismissible alert-success" role="alert">
@@ -167,101 +103,114 @@
 				</div>
 			</g:if>
 			<div class="row">
-				<div class="col-lg-6">
-					<legend>Detalle de Bien</legend>
-					<div class="panel panel-default" style="margin:0 auto 20px">
-						<div class="panel-body">
-							<div class="list-group">
-								<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+window.location.href' alt="qrcode" 
-								onclick="showQR()" class="pull-right" width="50px">
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.codigoDeSerie}">
-											<h4 class="list-group-item-heading"><g:message code="bien.codigoDeSerie.label" default="Id Bien"/></h4>
-											<p class="list-group-item-text"><g:fieldValue bean="${bienInstance}" field="codigoDeSerie"/></p>
-										</g:if>
-									</div>
+				<div class="col s12 offset-m1 m10 offset-l2 l8">
+					<div class="card">
+						<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+window.location.href' alt="qrcode" id="qrcode" class="materialboxed">
+						<div class="card-image">
+							<asset:image src="sample-1.jpg"/>
+							<span class="card-title">Detalle de Bien</span>
+							<!-- <i class="material-icons" style="
+								left: calc((100% - 80px)/2);
+								top: calc((100% - 80px)/2);
+								height: 80px;
+								width: 80px;
+								font-size: 50px;
+								line-height: 80px;
+								position: absolute;
+								margin: 15px;
+								color: white;
+								text-align: center;
+								cursor: pointer;
+								border: 1px solid white;
+								border-radius: 50px;
+								background-color: rgba(255, 255, 255, 0.25);
+							">photo_camera</i> -->
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col s6 l6">
+									<g:if test="${bienInstance?.codigoDeSerie}">
+										<label><g:message code="bien.codigoDeSerie.label" default="Id Bien"/></label>
+										<p><g:fieldValue bean="${bienInstance}" field="codigoDeSerie"/></p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.nombreBien}">
-											<h4 class="list-group-item-heading"><g:message code="bien.nombreBien.label" default="Denominaci&oacuten"/></h4>
-											<p class="list-group-item-text"><g:fieldValue bean="${bienInstance}" field="nombreBien"/></p>
-										</g:if>
-									</div>
+								<div class="col s6 l6">
+									<g:if test="${bienInstance?.nombreBien}">
+										<label><g:message code="bien.nombreBien.label" default="Denominaci&oacuten"/></label>
+										<p><g:fieldValue bean="${bienInstance}" field="nombreBien"/></p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.descripcion}">
-											<h4 class="list-group-item-heading"><g:message code="bien.descripcion.label" default="Descripci&oacuten"/></h4>
-											<p class="list-group-item-text"><g:fieldValue bean="${bienInstance}" field="descripcion"/></p>
-										</g:if>
-									</div>
+							</div>
+							<div class="row">
+								<div class="col s12 l12">
+									<g:if test="${bienInstance?.descripcion}">
+										<label><g:message code="bien.descripcion.label" default="Descripci&oacuten"/></label>
+										<p><g:fieldValue bean="${bienInstance}" field="descripcion"/></p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.responsableBien}">
-											<h4 class="list-group-item-heading"><g:message code="bien.responsableBien.label" default="Responsable"/></h4>
-											<p class="list-group-item-text">
-												<g:link controller="Persona" action="show" id="${bienInstance?.responsableBien?.id}">${bienInstance?.responsableBien?.encodeAsHTML()}</g:link>
-											</p>
-										</g:if>
-									</div>
+							</div>
+							<div class="row">
+								<div class="col s6 l6">
+									<g:if test="${bienInstance?.tipo}">
+										<label><g:message code="bien.tipo.label" default="Tipo"/></label>
+										<p>
+											<g:link controller="tipo" action="show" id="${bienInstance?.tipo?.id}">${bienInstance?.tipo?.encodeAsHTML()}</g:link>
+										</p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.tipo}">
-											<h4 class="list-group-item-heading"><g:message code="bien.tipo.label" default="Tipo"/></h4>
-											<p class="list-group-item-text">
-												<g:link controller="tipo" action="show" id="${bienInstance?.tipo?.id}">${bienInstance?.tipo?.encodeAsHTML()}</g:link>
-											</p>
-										</g:if>
-									</div>
+								<div class="col s6 l6">
+									<g:if test="${bienInstance?.estado}">
+										<label><g:message code="bien.estado.label" default="Estado"/></label>
+										<p>
+											<g:link controller="estado" action="show" id="${bienInstance?.estado?.id}">${bienInstance?.estado?.encodeAsHTML()}</g:link>
+										</p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.estado}">
-											<h4 class="list-group-item-heading"><g:message code="bien.estado.label" default="Estado"/></h4>
-											<p class="list-group-item-text">
-												<g:link controller="estado" action="show" id="${bienInstance?.estado?.id}">${bienInstance?.estado?.encodeAsHTML()}</g:link>
-											</p>
-										</g:if>
-									</div>
+							</div>
+							<div class="row">
+								<div class="col s6 l6">
+									<g:if test="${bienInstance?.ubicacion}">
+										<label><g:message code="bien.ubicacion.label" default="Ubicaci&oacuten"/></label>
+										<p>
+											<g:link controller="ubicacion" action="show" id="${bienInstance?.ubicacion?.id}">${bienInstance?.ubicacion?.encodeAsHTML()}</g:link>
+										</p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.ubicacion}">
-											<h4 class="list-group-item-heading"><g:message code="bien.ubicacion.label" default="Ubicaci&oacuten"/></h4>
-											<p class="list-group-item-text">
-												<g:link controller="ubicacion" action="show" id="${bienInstance?.ubicacion?.id}">${bienInstance?.ubicacion?.encodeAsHTML()}</g:link>
-											</p>
-										</g:if>
-									</div>
+								<div class="col s6 l6">
+									<g:if test="${bienInstance?.area}">
+										<label><g:message code="bien.area.label" default="Area"/></label>
+										<p>
+											<g:link controller="area" action="show" id="${bienInstance?.area?.id}">${bienInstance?.area?.encodeAsHTML()}</g:link>
+										</p>
+									</g:if>
 								</div>
-								<div class="list-group-item">
-									<div class="row-content">
-										<g:if test="${bienInstance?.area}">
-											<h4 class="list-group-item-heading"><g:message code="bien.area.label" default="Area"/></h4>
-											<p class="list-group-item-text">
-												<g:link controller="area" action="show" id="${bienInstance?.area?.id}">${bienInstance?.area?.encodeAsHTML()}</g:link>
-											</p>
-										</g:if>
-									</div>
+							</div>
+							<div class="row">
+								<div class="col s12 l6">
+									<g:if test="${bienInstance?.responsableBien}">
+										<label><g:message code="bien.responsableBien.label" default="Responsable"/></label>
+										<p>
+											<g:link controller="Persona" action="show" id="${bienInstance?.responsableBien?.id}">${bienInstance?.responsableBien?.encodeAsHTML()}</g:link>
+										</p>
+									</g:if>
+								</div>
+								<div class="col s12 l6"></div>
+							</div>
+							<div class="row">
+								<div class="col s12 l12">
+									<g:if test="${cant}">
+										<label>Historial de Cambios</label>
+										<div id="visualization"></div>
+									</g:if>
 								</div>
 							</div>
 						</div>
-						<div class="panel-footer">
-							<g:submitButton form="form_delete" name="delete" value="Borrar" class="btn btn-default delete"/>
-							<g:link action="edit" id="${bienInstance.id}" class="btn btn-primary">Editar</g:link>
+						<div class="card-action">
+							<g:submitButton form="form_delete" name="delete" value="Borrar" class="btn-flat white delete"/>
+							<g:link action="edit" id="${bienInstance.id}">Editar</g:link>
 							<g:form url="[resource:bienInstance, action:'delete']" method="DELETE" id='form_delete'></g:form>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-6">
-					<g:if test="${cant}">
-						<legend>Historial de Cambios</legend>
-						<div id="visualization"></div>
-					</g:if>
 				</div>
 			</div>
 		</div>
