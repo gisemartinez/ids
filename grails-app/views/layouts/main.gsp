@@ -10,142 +10,136 @@
 		<title><g:layoutTitle default="Grails"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Hojas de estilo -->
-		<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
-		<!-- <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css'> -->
-		<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material.css'>
-		<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.css'>
-		<link rel='stylesheet' href='//jasny.github.io/bootstrap/dist/css/jasny-bootstrap.min.css'>
-		<!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<asset:stylesheet src="application.css"/>
-		<asset:stylesheet src="bootstrap-material-datetimepicker.css"/>
 		<asset:stylesheet src="fab.css"/>
 		<!-- Scripts -->
-		<asset:javascript src="application.js"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js'></script>
-		<script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js'></script>
-		<asset:javascript src="jasny-bootstrap.js"/>
-		<!--
-			Con el agregado de:
-				$('.table-responsive').css('overflow','hidden')
-			en la funcion disableScrolling, y:
-				$('body').css('overflow', 'auto')
-				$('.table-responsive').css('overflow','auto')
-    		en la funcion hide.
-		-->
-		<asset:javascript src="moment-with-locales.min.js"/>
-		<asset:javascript src="bootstrap-material-datetimepicker.js"/>
-		<asset:javascript src="fab.js"/>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+		<asset:javascript src="application.js"/></script>
 		
 		<g:set var="userId" value="${sec.loggedInUserInfo(field:'id')}" />
-		
+
 		<g:layoutHead/>
+
 	</head>
 	<body>
 		<sec:ifLoggedIn>
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<g:link class="navbar-brand">PATRonus</g:link>					
-			</div>
-			<div class="navbar-collapse collapse navbar-responsive-collapse">
-				<ul class="nav navbar-nav">
-					<li><g:link controller='bien' action='index' class="mdi-device-now-widgets bien"></g:link></li>
-					<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
-						<li><g:link controller='estadistica' action='index' class="mdi-action-assessment estadistica"></g:link></li>
-						<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-							<li><g:link controller='persona' action='index' class="mdi-social-group persona"></g:link></li>
-						</sec:ifAllGranted>
-						<li><g:link controller='area' action='index' class="mdi-action-store area"></g:link></li>
-						<li><g:link controller='ubicacion' action='index' class="mdi-maps-place ubicacion"></g:link></li>
-					</sec:ifAnyGranted>
-				</ul>
-				<ul class="nav navbar-nav navbar-right" style="margin-right:0">
-					<li class="dropdown notificaciones" id="notificaciones"><a class="mdi-social-notifications"><span class="badge">3</span></a></li>
-					<li class="dropdown perfil">
-						<a class="mdi-social-person"></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="" class="mdi-action-account-circle" style="font-size:2em"></a></li>
-							<li class="dropdown-header">Usuario</li>
-							<li><a><sec:username/></a></li>
-							<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-								<li class="dropdown-header">Rol: Supervisor</li>
-							</sec:ifAllGranted>
-							<sec:ifAllGranted roles="ROLE_ENCARGADO">
-								<li class="dropdown-header">Rol: Encargado</li>
-							</sec:ifAllGranted>
-							<sec:ifAllGranted roles="ROLE_OPERARIO">
-								<li class="dropdown-header">Rol: Operario</li>
-							</sec:ifAllGranted>
-							<li><g:link resource='permisos'>Permisos</g:link></li>
-							<li class="divider"></li>
-							<li><a href="javascript:document.form_logout.submit()">Cerrar sesi&oacuten</a></li>
+		
+			<div class="navbar-fixed" style="position:fixed">
+				<nav class="teal">
+					<div class="nav-wrapper">
+						<ul class="left hide-on-med-and-down">
+							<li>
+								<g:link controller='bien' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bienes">
+									<i class="material-icons">widgets</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='estadistica' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Estadisticas">
+									<i class="material-icons">assessment</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='persona' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Personas">
+									<i class="material-icons">supervisor_account</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='area' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Areas">
+									<i class="material-icons">store</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='ubicacion' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ubicaciones">
+									<i class="material-icons">location_on</i>
+								</g:link>
+							</li>
 						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		
-		<g:formRemote name="form_refresh_notifications" update="notificaciones" url="[controller: 'bien', action:'noticias']"></g:formRemote>
+						<ul id="slide-out" class="side-nav">
+							<li>
+								<g:link controller='bien' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bienes">
+									<i class="material-icons">widgets</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='estadistica' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Estadisticas">
+									<i class="material-icons">assessment</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='persona' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Personas">
+									<i class="material-icons">supervisor_account</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='area' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Areas">
+									<i class="material-icons">store</i>
+								</g:link>
+							</li>
+							<li>
+								<g:link controller='ubicacion' action='index' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ubicaciones">
+									<i class="material-icons">location_on</i>
+								</g:link>
+							</li>
+							<li><a>First Sidebar Link</a></li>
+							<li><a>Second Sidebar Link</a></li>
+							<li class="no-padding">
+								<ul class="collapsible collapsible-accordion">
+									<li>
+										<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+										<div class="collapsible-body">
+											<ul>
+												<li><a href="#!">First</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						
+						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+						<a href="#" class="brand-logo center">PATRonus</a>
 
-		<script>
-			(function(){
-				$('#form_refresh_notifications').submit()
-				setTimeout(arguments.callee, 60000);
-			})();
-		</script>
-		
-		<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm hidden-md hidden-lg">
-			<!-- <a class="navmenu-brand" href="#">PATRonus</a> -->
-			<ul class="nav navmenu-nav">
-				<li class="account-circle"><a class="mdi-action-account-circle account-circle" style="font-size:3em;"></a></li>
-				<li class="dropdown perfil">
-					<a class="dropdown-toggle" data-toggle="dropdown" style="background-color:#009688;color:white;">
-						<sec:username/> <b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu navmenu-nav">
-						<sec:ifAllGranted roles="ROLE_SUPERVISOR">
-							<li class="dropdown-header">Rol: Supervisor</li>
-						</sec:ifAllGranted>
-						<sec:ifAllGranted roles="ROLE_ENCARGADO">
-							<li class="dropdown-header">Rol: Encargado</li>
-						</sec:ifAllGranted>
-						<sec:ifAllGranted roles="ROLE_OPERARIO">
-							<li class="dropdown-header">Rol: Operario</li>
-						</sec:ifAllGranted>
-						<li><g:link resource='permisos'>Permisos</g:link></li>
-						<li><a href="javascript:document.form_logout.submit()">Cerrar sesi&oacuten</a></li>
-					</ul>
-				</li>
-				<li class="bien">
-					<g:link controller='bien' action='index' class="mdi-device-now-widgets">Bienes</g:link>
-				</li>
-				<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ENCARGADO">
-				<li class="estadistica">
-					<g:link controller='estadistica' action='index' class="mdi-action-assessment">Estadisticas</g:link></li>
-				<li class="persona">
-					<g:link controller='persona' action='index' class="mdi-social-group">Personas</g:link>
-				</li>
-				<li class="area">
-					<g:link controller='area' action='index' class="mdi-action-store">Áreas</g:link>
-				</li>
-				<li class="ubicacion">
-					<g:link controller='ubicacion' action='index' class="mdi-maps-place">Ubicaciones</g:link>
-				</li>
-				</sec:ifAnyGranted>
-				<li class="divider"></li>
-				<li>
-					<g:link controller="persona" action="edit" id="${userId}" class="mdi-action-settings">Ajustes</g:link>
-				</li>
-			</ul>
-		</div>
-		<form name="form_logout" method="POST" action="${createLink(controller:'logout')}"></form>
+						
+						<ul class="right hide-on-med-and-down">
+							<li>
+								<a class="dropdown-button" data-activates="dropdown1"><sec:username/><i class="material-icons right">arrow_drop_down</i></a>
+								<ul id="dropdown1" class="dropdown-content">
+									<!-- <sec:ifAllGranted roles="ROLE_SUPERVISOR">
+										<li>Rol: Supervisor</li>
+									</sec:ifAllGranted>
+									<sec:ifAllGranted roles="ROLE_ENCARGADO">
+										<li>Rol: Encargado</li>
+									</sec:ifAllGranted>
+									<sec:ifAllGranted roles="ROLE_OPERARIO">
+										<li>Rol: Operario</li>
+									</sec:ifAllGranted> -->
+									<li><g:link resource='permisos'>Permisos</g:link></li>
+									<li class="divider"></li>
+									<li><a href="javascript:document.form_logout.submit()">Cerrar sesi&oacuten</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			
+			<!-- <g:formRemote name="form_refresh_notifications" update="notifications" url="[controller: 'bien', action:'noticias']"></g:formRemote> 
+
+			<script>
+			 	(function(){
+			 		$('#form_refresh_notifications').submit()
+			 		setTimeout(arguments.callee, 60000);
+			 	})();
+			</script>
+
+			-->
+			
+			<form name="form_logout" method="POST" action="${createLink(controller:'logout')}"></form>
 		</sec:ifLoggedIn>
+		
 		<g:layoutBody/>
 	</body>
 </html>
