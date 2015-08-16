@@ -1,7 +1,5 @@
 package abm
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
@@ -12,9 +10,32 @@ class UbicacionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Ubicacion.list(params), model:[ubicacionInstanceCount: Ubicacion.count()]
+    def ubicacionService
+
+    def index() {
+    }
+
+    def list(Integer max) {
+        println(params)
+        //Seteo el maximo a mostrar
+        params.max = Math.min(max ?: 2, 100)
+        params.offset = params.offset ?: 0
+        params.query = params.query ?: ""
+        params.sort = params.sort ?: "nombreubica"
+        params.order = params.order ?: "asc"
+        //Realizo la busqueda
+        def listSinMaxNiOffset = ubicacionService.getUbicaciones(0,0,params.query)
+        def listaConMaxYOffset = ubicacionService.getUbicaciones(params.max,params.offset,params.query)
+        //Ordeno
+        def listaOrdenada = ubicacionService.ordenarLista(listaConMaxYOffset,params.sort,params.order)
+        render(
+            template:'list',
+            model: [
+                ubicacionInstanceList:      listaOrdenada,
+                ubicacionInstanceCount:     listSinMaxNiOffset.size(),
+                params:                     params
+            ]
+        )
     }
 
     def show(Ubicacion ubicacionInstance) {
