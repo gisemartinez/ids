@@ -1,7 +1,5 @@
-
 <%@ page import="abm.Estado" %>
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta name="layout" content="main">
