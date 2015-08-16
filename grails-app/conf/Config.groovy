@@ -59,7 +59,6 @@ grails {
     }
 }
 
-
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -87,6 +86,11 @@ grails.hibernate.osiv.readonly = false
 //fix g:paginate
 grails.plugins.twitterbootstrap.fixtaglib = true
 grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'
+
+//In Config.groovy
+grails.plugins.remotepagination.max=20 
+//EnableBootstrap here when using twitter bootstrap, default is set to false.
+grails.plugins.remotepagination.enableBootstrap=true 
 
 environments {
     development {
@@ -129,15 +133,17 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.testapp.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.testapp.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.testapp.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
+  '/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll'],
-  '/permisos':                ['permitAll']
+//'/**/favicon.ico':                ['permitAll'],
+  '/qrcode':                        ['permitAll'],
+  '/permisos':                      ['permitAll'],
+  '/mdl':                           ['permitAll']
     //los permisos a las diferentes urls va aca.en este caso para probar le puse permitAll pero podria poner solo el
     //nombre del rol
   /*  '/usuario/**':                    ['permitAll'],
