@@ -27,8 +27,8 @@
 		<div style="max-width:320px; margin:0 auto">
 			<!-- Escaneo por video o imagen -->
 			<ul class="tabs">
-				<li class="tab col s3"><a href="#test1" onclick="setwebcam()">Test 1</a></li>
-				<li class="tab col s3"><a href="#test2" onclick="setimg()">Test 2</a></li>
+				<li class="tab col s3"><a href="#test1" onclick="setwebcam()">Video</a></li>
+				<li class="tab col s3"><a href="#test2" onclick="setimg()">Imagen</a></li>
 			</ul>
 			<!-- Drag n Drop o Seleccion de archivo -->
 			<div id="outdiv" class="row">
