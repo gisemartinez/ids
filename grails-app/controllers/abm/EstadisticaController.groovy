@@ -20,7 +20,6 @@ class EstadisticaController {
         def bienes_electrica = bienService.getBienesSegunPermiso(0,0,"").findAll{it.area.id == 3}
         def bienes_mecanica = bienService.getBienesSegunPermiso(0,0,"").findAll{it.area.id == 4}
 
-
         // https://grails.github.io/grails-doc/latest/ref/Domain%20Classes/findAllBy.html
         // results = Book.findAllByReleaseDateBetween(firstDate, new Date())
         // results = Book.findAllByReleaseDateGreaterThanEquals(firstDate)
