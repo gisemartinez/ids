@@ -51,6 +51,12 @@ class PersonaController {
 
     @Transactional
     def save(Persona personaInstance, User userInstance) {
+
+        def uploadedFile = request.getFile('filePayload')
+        personaInstance.filePayload = uploadedFile.getBytes() //converting the file to bytes
+        personaInstance.fileName = uploadedFile.originalFilename //getting the file name from the uploaded file
+        personaInstance.fileType = uploadedFile.contentType//getting and storing the file type
+
         try {
             personaService.guardar(personaInstance,userInstance,params.role.id)
             
@@ -75,7 +81,7 @@ class PersonaController {
     def edit(Persona personaInstance,User userInstance) {
         try {
             def roleInstance = personaService.getRolDePersona(personaInstance)
-        respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
+            respond personaInstance, model:[userInstance: userInstance,roleInstance:roleInstance]
         }
         catch(Exception e) {
             println "Exception edit"
@@ -145,5 +151,17 @@ class PersonaController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+    @Secured(['ROLE_SUPERVISOR','ROLE_ENCARGADO','ROLE_OPERARIO'])
+    def showPayload() {
+        def personaInstance = Persona.get(personaService.getIdPersonaSesionActual())
+        response.contentType = personaInstance.fileType == null ? "image/jpeg" : personaInstance.fileType;
+        response.contentLength = personaInstance.filePayload == null ? 0 : personaInstance.filePayload.size();
+        response.outputStream << personaInstance.filePayload;
+        response.outputStream.flush()
+
+        //response.contentType = "image/jpeg"
+        //response.contentLength = personaInstance.filePayload.length
+        //response.outputStream.write(personaInstance.filePayload)
     }
 }
