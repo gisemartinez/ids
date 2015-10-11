@@ -19,9 +19,12 @@
 		}
 
 		// Pagination
-		$('ul.pagination li>a').addClass('waves-effect')
+		$('ul.pagination li').addClass('waves-effect')
 		$('ul.pagination span.active').parent().addClass('active blue')
 		$('ul.pagination span.active').replaceWith('<a>'+$('ul.pagination span.active').text()+'</a>');
+
+		$('ul.pagination li>a.prevLink').text('').append('<i class="material-icons">chevron_left</i>');
+		$('ul.pagination li>a.nextLink').text('').append('<i class="material-icons">chevron_right</i>');
 
 		$('.delete').click(function() {
 			var form = 'form_delete_'+$(this).data('id'),entity = $(this).data('entity')
@@ -66,7 +69,7 @@
 			var url_edit = '${createLink(action: "edit")}/'+id
 			var url_delete = 'javascript:document.form_delete_'+id+'.submit()'
 
-			return '<div id="bottomActionsModal" class="modal bottom-sheet">'+
+			return	'<div id="bottomActionsModal" class="modal bottom-sheet">'+
 						'<div class="modal-content">'+
 							'<h4 class="modal-title">'+entity+': '+name+'</h4>'+
 							'<ul class="collection">'+
