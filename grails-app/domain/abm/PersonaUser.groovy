@@ -14,14 +14,12 @@ class PersonaUser implements Serializable{
 	long personaId
 	long userId
 	
-    static constraints = {
-    }
+	static constraints = {
+	}
 
-    static mapping = {
-    	id composite: ['userId','personaId']
-    	version false
-    }
-
+	static mapping = {
+		id composite: ['userId','personaId']
+		version false
+	}
 
 }
-
