@@ -1,4 +1,3 @@
-
 <%@ page import="com.testapp.Role" %>
 <!DOCTYPE html>
 <html>
@@ -21,21 +20,17 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<table>
-			<thead>
+				<thead>
 					<tr>
-					
 						<g:sortableColumn property="authority" title="${message(code: 'role.authority.label', default: 'Authority')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${roleInstanceList}" status="i" var="roleInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${roleInstance.id}">${fieldValue(bean: roleInstance, field: "authority")}</g:link></td>
-					
-					</tr>
-				</g:each>
+					<g:each in="${roleInstanceList}" status="i" var="roleInstance">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+							<td><g:link action="show" id="${roleInstance.id}">${fieldValue(bean: roleInstance, field: "authority")}</g:link></td>
+						</tr>
+					</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">
