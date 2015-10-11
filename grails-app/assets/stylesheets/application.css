@@ -143,3 +143,71 @@ div.google-visualization-tooltip {
 #bottomActionsModal ul.collection li.collection-item.avatar{
 	min-height: 60px;
 }
+
+#slide-out .material-icons{
+	font-size: 20px
+}
+
+img.avatar{
+	height: 75px;
+	margin: 14px;
+}
+.side-nav a{
+	padding-left: 0
+}
+
+.side-nav a i.material-icons{
+	padding-right: 15px;
+    display: inline-block;
+}
+.side-nav a>b{
+	display: inline-block;
+	position: relative;
+	top: -5px;
+	font-weight: normal;
+}
+
+.side-nav a b.username{
+	font-size: 12px;
+	font-weight: normal;
+	color: gray;
+}
+
+.side-nav a div.nombre{
+	line-height: 20px;
+	margin: 0;
+	display: inline-block;
+	width: calc(100% - 43px);
+	position: relative;
+	top: 5px;
+	vertical-align: middle;
+}
+
+.side-nav a.collapsible-header{
+	padding-right: 0px;
+}
+
+.file-field input.file-path {
+    width: calc(100% - 104px);
+    margin-left: 10px;
+}
+span.label {
+	color: white;
+	font-weight: 300;
+    font-size: 0.8rem;
+    border-radius: 2px;
+    padding: 3px 6px;
+    text-align: center;
+}
+
+span.label.Baja {background-color: #000000}			/* negro */
+span.label.Descarte {background-color: #9e9e9e} 	/* gris */
+span.label.Donacion {background-color: #ffc107} 	/* amber */
+span.label.Evaluar {background-color: #2196f3} 		/* azul */
+span.label.Reparar {background-color: #f44336} 		/* rojo */
+span.label.Uso {background-color: #4caf50} 			/* verde */
+
+ul.pagination a>i.material-icons{
+	position: relative;
+	top: 1px;
+}
