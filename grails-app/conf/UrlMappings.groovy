@@ -1,7 +1,7 @@
 class UrlMappings {
-
+	
 	static mappings = {
-          
+	
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
                 // apply constraints here
@@ -15,4 +15,5 @@ class UrlMappings {
         "/qrcode"(view:"/qrcode")
         "/mdl"(view:"/mdl")
 	}
+	
 }
