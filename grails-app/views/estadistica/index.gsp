@@ -56,6 +56,8 @@
 						14: {offset: 0.4},
 						15: {offset: 0.5},
 					},
+					legend: {position: 'right', textStyle: {fontName: "Roboto2", fontSize: 14,color:"#757575"}},
+					fontName: "Roboto2",
 				};
 
 				var chart2 = new google.visualization.PieChart(document.getElementById('div2'));
@@ -69,44 +71,56 @@
 			<div class="row">
 				<div class="col s6 l3">
 					<div class="card-panel brown white-text hoverable" style="position:relative">
-						<p style="margin: 0">
-							<span style="font-size:40px;font-weight:700">${bienes_creados}</span><br>
-							bienes dados de<br>alta recientemente.
-						</p>
-						<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">add_shopping_cart</i>
+						<div class="row" style="margin:0">
+							<div class="col s6" style="padding:0">
+								<span style="font-size: 40px;font-weight:700;display:block">${bienes_creados}</span>bienes dados de alta recientemente.
+							</div>
+							<div class="col s6">
+								<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">add_shopping_cart</i>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col s6 l3">
 					<div class="card-panel grey white-text hoverable" style="position:relative">
-						<p style="margin: 0">
-							<span style="font-size:40px;font-weight:700">${bienes_borrados}</span><br>
-							bienes dados de<br>baja recientemente.
-						</p>
-						<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">delete</i>
+						<div class="row" style="margin:0">
+							<div class="col s6" style="padding:0">
+								<span style="font-size: 40px;font-weight:700;display:block">${bienes_borrados}</span>bienes dados de baja recientemente.
+							</div>
+							<div class="col s6">
+								<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">delete</i>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col s6 l3">
 					<div class="card-panel blue white-text hoverable" style="position:relative">
-						<p style="margin: 0">
-							<span style="font-size:40px;font-weight:700">${personas_creadas}</span><br>
-							personas dadas de<br>alta recientemente.
-						</p>
-						<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">person_add</i>
+						<div class="row" style="margin:0">
+							<div class="col s6" style="padding:0">
+								<span style="font-size: 40px;font-weight:700;display:block">${personas_creadas}</span>personas dadas de alta recientemente.
+							</div>
+							<div class="col s6">
+								<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">person_add</i>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col s6 l3">
 					<div class="card-panel red white-text hoverable" style="position:relative">
-						<p style="margin: 0">
-							<span style="font-size:40px;font-weight:700">${personas_borradas}</span><br>
-							personas dadas de<br>baja recientemente.
-						</p>
-						<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">person</i>
+						<div class="row" style="margin:0">
+							<div class="col s6" style="padding:0">
+								<span style="font-size: 40px;font-weight:700;display:block">${personas_borradas}</span>personas dadas de baja recientemente.
+							</div>
+							<div class="col s6">
+								<i class="material-icons" style="position:absolute;bottom:calc(50% - 35px);right:15px;font-size:70px;">person</i>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s12 l6">
-					<div class="card-panel hoverable visualization" style="margin:0 auto">
+					<div class="card-panel hoverable visualization" style="margin:0 auto 15px">
 						<p>
 							<span class="graph-title">Cantidad de Bienes</span><br>
 							<span class="graph-subtitle">por Estado</span><br>
@@ -116,7 +130,7 @@
 					</div>
 				</div>
 				<div class="col s12 l6">
-					<div class="card-panel hoverable visualization" style="margin:0 auto">
+					<div class="card-panel hoverable visualization" style="margin:0 auto 15px">
 						<p>
 							<span class="graph-title">Cantidad de Bienes</span><br>
 							<span class="graph-subtitle">por Área</span><br>
