@@ -8,6 +8,15 @@
 %>
 
 <div class="row">
+	<div class="file-field input-field col s12 m12 l12">
+		<input class="file-path validate" type="text"/>
+		<div class="btn">
+			<span>Foto</span>
+			<input type="file" id="filePayload" name="filePayload" accept="image/*"/>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="input-field col s12 m6 l4 ${hasErrors(bean: personaInstance, field: 'nombre', 'error')}">
 		<g:textField name="nombre" pattern="[A-Z]{1}?[a-z]{2,19}" title="Formato: letras de la A a la z. Longitud entre 3 y 20." value="${personaInstance?.nombre}" required class="validate"/>
 		<label for="nombre">
