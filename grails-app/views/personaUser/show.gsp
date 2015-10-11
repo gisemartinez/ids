@@ -1,4 +1,3 @@
-
 <%@ page import="abm.PersonaUser" %>
 <!DOCTYPE html>
 <html>
@@ -19,28 +18,21 @@
 		<div id="show-personaUser" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list personaUser">
-			
 				<g:if test="${personaUserInstance?.personaId}">
-				<li class="fieldcontain">
-					<span id="personaId-label" class="property-label"><g:message code="personaUser.personaId.label" default="Persona Id" /></span>
-					
+					<li class="fieldcontain">
+						<span id="personaId-label" class="property-label"><g:message code="personaUser.personaId.label" default="Persona Id" /></span>
 						<span class="property-value" aria-labelledby="personaId-label"><g:fieldValue bean="${personaUserInstance}" field="personaId"/></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
 				<g:if test="${personaUserInstance?.userId}">
-				<li class="fieldcontain">
-					<span id="userId-label" class="property-label"><g:message code="personaUser.userId.label" default="User Id" /></span>
-					
+					<li class="fieldcontain">
+						<span id="userId-label" class="property-label"><g:message code="personaUser.userId.label" default="User Id" /></span>
 						<span class="property-value" aria-labelledby="userId-label"><g:fieldValue bean="${personaUserInstance}" field="userId"/></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
 			</ol>
 			<g:form url="[resource:personaUserInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
