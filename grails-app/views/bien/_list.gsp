@@ -44,9 +44,7 @@
 		</tbody>
 	</table>
 	
-	<div style="text-align:right">
-		<util:remotePaginate action="list" total="${bienInstanceCount ?: 0}" params="${params}" update="list" prev="«" next="»"/>
-	</div>
+	<util:remotePaginate action="list" total="${bienInstanceCount ?: 0}" params="${params}" update="list" prev="«" next="»"/>
 
 	<g:render template="/table-script"/>
 
