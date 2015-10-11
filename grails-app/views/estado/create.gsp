@@ -6,12 +6,10 @@
 		<g:set var="entityName" value="${message(code: 'estado.label', default: 'Estado')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 		<script type="text/javascript">
-		$(document).ready(function()
-				{
-					$('select#estado').val(1);
-					$('select#estado option').attr('hidden',true)
-				}
-			)
+			$(document).ready(function(){
+				$('select#estado').val(1);
+				$('select#estado option').attr('hidden',true)
+			})
 		</script>
 	</head>
 	<body>
@@ -39,10 +37,10 @@
 							<a href="/${grailsApplication.config.nombreAplicacion}/estado/index" class="cancel">Cancelar</a>
 							<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 						</fieldset>
-					</g:form>				
+					</g:form>
 				</div>
 				<g:message code="* Campo Obligatorio"/>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>
