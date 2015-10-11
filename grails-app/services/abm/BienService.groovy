@@ -76,23 +76,18 @@ class BienService {
         }
     }
     def getBienesSegunPermiso(max, offset, query){
-        // si el rol es Admin, traigo todos los bienes.En caso contrario, traigo los bienes que correspondan al area de la persona
-        if (max == 0) {
-            if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor())
-                return Bien.findAll("from Bien where (INSTR(nombreBien,?)>0 or INSTR(descripcion,?)>0 or INSTR(codigoPatrimonio,?)>0 or INSTR(codigoDeSerie,?)>0 or INSTR(fechaAlta,?)>0))",[query,query,query,query,query])
-            else {
-                def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( userService.idUserSesionActual() )).area
-                return Bien.findAll("from Bien where (INSTR(nombreBien,?)>0 or INSTR(descripcion,?)>0 or INSTR(codigoPatrimonio,?)>0 or INSTR(codigoDeSerie,?)>0 or INSTR(fechaAlta,?)>0)) and area_id = ?",[query,query,query,query,query,areaUser])
-            }
-        }
-        else {
-            if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor())
-                return Bien.findAll("from Bien where (INSTR(nombreBien,?)>0 or INSTR(descripcion,?)>0 or INSTR(codigoPatrimonio,?)>0 or INSTR(codigoDeSerie,?)>0  or INSTR(fechaAlta,?)>0))",[query,query,query,query,query],[max: max, offset: offset.toInteger()])
-            else {
-                def areaUser = Persona.findById(personaService.getIdPersonaSesionActual( userService.idUserSesionActual() )).area
-                return Bien.findAll("from Bien where (INSTR(nombreBien,?)>0 or INSTR(descripcion,?)>0 or INSTR(codigoPatrimonio,?)>0 or INSTR(codigoDeSerie,?)>0 or INSTR(fechaAlta,?)>0)) and area_id = ?",[query,query,query,query,query,areaUser],[max: max, offset: offset.toInteger()])
-            }
-        }
+        def areaUser = Persona.findById(personaService.getIdPersonaSesionActual()).area.id
+        def listadoBienes
+        
+        if (max == 0)
+            listadoBienes = Bien.findAll("from Bien where (INSTR(nombreBien,?)>0 or INSTR(descripcion,?)>0 or INSTR(codigoPatrimonio,?)>0 or INSTR(codigoDeSerie,?)>0 or INSTR(fechaAlta,?)>0))",[query,query,query,query,query])
+        else
+            listadoBienes = Bien.findAll("from Bien where (INSTR(nombreBien,?)>0 or INSTR(descripcion,?)>0 or INSTR(codigoPatrimonio,?)>0 or INSTR(codigoDeSerie,?)>0 or INSTR(fechaAlta,?)>0))",[query,query,query,query,query],[max: max, offset: offset.toInteger()])
+        // si el rol es Admin, traigo todos los bienes. En caso contrario, traigo los bienes que correspondan al area de la persona
+        if (roleService.nombreDelRolDeSesionActual() == roleService.getSupervisor())
+            return listadoBienes
+        else
+            return listadoBienes.findAll{it.area.id == areaUser}
     }
 
      def bienesSegunEstado(ArrayList listadoBienes, String nombreEstado){
