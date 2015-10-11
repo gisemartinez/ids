@@ -3,7 +3,7 @@
 		<div class="col s12 offset-m1 m10 offset-l2 l8 card-fab-col">
 			<div class="card card-fab">
 				<i class="material-icons white-text center-align">add</i>
-				<g:form url="[resource:personaInstance, action:'save']" id="form_create" class="form-fab">
+				<g:form url="[resource:personaInstance, action:'save']" id="form_create" class="form-fab" enctype="multipart/form-data">
 					<div class="card-image">
 						<asset:image src="sample-1.jpg"/>
 						<span class="card-title">Crear Persona</span>
