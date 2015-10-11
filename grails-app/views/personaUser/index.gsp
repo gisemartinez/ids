@@ -1,4 +1,3 @@
-
 <%@ page import="abm.PersonaUser" %>
 <!DOCTYPE html>
 <html>
@@ -23,11 +22,8 @@
 			<table>
 			<thead>
 					<tr>
-					
-						<g:sortableColumn property="personaId" title="${message(code: 'personaUser.personaId.label', default: 'Persona Id')}" />
-					
+						<g:sortableColumn property="personaId" title="${message(code: 'personaUser.personaId.label', default: 'Persona Id')}" />					
 						<g:sortableColumn property="userId" title="${message(code: 'personaUser.userId.label', default: 'User Id')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
@@ -35,9 +31,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${personaUserInstance.id}">${fieldValue(bean: personaUserInstance, field: "personaId")}</g:link></td>
-					
 						<td>${fieldValue(bean: personaUserInstance, field: "userId")}</td>
-					
 					</tr>
 				</g:each>
 				</tbody>
