@@ -23,7 +23,7 @@ $(document).ready(function(){
 	// },60000);
 
 	// Clearable Inputs
-	$('input:not([type="button"]):not([type="submit"]):not([type="hidden"]):not([type="checkbox"]),textarea').addClass("clearable-input")
+	$('input:not([type="file"]):not([type="button"]):not([type="submit"]):not([type="hidden"]):not([type="checkbox"]),textarea').addClass("clearable-input")
 	.after('<button class="btn-flat btn-clear" tabIndex="-1"><i class="material-icons">clear</i></button>')
 	.bind('input change',function(){		
 		if ($(this).val()) $(this).next().css('display','inline-block')
